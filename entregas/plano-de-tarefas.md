@@ -7,13 +7,13 @@
 
 ## 1. Áreas e responsáveis
 
-Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). Os nomes foram confirmados pelo João em 15/10/2026. A atribuição de pessoas às áreas segue a do projeto de Especificação de Software (dúvida 2 da seção 8); o documento do RA1 em `.docx` (T11) ficou com o Eduardo Fabri, por decisão do João.
+Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). Nomes e responsáveis definidos pelo João em 15/10/2026: o João Correa fica com a área A, que inclui o documento do RA1 em `.docx` (T11), e o Eduardo Fabri fica com a área C, que é de código.
 
 | Área | Escopo | Responsável (proposto) |
 |---|---|---|
-| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx` para a entrega** (referências, consolidação e PDF) | Eduardo Fabri (`eduardofabrii`) |
+| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx` para a entrega** (referências, consolidação e PDF) | João Correa (`jvecodev`) |
 | **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto, ambiente; reprodutibilidade; gerador de eventos e leitura em streaming | João Pedro Cardoso (`Jcliz`) |
-| **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | João Correa (`jvecodev`) |
+| **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | Eduardo Fabri (`eduardofabrii`) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, preparo, conjunto preparado; resultados e interpretação do RA2 | Rodrigo Alves (`rdsalvesPUC`) |
 
 Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui na issue.
@@ -36,6 +36,7 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 ## 3. Fluxo de trabalho
 
 - **Branch por tarefa:** `ra1/<area>-<descricao>` ou `ra2/<area>-<descricao>`, minúsculas, sem acento. Ex.: `ra1/b-ingestao`.
+- **Quadro (kanban):** GitHub Projects ligado ao repositório, colunas A fazer → Em andamento → Em revisão → Concluído. Quem pega a tarefa se atribui e move o card; PR aberto vai para Em revisão; merge fecha a issue e move para Concluído (README, "Quadro de tarefas").
 - **Pull request para a `main`** com `Closes #<n>` e a evidência de cada critério. Outro integrante revisa. Todos têm permissão de push na `main` para correções pequenas (erro de digitação, link quebrado); conteúdo de tarefa entra por PR.
 - **Commits sem coautoria de IA** ([ADR-0007](../docs/adr/0007-commits-sem-coautoria-de-ia.md)). Ative o hook uma vez: `git config core.hooksPath .githooks`.
 - **Pendência entre áreas:** a seção de uma área depende de algo que outra ainda não fez (ex.: C precisa do `df_bruto` com uma coluna que B não trouxe). O trabalho não para: registre uma linha na issue com o rótulo `pendencia-cruzada` da área que precisa resolver (crie se não existir), com o arquivo e o trecho onde a suposição aparece. A linha fecha com o commit que resolve ou com a decisão de não fazer.
@@ -113,15 +114,14 @@ Referência: `entregas/criterios-de-aceite.md`
 5. Preencher "Bloqueada por" e "Bloqueia" com os números reais.
 6. Conferir por contagem: 15 issues (T00–T14), cada uma com rótulo de entrega ou `geral`.
 
-As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). Eduardo e Rodrigo ficam sem responsável atribuído até aceitarem o convite de colaborador.
+As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). As issues do Eduardo (área C) e do Rodrigo (área D) ficam sem responsável atribuído até eles aceitarem o convite de colaborador.
 
 ## 8. Dúvidas em aberto (para o grupo decidir)
 
-Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha (os números das outras não mudam). Já respondidas pelo João em 15/10/2026: nomes da equipe, professora (Marina), turma (não entra) e responsável pelo `.docx` (Eduardo Fabri).
+Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha (os números das outras não mudam). Já respondidas pelo João em 15/10/2026: nomes da equipe, professora (Marina), turma (não entra), divisão das áreas (A João Correa, B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves) e responsável pelo `.docx` (João Correa).
 
 | # | Dúvida | Onde surgiu | Padrão adotado até a resposta |
 |---|---|---|---|
-| 2 | A divisão das áreas A a D entre as pessoas está boa? | Seção 1 e [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md) | Mesma ordem do aircraft (Eduardo A, João Pedro B, João Correa C, Rodrigo D) |
 | 3 | O envio do RA1 é só a URL ou também um PDF do documento? | [enunciados/ra1.md](../enunciados/ra1.md) (envio por URL; entrega = `.ipynb` executado + `Template_RA1_Data_Analytics.docx`) | URL do repositório com a tag `ra1-entrega`; `.docx` e PDF em `output/` |
 | 4 | O RA1 e o RA2 vencem mesmo no mesmo dia? | As duas tarefas do Canvas mostram 21/10/2026 | 21/10/2026 para as duas, com prazos internos até 20/10 |
 | 5 | O que entra na seção 5 "Transformação" do notebook, se o RA1 não tem transformação analítica? | [template do notebook](../modelos/template_projeto_data_analytics.ipynb) §5 × [enunciados/ra1.md](../enunciados/ra1.md) §6 | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação |

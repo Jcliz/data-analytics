@@ -24,7 +24,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 ### Como deve ficar
 
 - **Visual do template do professor:** capa com PUCPR, "RA1 — Ingestão e preparação dos dados", e as sete seções "RA1 / 01" a "RA1 / 07" na ordem, com os títulos originais.
-- **Capa preenchida:** projeto, curso (sem turma), professora Marina, equipe com os quatro nomes do `CONTEXT.md` (seção 1), repositório (URL) e entrega (Curitiba • 21/10/2026). Responsável pelo `.docx`: Eduardo Fabri (área A, T11).
+- **Capa preenchida:** projeto, curso (sem turma), professora Marina, equipe com os quatro nomes do `CONTEXT.md` (seção 1), repositório (URL) e entrega (Curitiba • 21/10/2026). Responsável pelo `.docx`: João Correa (área A, T11).
 - **Nenhum campo entre colchetes** e nenhuma nota cinza de orientação ("COMO PREENCHER", "Exemplo de formulação", "LIMITE DESTA ENTREGA"…). O script remove as notas; os colchetes que sobrarem são campos não preenchidos.
 - **Evidência em toda tabela:** a coluna "Evidência" cita o notebook pela seção e pelo título da célula (ex.: `notebook §3 — "Duplicados por id"`) ou o caminho do arquivo. Não colar blocos de código no documento.
 - **Números iguais aos do notebook executado** da entrega.

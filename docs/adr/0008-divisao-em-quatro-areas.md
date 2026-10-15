@@ -31,7 +31,7 @@ Quatro áreas seguindo o fluxo do enunciado ("Fontes → Ingestão → Compreens
 | **C** — Compreensão e qualidade | Exploração inicial, dicionário de dados, diagnóstico Q1…Qn | Janela temporal e agregação (10) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, transformações de preparo, conjunto preparado | Resultados e interpretação (11) |
 
-Tarefas gerais (revisão cruzada, execução final, PDF do notebook e envio) ficam sem dono fixo: quem puxar se atribui. O documento do RA1 em `.docx` é da área A, por decisão do João (15/10/2026). A atribuição de pessoas a áreas está no [plano de tarefas](../../entregas/plano-de-tarefas.md).
+Tarefas gerais (revisão cruzada, execução final, PDF do notebook e envio) ficam sem dono fixo: quem puxar se atribui. O documento do RA1 em `.docx` é da área A, por decisão do João (15/10/2026), que também definiu as pessoas: A João Correa, B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. A atribuição de pessoas a áreas está no [plano de tarefas](../../entregas/plano-de-tarefas.md).
 
 ## Consequências
 

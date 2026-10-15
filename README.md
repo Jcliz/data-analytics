@@ -12,10 +12,10 @@ Este repositório guarda três coisas:
 
 | Integrante | GitHub | Área |
 |---|---|---|
-| Eduardo Fabri | `eduardofabrii` | A: problema, síntese e documento do RA1 (`.docx` da entrega) |
-| João Pedro Cardoso | `Jcliz` | B: fonte, ingestão e reprodutibilidade |
-| João Correa | `jvecodev` | C: compreensão e qualidade |
-| Rodrigo Alves | `rdsalvesPUC` | D: limpeza e conjunto resultante |
+| João Correa | `jvecodev` | A: problema, síntese e documento do RA1 (`.docx` da entrega) |
+| João Pedro Cardoso | `Jcliz` | B: fonte, ingestão e reprodutibilidade (código) |
+| Eduardo Fabri | `eduardofabrii` | C: compreensão e qualidade (código) |
+| Rodrigo Alves | `rdsalvesPUC` | D: limpeza e conjunto resultante (código) |
 
 Professora: Marina. A divisão está em proposta ([ADR-0008](docs/adr/0008-divisao-em-quatro-areas.md)); o detalhe de cada área está no [plano de tarefas](entregas/plano-de-tarefas.md).
 
@@ -176,6 +176,19 @@ python scripts/verificar_commits.py   # só a regra de commit da branch
 - As tarefas são issues com os rótulos `ra1`, `ra2` ou `geral`, mais o rótulo da área (`area-a` … `area-d`). A lista completa, com prazos e dependências, está no [plano de tarefas](entregas/plano-de-tarefas.md), seção 5.
 - Cada issue traz os critérios de aceite por ID ([critérios de aceite](entregas/criterios-de-aceite.md)).
 - Quem puxar uma tarefa geral sem responsável se atribui na issue.
+
+### Quadro de tarefas (kanban)
+
+As issues e os PRs ficam no quadro do GitHub Projects ligado a este repositório (aba **Projects**), com quatro colunas:
+
+| Coluna | Quando o card vai para ela |
+|---|---|
+| **A fazer** | Issue criada (entra sozinha no quadro). |
+| **Em andamento** | Quem pegou a tarefa se atribui e move o card. |
+| **Em revisão** | PR aberto com `Closes #<n>`. |
+| **Concluído** | PR integrado ou issue fechada (move sozinho). |
+
+O andamento de cada tarefa fica no quadro, e não nos arquivos do repositório.
 
 ### Pendências entre áreas
 
