@@ -53,25 +53,25 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 
 ## 5. Tarefas
 
-Convenção de título: `[RA1][Área X] descrição`, `[RA2][Área X] descrição` ou `[Geral] descrição`.
+Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tnn — descrição` ou `[Geral] Tnn — descrição`.
 
-| ID | Tarefa | Área | Arquivos | Critérios | Bloqueada por | Prazo |
-|---|---|---|---|---|---|---|
-| T00 | Estrutura do repositório, contexto e regras para agentes | Geral | todos os de base | — | — | 15/10 |
-| T01 | Problema, recorte e perguntas analíticas | A | nb 00a, 01; doc 00, 01 | C1.1–C1.4, N.1 | T00 | 16/10 |
-| T02 | Coleta pela API, retrato bruto e ficha da fonte | B | nb 00b, 02; doc 02; `dados/brutos/` | C2.1–C2.5 | T00 | 16/10 |
-| T03 | Exploração inicial e diagnóstico de qualidade | C | nb 03; doc 03 | C3.1–C3.5 | T02 | 17/10 |
-| T04 | Limpeza, preparo e conjunto resultante | D | nb 04, 05; doc 04, 05; `dados/preparados/` | C4.1–C4.5, C5.1–C5.5 | T03 | 19/10 |
-| T05 | Organização e reprodutibilidade | B | doc 06; `requirements.txt`; README (seção "Como executar") | C6.1–C6.4 | T02, T04 | 19/10 |
-| T06 | Considerações do RA1 | A | nb 07 | N.4 | T04 | 19/10 |
-| T07 | Objetivo da análise em streaming e considerações do RA2 | A | nb 08, 12 | S8.1, S12.1 | T01 | 19/10 |
-| T08 | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
-| T09 | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
-| T10 | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
-| T11 | Referências, consolidação do documento do RA1 e PDF | Geral | doc 07; `output/` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
-| T12 | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8 | T01–T11 | 20/10 |
-| T13 | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
-| T14 | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
+| ID | Issue | Tarefa | Área | Arquivos | Critérios | Bloqueada por | Prazo |
+|---|---|---|---|---|---|---|---|
+| T00 | [#1](https://github.com/Jcliz/data-analytics/issues/1) | Estrutura do repositório, contexto e regras para agentes | Geral | todos os de base | — | — | 15/10 |
+| T01 | [#2](https://github.com/Jcliz/data-analytics/issues/2) | Problema, recorte e perguntas analíticas | A | nb 00a, 01; doc 00, 01 | C1.1–C1.4, N.1 | T00 | 16/10 |
+| T02 | [#3](https://github.com/Jcliz/data-analytics/issues/3) | Coleta pela API, retrato bruto e ficha da fonte | B | nb 00b, 02; doc 02; `dados/brutos/` | C2.1–C2.5 | T00 | 16/10 |
+| T03 | [#4](https://github.com/Jcliz/data-analytics/issues/4) | Exploração inicial e diagnóstico de qualidade | C | nb 03; doc 03 | C3.1–C3.5 | T02 | 17/10 |
+| T04 | [#5](https://github.com/Jcliz/data-analytics/issues/5) | Limpeza, preparo e conjunto resultante | D | nb 04, 05; doc 04, 05; `dados/preparados/` | C4.1–C4.5, C5.1–C5.5 | T03 | 19/10 |
+| T05 | [#6](https://github.com/Jcliz/data-analytics/issues/6) | Organização e reprodutibilidade | B | doc 06; `requirements.txt`; README (seção "Como executar") | C6.1–C6.4 | T02, T04 | 19/10 |
+| T06 | [#7](https://github.com/Jcliz/data-analytics/issues/7) | Considerações do RA1 | A | nb 07 | N.4 | T04 | 19/10 |
+| T07 | [#8](https://github.com/Jcliz/data-analytics/issues/8) | Objetivo da análise em streaming e considerações do RA2 | A | nb 08, 12 | S8.1, S12.1 | T01 | 19/10 |
+| T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
+| T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
+| T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | Referências, consolidação do documento do RA1 e PDF | Geral | doc 07; `output/` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
+| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1 | T01–T11 | 20/10 |
+| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
+| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
 
 Prazo de entrega das duas tarefas no Canvas: **21/10/2026**.
 
@@ -112,3 +112,22 @@ Referência: `entregas/criterios-de-aceite.md`
 4. Atribuir ao responsável da área **só depois** que ele for colaborador do repositório; antes disso, citar o login entre crases no corpo, sem `@`.
 5. Preencher "Bloqueada por" e "Bloqueia" com os números reais.
 6. Conferir por contagem: 15 issues (T00–T14), cada uma com rótulo de entrega ou `geral`.
+
+As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). Eduardo e Rodrigo ficam sem responsável atribuído até aceitarem o convite de colaborador.
+
+## 8. Dúvidas em aberto (para o grupo decidir)
+
+Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha.
+
+| # | Dúvida | Onde surgiu | Padrão adotado até a resposta |
+|---|---|---|---|
+| 1 | Os integrantes e os logins são os mesmos do projeto de Especificação de Software? | Seção 1 deste plano e `README.md`, copiados do README do aircraft | Os quatro da tabela da seção 1 |
+| 2 | A divisão das áreas A a D entre as pessoas está boa? | Seção 1 e [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md) | Mesma ordem do aircraft (Eduardo A, João Pedro B, João Vitor C, Rodrigo D) |
+| 3 | O envio do RA1 é só a URL ou também um PDF do documento? | [enunciados/ra1.md](../enunciados/ra1.md) (envio por URL; entrega = `.ipynb` executado + `Template_RA1_Data_Analytics.docx`) | URL do repositório com a tag `ra1-entrega`; `.docx` e PDF em `output/` |
+| 4 | O RA1 e o RA2 vencem mesmo no mesmo dia? | As duas tarefas do Canvas mostram 21/10/2026 | 21/10/2026 para as duas, com prazos internos até 20/10 |
+| 5 | O que entra na seção 5 "Transformação" do notebook, se o RA1 não tem transformação analítica? | [template do notebook](../modelos/template_projeto_data_analytics.ipynb) §5 × [enunciados/ra1.md](../enunciados/ra1.md) §6 | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação |
+| 6 | O documento do RA1 terá declaração de uso de IA (critério X.7)? | [criterios-de-aceite.md](criterios-de-aceite.md) X.7; o aircraft exigia por causa do plano de ensino daquela disciplina | Não incluir até o grupo decidir |
+| 7 | Nome da professora e turma para a capa | [documentacao/ra1/00-capa.md](../documentacao/ra1/00-capa.md) e `notebook/secoes/00a-identificacao.py` | Campo entre colchetes, cobrado pelo verificador |
+| 8 | Manter os templates do professor no repositório público? | [`modelos/`](../modelos/) (os scripts precisam deles) | Manter |
+| 9 | Montar o grafo de conhecimento (Graphify) como no aircraft? | `graphify-out/` do aircraft | Não montar: a base daqui é pequena |
+
