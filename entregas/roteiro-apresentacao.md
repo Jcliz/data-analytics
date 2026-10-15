@@ -16,17 +16,17 @@
 
 ## 2. Demonstração do RA2 (5 minutos)
 
-<!-- A demonstração precisa mostrar o processamento de registros novos (critério "Demonstração", 2,0). Rode a consulta ao vivo e publique pelo menos um lote novo enquanto a professora olha. Ensaie com cronômetro. -->
+<!-- A demonstração precisa mostrar o processamento de registros novos (critério "Demonstração", 2,0). Execute o notebook até a célula anterior ao encerramento da seção 11 (consulta.stop()), publique um lote novo ao vivo, mostre a tabela mudando e só então encerre. Ensaie com cronômetro. -->
 
 | Tempo | Quem fala | O que fazer | Célula do notebook |
 |---|---|---|---|
 | 0:00–0:45 | [Área A] | [Objetivo da análise em streaming] | [Seção 8] |
-| 0:45–2:00 | [Área B] | [Como os eventos simulados chegam; iniciar a consulta] | [Seção 9] |
-| 2:00–3:30 | [Área C] | [Janela, duração, deslocamento e agregação; publicar um lote novo] | [Seção 10] |
-| 3:30–5:00 | [Área D] | [Resultado antes e depois do lote novo; o que mudou e por quê] | [Seção 11] |
+| 0:45–2:00 | [Área B] | [Como os eventos simulados chegam; o 1º lote recebido] | [Seção 9] |
+| 2:00–3:15 | [Área C] | [Janela, duração, deslocamento e agregação; tabela do 1º lote] | [Seção 10] |
+| 3:15–5:00 | [Área D] | [Publicar um lote novo ao vivo; o que mudou na tabela e por quê; encerrar a consulta] | [Seção 11] |
 
 ## 3. Antes do dia
 
-- [ ] Notebook executado do início ao fim no ambiente da apresentação (Colab ou máquina de quem apresenta).
+- [ ] Notebook executado no ambiente da apresentação (Colab ou máquina de quem apresenta) até a célula anterior ao encerramento da seção 11. No Colab, a instalação do PySpark leva alguns minutos: rode antes de a apresentação começar.
 - [ ] PDF único aberto na página de cada bloco.
 - [ ] Ensaio cronometrado da demonstração (até 5 minutos).

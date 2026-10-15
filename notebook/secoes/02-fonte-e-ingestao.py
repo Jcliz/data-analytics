@@ -29,7 +29,12 @@
 #> 1. Funções de acesso à API com pausa entre chamadas e tratamento do objeto "error" (resposta com HTTP 200).
 #> 2. Se BAIXAR_DA_API: coletar /genre, /chart/{id}/tracks (paginado), /track/{id} e /album/{id};
 #>    gravar as respostas cruas em PASTA_BRUTOS / "AAAA-MM-DD" e um metadados.json (data, chamadas, erros).
-#> 3. Sempre: ler o retrato mais recente de PASTA_BRUTOS e achatar em df_bruto (uma linha por item coletado,
-#>    mantendo duplicatas entre charts e a coluna do chart de origem). NÃO limpar aqui (é da área D).
-#> 4. Verificar o carregamento: df_bruto.shape, colunas, primeiras linhas, quantidade por chart de origem.
+#> 3. Sempre: ler o retrato mais recente de PASTA_BRUTOS. Se não houver retrato, pare com uma mensagem clara
+#>    (FileNotFoundError dizendo para rodar com BAIXAR_DA_API = True ou atualizar o clone).
+#> 4. Mostrar sempre o metadados.json do retrato lido (data e hora, endpoints, quantidade de chamadas, erros), para a
+#>    ingestão ficar visível mesmo sem coletar de novo (rubrica: ingestão e reprodutibilidade, 15%).
+#> 5. Achatar em df_bruto: uma linha por item coletado nos charts (mantendo duplicatas entre charts e a coluna do
+#>    chart de origem), já com os campos de /track/{id} e de /album/{id} juntados pelo id (ex.: prefixos track_ e
+#>    album_), para o gênero e os demais atributos passarem pelo diagnóstico da seção 3. NÃO limpar aqui (é da área D).
+#> 6. Verificar o carregamento: df_bruto.shape, colunas, primeiras linhas, quantidade por chart de origem.
 #> Contrato (CONTEXT.md §6): esta seção cria df_bruto.

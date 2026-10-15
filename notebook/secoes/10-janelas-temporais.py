@@ -28,9 +28,16 @@
 #> Template: "Utilize quantas células de código forem necessárias para esta etapa."
 #> Crie quantas células "# %%" precisar; comece cada uma com um comentário-título curto (ex.: "# Duplicados por id"),
 #> que é como o documento do RA1 cita a evidência.
-#> Passos esperados:
-#> 1. eventos = spark.readStream.schema(...).option("timestampFormat", ...).json(entrada)
+#> Passos esperados (base/streaming-e-janelas.md §2 e §3):
+#> 1. Pare consultas que tenham sobrado de uma execução anterior: for q in spark.streams.active: q.stop()
 #> 2. agregado = eventos.groupBy(window("instante", duração[, deslocamento]), "genero").agg(...)
-#> 3. consulta = agregado.writeStream.outputMode("complete").format("memory").queryName(...)
-#>               .option("checkpointLocation", ...).start()
-#> Contrato (CONTEXT.md §6): esta seção cria consulta; a seção 11 publica os lotes e encerra.
+#>    Uma única janela (tumbling ou sliding), coerente com o objetivo da seção 8.
+#> 3. TABELA_JANELAS = nome da tabela em memória, único por execução (a aula usa uuid4().hex).
+#> 4. consulta = agregado.writeStream.outputMode("complete").format("memory").queryName(TABELA_JANELAS)
+#>               .option("checkpointLocation", str(PASTA_CHECKPOINT / "janelas")).start()
+#>    complete + memory é a combinação das aulas. Não use append (com janela, exige watermark e só mostra
+#>    janelas fechadas) nem format("console") (escreve no log, não na célula, e não vai para o PDF).
+#>    Watermark e trigger não são necessários.
+#> 5. consulta.processAllAvailable() e mostre a tabela do 1º lote (publicado na seção 9):
+#>    spark.table(TABELA_JANELAS).select("window.start", "window.end", ...).orderBy("start").show(truncate=False)
+#> Contrato (CONTEXT.md §6): esta seção cria TABELA_JANELAS e consulta; a seção 11 publica os lotes seguintes.

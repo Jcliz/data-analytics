@@ -58,12 +58,12 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 
 - Um arquivo Markdown por seção do template `Template_RA1_Data_Analytics.docx`, com os mesmos títulos (`#` = seção, `##` = subtítulo do template). Os comentários `<!-- ... -->` são orientações: apague-os quando a seção estiver pronta.
 - Campos do template (ex.: "Unidade de observação") são linhas `**Campo:** valor`. Tabelas seguem o cabeçalho do template.
-- Toda linha de evidência aponta para o notebook (`notebook, seção 3, célula "Duplicados por id"`) ou para um arquivo do repositório.
+- Toda linha de evidência aponta para o notebook (`notebook §3, célula "Duplicados por id"`) ou para um arquivo do repositório.
 - Gere o `.docx` com `python scripts/gerar_docx_ra1.py` e confira o PDF antes de abrir o PR da consolidação.
 
 ### Entrega (PDF único)
 
-- O RA1 e o RA2 vão **no mesmo arquivo**: `output/entrega-ra1-ra2.pdf`, com o documento do RA1 e depois o notebook executado, enviado igual nas duas tarefas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)).
+- O RA1 e o RA2 vão **no mesmo arquivo**: `output/entrega-ra1-ra2.pdf`, com o documento do RA1 e depois o notebook executado: o arquivo vai no RA2 e o link dele no repositório (tag `entrega`) vai no RA1, que só aceita URL ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)).
 - Monte com `python scripts/montar_entrega.py` depois de gerar as duas partes; não junte os PDFs à mão. Se o script avisar que uma parte está desatualizada, gere essa parte de novo.
 
 ### Antes de abrir o PR

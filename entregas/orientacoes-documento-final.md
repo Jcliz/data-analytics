@@ -4,15 +4,15 @@
 
 ## 1. O que vai na entrega
 
-O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)): um PDF único, enviado igual nas duas tarefas do Canvas.
+O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)): um PDF único. Na tarefa do **RA2**, envie o arquivo. A tarefa do **RA1** só aceita URL (campo "Insira o URL da web"): envie o link do mesmo PDF no repositório, na tag `entrega`: `https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`.
 
 | Parte do PDF único | Arquivo | Fonte no repositório | Como gerar |
 |---|---|---|---|
 | 1. Documento do RA1 (template do professor), com a URL do repositório na capa | `output/ra1-documentacao.pdf` | `documentacao/ra1/` | seção 2 |
 | 2. Notebook executado: identificação, RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12) | `output/projeto_data_analytics.pdf` | `notebook/secoes/` | seção 3 |
-| **Arquivo enviado no RA1 e no RA2** | **`output/entrega-ra1-ra2.pdf`** | as duas partes acima | `python scripts/montar_entrega.py` |
+| **Arquivo da entrega (RA2: o arquivo; RA1: o link dele)** | **`output/entrega-ra1-ra2.pdf`** (versionado) | as duas partes acima | `python scripts/montar_entrega.py` |
 
-No repositório (tag `entrega`) ficam também o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados. O repositório é público; confira que a URL da capa abre numa janela anônima antes de enviar. A tarefa do RA1 no Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
+No repositório (tag `entrega`) ficam também o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados. O repositório é público; confira que a URL da capa e o link do PDF abrem numa janela anônima antes de enviar.
 
 ## 2. Documento do RA1 (do `.docx` ao PDF)
 
@@ -30,7 +30,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 - **Capa preenchida:** projeto, curso (sem turma), professora Marina, equipe com os quatro nomes do `CONTEXT.md` (seção 1), repositório (URL) e entrega (Curitiba • 21/10/2026). Responsável pelo `.docx`: João Correa (área A, T11).
 - **Sem declaração de uso de IA** (critério X.7): nem seção, nem nota, nem frase sobre assistentes de IA, no documento e no notebook. Decisão do grupo.
 - **Nenhum campo entre colchetes** e nenhuma nota cinza de orientação ("COMO PREENCHER", "Exemplo de formulação", "LIMITE DESTA ENTREGA"…). O script remove as notas; os colchetes que sobrarem são campos não preenchidos.
-- **Evidência em toda tabela:** a coluna "Evidência" cita o notebook pela seção e pelo título da célula (ex.: `notebook §3 — "Duplicados por id"`) ou o caminho do arquivo. Não colar blocos de código no documento.
+- **Evidência em toda tabela:** a coluna "Evidência" cita o notebook pela seção e pelo título da célula (ex.: `notebook §3, célula "Duplicados por id"`) ou o caminho do arquivo. Não colar blocos de código no documento.
 - **Números iguais aos do notebook executado** da entrega.
 - **Decisões de limpeza:** um bloco por decisão (D1, D2…), todos com problema, tratamento, implementação e validação.
 - **Conferência da entrega** marcada (☒) só no que estiver de fato atendido.
@@ -46,7 +46,7 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 ```
 
 - **Colab (referência):** envie o `.ipynb` gerado, *Ambiente de execução → Executar tudo*; ao terminar sem erro, *Arquivo → Fazer download → .ipynb* e substitua o do repositório. Para o PDF: *Arquivo → Imprimir → Salvar como PDF*.
-- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `jupyter nbconvert --to webpdf notebook/projeto_data_analytics.ipynb --output-dir output` (requer `pip install "nbconvert[webpdf]"`).
+- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (requer `pip install "nbconvert[webpdf]"`; na primeira vez a opção baixa o Chromium que o exportador usa).
 
 ### Como deve ficar
 
@@ -55,7 +55,7 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 - **Todas as células executadas em sequência** (contadores 1, 2, 3…), sem erro e sem aviso vermelho sobrando.
 - **Saídas legíveis no PDF:** tabelas com no máximo 10 a 20 linhas (`head`, `show(n=…, truncate=False)`); nada de imprimir o DataFrame inteiro ou JSON cru grande; linhas de código com até ~100 caracteres para não cortar na impressão.
 - **Cada célula de código com um comentário de uma linha** dizendo o que faz; as células citadas no documento do RA1 começam com um título curto em comentário (ex.: `# Duplicados por id`), que é como o documento as referencia.
-- **RA2:** a saída depois de cada lote aparece no PDF (não só a final), para mostrar a chegada de novos registros.
+- **RA2:** a saída depois de cada lote aparece no PDF (não só a final), para mostrar a chegada de novos registros; início e fim da janela em colunas separadas. A célula do `%pip install` começa com `%%capture`, para a barra de progresso não sair no PDF.
 - Grave o PDF do notebook como `output/projeto_data_analytics.pdf`: é a parte 2 do PDF único.
 
 ## 4. PDF único
@@ -74,4 +74,4 @@ python scripts/montar_entrega.py             # junta as duas partes em output/en
 2. Revisão cruzada (T12) concluída, com a tabela `ID | status | evidência`.
 3. Tag da entrega: `git tag entrega && git push origin entrega`, no commit da `main` que gerou o PDF enviado; a URL da capa aponta para o repositório.
 4. PDF único aberto e conferido página a página por alguém que não o gerou.
-5. O **mesmo** `output/entrega-ra1-ra2.pdf` enviado na tarefa do RA1 e na do RA2.
+5. `output/entrega-ra1-ra2.pdf` commitado na `main` antes da tag; no RA2, o arquivo enviado; no RA1, o link `https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`, conferido numa janela anônima.

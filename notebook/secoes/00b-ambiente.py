@@ -20,14 +20,24 @@ from pathlib import Path
 import pandas as pd
 
 URL_REPOSITORIO = "https://github.com/Jcliz/data-analytics.git"
+RAMO = "main"  # no Colab, troque pela branch da tarefa para testar antes do merge (ex.: "t02-coleta")
 NO_COLAB = "google.colab" in sys.modules
 
-if NO_COLAB and not Path("data-analytics").exists():
-    subprocess.run(["git", "clone", "-q", URL_REPOSITORIO], check=True)
+if NO_COLAB:
+    if Path("data-analytics").exists():
+        # Clone de uma execução anterior nesta sessão do Colab: traz a versão mais nova do ramo
+        subprocess.run(["git", "-C", "data-analytics", "pull", "-q", "origin", RAMO], check=False)
+    else:
+        subprocess.run(["git", "clone", "-q", "-b", RAMO, URL_REPOSITORIO], check=True)
 
 # A raiz é a pasta que contém o CONTEXT.md (funciona no Colab, na raiz ou dentro de notebook/)
 candidatos = [Path("data-analytics"), Path.cwd(), Path.cwd().parent]
-RAIZ = next(p.resolve() for p in candidatos if (p / "CONTEXT.md").exists())
+RAIZ = next((p.resolve() for p in candidatos if (p / "CONTEXT.md").exists()), None)
+if RAIZ is None:
+    raise FileNotFoundError(
+        "Raiz do repositório não encontrada (pasta com o CONTEXT.md). Rode o notebook de dentro do clone "
+        f"(raiz ou notebook/) ou, no Colab, confira se o ramo '{RAMO}' já tem a estrutura do projeto."
+    )
 
 PASTA_BRUTOS = RAIZ / "dados" / "brutos"
 PASTA_PREPARADOS = RAIZ / "dados" / "preparados"

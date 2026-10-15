@@ -31,9 +31,9 @@ Peso na rubrica entre parênteses.
 
 ### C3 — Compreensão e qualidade (compreensão 20% + qualidade 35%)
 - [ ] **C3.1** Unidade de observação ("uma linha representa…") e chave dos registros, com o limite de unicidade.
-- [ ] **C3.2** Dicionário inicial: todos os atributos usados no projeto, com significado, tipo observado e domínio ou unidade.
+- [ ] **C3.2** Dicionário inicial: todos os atributos usados no projeto, com significado, tipo observado e domínio ou unidade; no significado, a pergunta P que usa cada atributo (ex.: "Popularidade no chart (P1)"), já que a tabela do template não tem coluna para isso.
 - [ ] **C3.3** Exploração inicial no notebook (seção 3): quantidade de linhas e colunas, tipos, ausentes, estatísticas descritivas.
-- [ ] **C3.4** Diagnóstico Q1…Qn com regra, resultado (quantidade e proporção, com denominador) e célula; cobre cada categoria do enunciado (ausentes, duplicados, tipos, formatos, inválidos, categorias, outliers) **ou** registra "não se aplica" com justificativa.
+- [ ] **C3.4** Diagnóstico Q1…Qn com regra, resultado (quantidade e proporção, com denominador) e célula; cobre cada categoria do enunciado (ausentes, duplicados, tipos, formatos, inválidos, categorias, outliers) **ou** registra "não se aplica" com justificativa, e inclui outros problemas que a equipe encontrar.
 - [ ] **C3.5** Impacto: quais problemas comprometem o uso e quais têm prioridade.
 
 ### C4 — Limpeza e preparação (35%)
@@ -51,10 +51,10 @@ Peso na rubrica entre parênteses.
 - [ ] **C5.5** Nenhuma agregação analítica, indicador, visualização de resultado ou conclusão sobre as perguntas no RA1.
 
 ### C6 — Organização e reprodutibilidade (10%)
-- [ ] **C6.1** Repositório e versão (URL e tag da entrega); ambiente (Python, bibliotecas e versões, `requirements.txt`).
+- [ ] **C6.1** Repositório e versão (URL e tag `entrega`); ambiente (Python, bibliotecas e versões, `requirements.txt`).
 - [ ] **C6.2** Localização dos artefatos: dados brutos, código, dados preparados, documentação.
-- [ ] **C6.3** Passos de reprodução executáveis, com o resultado esperado de cada um.
-- [ ] **C6.4** Verificação da reprodução registrada: data, responsável, ambiente e resultado de uma execução completa a partir do clone limpo.
+- [ ] **C6.3** Passos de reprodução executáveis, com o resultado esperado de cada um, e o que fazer se a API da Deezer estiver indisponível ou responder diferente por país (ler o retrato bruto versionado).
+- [ ] **C6.4** Verificação da reprodução registrada no documento (seção 06): data, responsável, ambiente e resultado da execução final completa a partir do clone limpo (feita na T13, que gera o documento de novo depois de registrar).
 
 ### C7 — Referências e conferência
 - [ ] **C7.1** Referências da fonte de dados, da documentação técnica e do material usado, no padrão "Autor. Título. Ano. Disponível em: URL. Acesso em: data."
@@ -66,6 +66,8 @@ Peso na rubrica entre parênteses.
 - [ ] **N.3** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando.
 - [ ] **N.4** Respostas do grupo curtas, com números tirados das saídas das células.
 
+N.3 e N.4 valem para toda tarefa que escreve no notebook, restritos à seção dela.
+
 ### AP — Apresentação do RA1 (a avaliação do RA1 é feita na apresentação em sala)
 - [ ] **AP.1** Roteiro da apresentação em [roteiro-apresentacao.md](roteiro-apresentacao.md), com um bloco por critério da rubrica (problema e perguntas, compreensão, qualidade e preparação, ingestão e reprodutibilidade, organização), quem fala e qual página do PDF ou célula do notebook mostrar; cada integrante explica a parte da sua área.
 
@@ -73,12 +75,12 @@ Peso na rubrica entre parênteses.
 
 - [ ] **S8.1** Objetivo: o que o grupo quer monitorar e que informação espera obter com o streaming.
 - [ ] **S9.1** Cenário informado (A, simulação) e como os novos registros chegam.
-- [ ] **S9.2** Leitura com `spark.readStream`, esquema explícito e eventos coerentes com o conjunto preparado do RA1 (faixas e gêneros reais).
-- [ ] **S9.3** Recebimento demonstrado: pelo menos 3 lotes publicados em momentos diferentes, com a saída depois de cada um. (Processamento em streaming: 3,0.)
-- [ ] **S10.1** Tipo de janela, duração, deslocamento (se sliding), operação de agregação e o que se calcula em cada intervalo.
-- [ ] **S10.2** `window()` aplicada sobre o instante do evento, com modo de saída declarado. (Janelas temporais: 3,0.)
-- [ ] **S11.1** Resultados depois de cada lote e interpretação de quais janelas mudaram e por quê. (Documentação e interpretação: 2,0.)
-- [ ] **S11.2** Consulta encerrada (`consulta.stop()`) e pastas temporárias limpas.
+- [ ] **S9.2** Leitura com `spark.readStream`, esquema explícito e eventos coerentes com o conjunto preparado do RA1 (faixas e gêneros reais), sorteados com semente e instante inicial fixos (`SEMENTE`, `INICIO_SIMULACAO`).
+- [ ] **S9.3** Recebimento demonstrado na seção 9: o 1º lote publicado e a contagem de eventos recebidos pela consulta de recebimento, com a saída visível. (Processamento em streaming: 3,0, junto com S11.1.)
+- [ ] **S10.1** Uma única janela (tumbling ou sliding), coerente com o objetivo da seção 8: tipo, duração, deslocamento (se sliding), operação de agregação e o que se calcula em cada intervalo.
+- [ ] **S10.2** `window()` aplicada sobre o instante do evento, em `outputMode("complete")` com saída `memory`, e a tabela do 1º lote mostrada. (Janelas temporais: 3,0.)
+- [ ] **S11.1** Pelo menos 2 lotes novos (3 no total com o da seção 9), cada um em momentos diferentes e com a tabela da janela depois dele, e interpretação de quais janelas mudaram e por quê. (Documentação e interpretação: 2,0.)
+- [ ] **S11.2** Consulta encerrada (`consulta.stop()`) e subpastas de `dados/streaming/` limpas, numa última célula separada (a demonstração ao vivo publica um lote antes dela).
 - [ ] **S12.1** As três perguntas das considerações respondidas.
 - [ ] **S.D** Roteiro da demonstração oral de 5 minutos em [roteiro-apresentacao.md](roteiro-apresentacao.md), com quem fala, qual célula mostrar e a chegada de pelo menos um lote novo ao vivo. (Demonstração: 2,0.)
 
@@ -91,7 +93,7 @@ Peso na rubrica entre parênteses.
 - [ ] **X.5** Parte 2 do PDF único, o notebook: seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.6** Os mesmos números no documento, no notebook e na apresentação.
 - [ ] **X.7** **Nenhuma** declaração de uso de IA no documento do RA1, no notebook ou nos PDFs (decisão do grupo, 15/10/2026).
-- [ ] **X.8** PDF único `output/entrega-ra1-ra2.pdf` montado por `python scripts/montar_entrega.py` (documento do RA1 e depois o notebook, sem aviso de parte desatualizada) e o **mesmo** arquivo enviado nas tarefas do RA1 e do RA2 ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
+- [ ] **X.8** PDF único `output/entrega-ra1-ra2.pdf` montado por `python scripts/montar_entrega.py` (documento do RA1 e depois o notebook, sem aviso de parte desatualizada) e o **mesmo** arquivo entregue nas duas tarefas: no RA2, o arquivo; no RA1 (que só aceita URL), o link dele no repositório, na tag `entrega` ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
 
 ## 4. Revisão cruzada (T12)
 
@@ -102,4 +104,4 @@ Peso na rubrica entre parênteses.
 - [ ] **K.5** O objetivo do RA2 (S8.1) conversa com o problema do RA1 (C1.1).
 - [ ] **K.6** Nenhuma issue `pendencia-cruzada` aberta.
 - [ ] **K.7** `python scripts/verificar_entrega.py` sem pendência.
-- [ ] **K.8** Execução completa a partir de um clone limpo, registrada em C6.4.
+- [ ] **K.8** Ensaio da execução completa a partir de um clone limpo, com o resultado anotado no relatório da T12 (o registro final no documento é o C6.4, na T13).

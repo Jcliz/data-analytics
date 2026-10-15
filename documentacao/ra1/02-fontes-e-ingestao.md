@@ -2,7 +2,8 @@
 
 <!--
 Área B (T02) · Critérios C2.1 a C2.5 · Leia: base/api-deezer.md, ADR-0001 e ADR-0004.
-Evidência = notebook §2 + título da célula (ex.: notebook §2 — "Coleta dos charts por gênero") ou caminho do arquivo.
+Evidência = notebook §2 + título da célula (ex.: notebook §2, célula "Coleta dos charts por gênero") ou caminho do arquivo.
+Fonte única do projeto: F1 = API pública da Deezer (ADR-0001). O template pede uma ficha por fonte; aqui há uma só.
 -->
 
 ## Ficha da fonte

@@ -17,13 +17,17 @@ import montar_notebook  # noqa: E402
 
 # Campo do template ainda não preenchido: texto entre colchetes que não é link, caixa de seleção nem índice.
 CAMPO = re.compile(r'\[(?!x\]|X\]| \])([^\]\n]{3,})\](?!\()')
+# Intervalo numérico ("[0, 100]") é conteúdo, não campo em branco.
+INTERVALO = re.compile(r'^\[\s*-?[\d.,]+\s*[,;]\s*-?[\d.,]+\s*\]$')
+# Marca da base de conhecimento que não vai para a entrega (AGENTS.md, regra 6).
+MARCA = re.compile(r'^\[(Fato|Infer[eê]ncia)\b', re.IGNORECASE)
 # Menção a assistente de IA no texto entregue: o grupo decidiu não ter declaração de uso de IA (critério X.7).
 MENCAO_IA = re.compile(r'intelig[eê]ncia artificial|\b(uso de IA|assistentes? de IA|ChatGPT|Claude|Copilot|Gemini|'
                        r'OpenAI|Anthropic|LLM)\b', re.IGNORECASE)
 
 
 def pendencias_texto(texto):
-    return [m.group(0) for m in CAMPO.finditer(texto)]
+    return [m.group(0) for m in CAMPO.finditer(texto) if not INTERVALO.match(m.group(0))]
 
 
 def secoes():
@@ -47,8 +51,15 @@ def documento():
     for arquivo in sorted((RAIZ / 'documentacao' / 'ra1').glob('*.md')):
         texto = re.sub(r'<!--.*?-->', '', arquivo.read_text(encoding='utf-8'), flags=re.S)
         campos = pendencias_texto(texto)
+        marcas = [c for c in campos if MARCA.match(c)]
+        campos = [c for c in campos if not MARCA.match(c)]
+        avisos = []
         if campos:
-            achados[arquivo.relative_to(RAIZ)] = f'{len(campos)} campo(s) entre colchetes, ex.: {campos[0][:60]}'
+            avisos.append(f'{len(campos)} campo(s) entre colchetes, ex.: {campos[0][:60]}')
+        if marcas:
+            avisos.append(f'{len(marcas)} marca(s) {marcas[0]}: diga no texto que é estimativa ou suposição, sem colchetes')
+        if avisos:
+            achados[arquivo.relative_to(RAIZ)] = '; '.join(avisos)
     return achados
 
 

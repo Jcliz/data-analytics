@@ -4,7 +4,7 @@
 |---|---|---|---|
 | `brutos/AAAA-MM-DD/` | **Retrato bruto**: as respostas da API da Deezer, em JSON, exatamente como vieram, mais um `metadados.json` (data e hora da coleta, chamadas feitas, erros). Uma pasta por data de coleta. | Seção 02 do notebook, com `BAIXAR_DA_API = True` (área B) | Sim |
 | `preparados/` | **Conjunto preparado** do RA1: `faixas_preparadas.csv`, já limpo, com colunas em português. Entrada do RA2. | Seções 04 e 05 do notebook (área D) | Sim |
-| `streaming/` | Pastas de execução do RA2: `entrada/` (monitorada pelo Spark), `publicacao/` (onde cada arquivo é escrito antes de ser movido) e `checkpoint/`. | Seção 09 do notebook (área B) | Não (só este README e o `.gitkeep`) |
+| `streaming/` | Pastas de execução do RA2: `entrada/` (monitorada pelo Spark), `publicacao/` (onde cada arquivo é escrito antes de ser movido) e `checkpoint/`. | Seção 09 do notebook (área B) | Não (só este README) |
 
 Regras ([ADR-0004](../docs/adr/0004-retrato-bruto-versionado.md)):
 

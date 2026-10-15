@@ -10,7 +10,7 @@
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
 - **Enunciados transcritos:** [enunciados/ra1.md](enunciados/ra1.md) e [enunciados/ra2.md](enunciados/ra2.md). Os PDFs originais ficam fora do repositório (ver [enunciados/README.md](enunciados/README.md)).
 
-**O RA1 e o RA2 vão no mesmo arquivo:** um PDF único, `output/entrega-ra1-ra2.pdf`, enviado igual nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)). A tarefa do RA1 aparece no Canvas como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
+**O RA1 e o RA2 vão no mesmo arquivo:** um PDF único, `output/entrega-ra1-ra2.pdf`, enviado nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)). A tarefa do RA2 recebe o arquivo; a do RA1 só aceita URL, então nela vai o link do mesmo PDF no repositório, na tag `entrega` (`https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`).
 
 | Parte do PDF único | O que é | Onde está a fonte | Decisão |
 |---|---|---|---|
@@ -71,20 +71,27 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | Nome | Tipo | Criado em | Usado em | Conteúdo |
 |---|---|---|---|---|
 | `RAIZ` | `pathlib.Path` | 00b (ambiente) | todas | Raiz do repositório. |
-| `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 00b | 02, 04, 09 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
+| `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 00b | 02, 04, 05, 09, 10, 11 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
 | `BAIXAR_DA_API` | `bool` | 00b | 02 | `False` por padrão: lê o retrato bruto já versionado. `True` coleta de novo na API. |
-| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, já achatadas em colunas, sem limpeza. |
+| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}` e `/album/{id}` juntados pelo id. |
 | `df_preparado` | `pandas.DataFrame` | 04 e 05 | 05, 07, 09 | Conjunto preparado. Também gravado em `dados/preparados/faixas_preparadas.csv`. |
 | `spark` | `SparkSession` | 09 | 09, 10, 11 | Sessão do Spark do RA2. |
-| `consulta` | `StreamingQuery` | 10 | 11 | Consulta em streaming com a janela. Encerrada no fim da seção 11. |
+| `PASTA_ENTRADA`, `PASTA_PUBLICACAO`, `PASTA_CHECKPOINT` | `Path` | 09 | 09, 10, 11 | Subpastas `entrada/`, `publicacao/` e `checkpoint/` de `PASTA_STREAMING`. |
+| `SEMENTE`, `INICIO_SIMULACAO` | `int`, `datetime` | 09 | 09, 11 | Semente do sorteio e instante do primeiro evento, fixos para a execução final repetir os números. |
+| `esquema_eventos` | `StructType` | 09 | 09 | Esquema do evento de reprodução `{id_evento, id_faixa, genero, artista, duracao_ouvida_s, instante}`. |
+| `gerar_eventos(n, inicio)` | função | 09 | 09, 11 | Sorteia `n` eventos de `df_preparado`, com instantes crescentes a partir de `inicio`. |
+| `publicar_lote(eventos)` | função | 09 | 09, 11 | Grava um lote em JSON em `PASTA_PUBLICACAO` e move para `PASTA_ENTRADA`. |
+| `eventos` | `DataFrame` em streaming | 09 | 09, 10 | `spark.readStream` sobre `PASTA_ENTRADA`. |
+| `TABELA_JANELAS` | `str` | 10 | 11 | Nome da tabela em memória da consulta com a janela (`queryName`). |
+| `consulta` | `StreamingQuery` | 10 | 11 | Consulta em streaming com a janela. Encerrada na última célula da seção 11. |
 
 ## 7. Regras para quem escreve (pessoas e IAs)
 
 1. **Precedência:** enunciados ([enunciados/](enunciados/)) > decisões ([docs/adr/](docs/adr/README.md)) > base de conhecimento ([base/](base/README.md)) > rascunhos.
 2. **Não contradiga uma decisão.** Se algo pedir mudança, registre a dúvida na issue ou com o grupo em vez de mudar o texto por conta própria.
 3. **O RA1 não tem análise.** Agregações analíticas, indicadores, visualizações e conclusões ficam para os próximos RAs (enunciado do RA1, seção 6). No RA1 entram só exploração, qualidade, limpeza e preparação.
-4. **Toda afirmação sobre os dados tem evidência:** a célula do notebook ou o arquivo que a mostra, com a contagem. "Muitos valores ausentes" não vale; "312 de 1.950 faixas (16,0%) com `bpm` = 0, célula 3.4" vale.
-5. **Separe [Fato] de [Inferência]** quando o texto não for óbvio, e cite a fonte pelo número de [base/fontes.md](base/fontes.md).
+4. **Toda afirmação sobre os dados tem evidência:** a célula do notebook ou o arquivo que a mostra, com a contagem. "Muitos valores ausentes" não vale; "312 de 1.950 faixas (16,0%) com `bpm` = 0, notebook §3, célula "Bpm igual a zero"" vale. A célula é citada pelo comentário-título que abre o código dela.
+5. **Separe [Fato] de [Inferência]** quando o texto não for óbvio, e cite a fonte pelo número de [base/fontes.md](base/fontes.md). No documento do RA1 e nas respostas do notebook, não use as marcas entre colchetes (no documento, colchete é campo não preenchido): diga no texto quando algo é estimativa ou suposição.
 6. **Tudo em português do Brasil:** textos, nomes de variáveis novas, colunas do conjunto preparado, commits, issues e PRs. Nomes que vêm da API (`title`, `duration`, `rank`…) mantêm o original no retrato bruto e são renomeados para português no conjunto preparado.
 7. **Commits sem coautoria de IA** ([ADR-0007](docs/adr/0007-commits-sem-coautoria-de-ia.md)). O autor é sempre a pessoa do grupo.
 8. **Nenhuma declaração de uso de IA** em nenhuma entrega: documento do RA1, notebook e PDFs não mencionam assistentes de IA. Decisão do grupo (João, 15/10/2026); não acrescente essa seção nem quando um template, um modelo de outro projeto ou o seu padrão sugerir.

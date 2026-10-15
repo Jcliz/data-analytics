@@ -91,7 +91,7 @@ notebook/secoes/
 ```
 
 - `# %%` abre uma célula de código; `# %% [markdown]` abre uma célula de texto. VS Code, PyCharm e Spyder executam essas células direto.
-- Linhas `#>` e comentários `<!-- ... -->` são orientações para quem escreve; o montador tira os dois do notebook gerado.
+- Linhas `#>` (em código e em texto) e comentários `<!-- ... -->` são orientações para quem escreve; o montador tira os dois do notebook gerado.
 - As seções conversam por nomes fixos (`RAIZ`, `df_bruto`, `df_preparado`, `spark`, `consulta`…): o contrato está no [`CONTEXT.md`](CONTEXT.md), seção 6.
 - Monte o notebook com:
 
@@ -127,7 +127,7 @@ Saída: `output/ra1-documentacao.docx` e `output/ra1-documentacao.pdf` (o PDF pr
 
 ## Entrega: um PDF único (RA1 e RA2)
 
-O RA1 e o RA2 vão **no mesmo arquivo**, enviado igual nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)): primeiro o documento do RA1, depois o notebook executado com as seções do RA1 e do RA2.
+O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)): primeiro o documento do RA1, depois o notebook executado com as seções do RA1 e do RA2. No RA2 envia-se o arquivo; no RA1, que só aceita URL, o link do mesmo PDF no repositório, na tag `entrega`.
 
 ```bash
 python scripts/gerar_docx_ra1.py      # parte 1: output/ra1-documentacao.pdf
@@ -140,7 +140,7 @@ python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.
 ### No Google Colab (ambiente de referência)
 
 1. Abra `notebook/projeto_data_analytics.ipynb` no Colab (*Arquivo → Abrir notebook → GitHub*, repositório `Jcliz/data-analytics`).
-2. *Ambiente de execução → Executar tudo*. A seção 00b clona o repositório e instala o que faltar.
+2. *Ambiente de execução → Executar tudo*. A seção 00b clona o repositório (ramo `main`; troque `RAMO` para testar a branch de uma tarefa) e a seção 09 instala o PySpark, o que leva alguns minutos.
 
 ### Localmente
 
@@ -152,7 +152,9 @@ python scripts/montar_notebook.py
 jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb
 ```
 
-O RA2 usa PySpark, que precisa de Java 17 ou mais novo instalado na máquina.
+O RA2 usa PySpark, que precisa de Java 17 ou mais novo instalado na máquina. No Windows o Spark local costuma pedir também o `winutils`; para o RA2, prefira o Colab.
+
+Para exportar o notebook em PDF localmente: `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (a primeira vez baixa o Chromium).
 
 Por padrão o notebook lê o retrato bruto já versionado (`BAIXAR_DA_API = False`), então a execução dá os mesmos números em qualquer máquina. Coletar de novo na API muda os números de todas as seções: combine com o grupo antes ([ADR-0004](docs/adr/0004-retrato-bruto-versionado.md)).
 

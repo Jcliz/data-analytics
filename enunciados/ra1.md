@@ -1,6 +1,6 @@
 # RA1 — Data Ingestion and Data Quality
 
-> Transcrição da tarefa do Canvas (10 pontos, tentativas ilimitadas, prazo 21/10/2026). O envio é por **URL** e conta para todo o grupo PjBL.
+> Transcrição da tarefa do Canvas (10 pontos, tentativas ilimitadas, prazo 21/10/2026). O envio é por **URL** (o formulário do Canvas só tem o campo "Insira o URL da web") e conta para todo o grupo PjBL.
 
 ## PjBL – RA1: Ingestão e Preparação dos Dados
 
@@ -15,7 +15,7 @@ Ao final desta etapa, a equipe deverá possuir um **conjunto de dados confiável
 Cada equipe deverá entregar o repositório do projeto contendo a implementação desenvolvida durante o RA1 e a documentação dos itens apresentados a seguir.
 
 1. Código fonte .ipynb com todas as células executadas
-2. Documentação de todo o processo analítico: Template_RA1_Data_Analytics.docx
+2. Documentação de todo o processo analítico: Template_RA1_Data_Analytics.docx (https://pucpr.instructure.com/courses/71291/files/6698464?wrap=1)
 
 ### 1. Definição do problema e perguntas analíticas
 
@@ -43,7 +43,7 @@ Quando aplicável, deverá ser disponibilizado o link ou referência de onde os 
 
 Demonstrar como os dados são carregados para o ambiente do projeto.
 
-Sempre que possível, o processo de ingestão deverá ser **reprodutível por meio de código**.
+Sempre que possível, o processo de ingestão deverá ser **reproduzível por meio de código**.
 
 Podem ser utilizados, por exemplo:
 
@@ -108,6 +108,8 @@ A avaliação do RA1 será realizada durante a apresentação da equipe em sala,
 | Organização, documentação e reprodutibilidade | 10% | Projeto bem organizado e documentado, permitindo reproduzir o fluxo desenvolvido no RA1. |
 
 ### Escala de avaliação
+
+Cada critério será avaliado utilizando a seguinte escala:
 
 - **4 — Excelente:** atende completamente ao critério e demonstra domínio.
 - **3 — Adequado:** atende bem ao critério, com pequenas lacunas.

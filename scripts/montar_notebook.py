@@ -5,7 +5,7 @@ Uso: python scripts/montar_notebook.py [--saida CAMINHO]
 
 Cada seção é um arquivo .py no formato percent: "# %%" abre célula de código e "# %% [markdown]" abre
 célula de texto (cada linha de texto começa com "# "). Os arquivos entram em ordem alfabética.
-Orientações não vão para o notebook: linhas de código que começam com "#>" e comentários <!-- --> no texto.
+Orientações não vão para o notebook: linhas que começam com "#>" (em código e em texto) e comentários <!-- --> no texto.
 Célula de código que fica vazia depois disso é descartada.
 """
 import argparse
@@ -32,11 +32,12 @@ def celulas(arquivo):
             atual[1].append(linha)
     resultado = []
     for tipo, linhas in saida:
+        linhas = [l for l in linhas if not l.lstrip().startswith('#>')]
         if tipo == 'markdown':
             texto = '\n'.join(re.sub(r'^# ?', '', l) if l.startswith('#') else l for l in linhas)
             texto = re.sub(r'\n?<!--.*?-->', '', texto, flags=re.S)
         else:
-            texto = '\n'.join(l for l in linhas if not l.lstrip().startswith('#>'))
+            texto = '\n'.join(linhas)
         texto = texto.strip('\n')
         if texto.strip():
             resultado.append((tipo, texto))

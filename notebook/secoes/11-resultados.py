@@ -14,10 +14,14 @@
 #> Crie quantas células "# %%" precisar; comece cada uma com um comentário-título curto (ex.: "# Duplicados por id"),
 #> que é como o documento do RA1 cita a evidência.
 #> Passos esperados:
-#> 1. Para cada lote (pelo menos 3): publicar_lote(...), consulta.processAllAvailable(), mostrar a tabela em
-#>    memória ordenada pela janela (spark.sql(...).show(truncate=False)). Deixe a saída de cada lote visível.
+#> 1. Pelo menos 2 lotes novos (3 no total, contando o da seção 9), cada um numa célula própria:
+#>    publicar_lote(gerar_eventos(...)), consulta.processAllAvailable() e a tabela em memória ordenada pela janela:
+#>    spark.table(TABELA_JANELAS).select("window.start", "window.end", ...).orderBy("start").show(truncate=False)
+#>    Deixe a saída de cada lote visível no PDF.
 #> 2. Pelo menos um lote com evento que cai numa janela já existente, para mostrar a atualização.
-#> 3. No fim: consulta.stop() e limpeza das pastas de streaming.
+#> 3. A última célula de código da seção é só o encerramento: consulta.stop() e limpeza das subpastas de
+#>    PASTA_STREAMING. Separada, para a demonstração ao vivo publicar um lote antes de encerrar
+#>    (entregas/roteiro-apresentacao.md, seção 2).
 
 # %% [markdown]
 # **Resposta do grupo:**

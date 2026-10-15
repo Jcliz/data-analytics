@@ -12,7 +12,7 @@ Regras para assistentes de IA (Claude Code, Codex, Copilot, Cursor e outros) que
 ## Escrita
 
 5. **Tudo em português do Brasil**: texto, células Markdown, comentários de código, nomes novos de variáveis e colunas, mensagens de commit, títulos de branch, issues e PRs.
-6. **Evidência para toda afirmação sobre os dados**: a seção do notebook (ex.: "célula 3.2") ou o arquivo, com a contagem e o denominador. Separe [Fato] de [Inferência] e cite fontes por número de [`base/fontes.md`](base/fontes.md).
+6. **Evidência para toda afirmação sobre os dados**: a seção e a célula do notebook, citada pelo comentário-título dela (ex.: `notebook §3, célula "Duplicados por id"`), ou o arquivo, com a contagem e o denominador. Separe [Fato] de [Inferência] e cite fontes por número de [`base/fontes.md`](base/fontes.md). Nas entregas (documento do RA1 e respostas do notebook), não escreva as marcas entre colchetes: diga no próprio texto quando algo é estimativa ou suposição; as marcas ficam na base de conhecimento.
 7. **O RA1 não tem análise**: nada de agregações analíticas, indicadores, gráficos de resultado ou conclusões sobre as perguntas. Isso é RA2/RA3.
 8. **Respeite o contrato do notebook** (`CONTEXT.md`, seção 6). Não renomeie variáveis compartilhadas nem caminhos de dados.
 9. **Cada área edita só os seus arquivos** (tabela de responsabilidade em [`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md)). Precisa de algo de outra área? Não invente: registre a suposição como uma linha na issue `pendencia-cruzada` da área dona, ou avise quem pediu a tarefa.

@@ -20,6 +20,7 @@ relacionados: [adr-0002, adr-0003]
 - O enunciado do RA1 pede o notebook `.ipynb` com todas as células executadas e o documento no template `Template_RA1_Data_Analytics.docx` ([enunciados/ra1.md](../../enunciados/ra1.md), "Entrega").
 - O enunciado do RA2 pede o PDF do notebook com as seções do RA1 e do RA2 organizadas ([enunciados/ra2.md](../../enunciados/ra2.md), seção 3).
 - O grupo vai enviar o RA1 e o RA2 no mesmo arquivo (João, 15/10/2026).
+- A tarefa do RA1 no Canvas só aceita uma URL (campo "Insira o URL da web"); a do RA2 recebe um arquivo PDF [Fato, RA1.pdf p. 3 e RA2.pdf].
 
 ## Opções
 
@@ -36,7 +37,7 @@ relacionados: [adr-0002, adr-0003]
 
 ## Consequências
 
-- O mesmo PDF vai nas duas tarefas do Canvas, sem nenhuma diferença entre os envios.
+- O mesmo PDF vai nas duas tarefas: no RA2, o arquivo; no RA1, que só aceita URL, o link do mesmo arquivo no repositório, na tag `entrega`: `https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`. Por isso o PDF único é versionado em `output/`.
 - As duas partes continuam sendo geradas como antes (ADR-0002 e ADR-0003); o script só as junta e põe um marcador para cada parte.
 - O script avisa quando uma parte foi gerada antes da última mudança na sua fonte; nesse caso, gere a parte de novo antes de juntar.
 - O PDF único segue as orientações das duas partes e não tem declaração de uso de IA (critério X.7).

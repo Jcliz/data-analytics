@@ -13,6 +13,8 @@ Como o Markdown vira documento:
   "#### Subtítulo" casa com os subtítulos do bloco.
 - "- [x] texto" marca o item correspondente da "Conferência da entrega".
 - Valor ainda entre colchetes ("[...]") deixa o campo do template como está; comentários <!-- --> são ignorados.
+  Intervalos numéricos ("[0, 100]") contam como conteúdo. Links [texto](url) viram "texto (url)".
+- Tabela Markdown sob um subtítulo que não tem tabela no template não entra no documento (o script avisa).
 - As notas cinza de orientação do template são removidas (use --manter-notas para conferir o rascunho).
 """
 import argparse
@@ -33,12 +35,15 @@ CINZA = '606066'
 REMOVIVEIS = {'anexos opcionais'}
 INLINE = re.compile(r'(\*\*.+?\*\*|`[^`]+`|\*[^*\s](?:[^*]*[^*\s])?\*)')
 CAMPO = re.compile(r'^\*\*(?P<rotulo>[^*]+?):\*\*\s*(?P<valor>.*)$')
+LINK = re.compile(r'\[([^\]\n]+)\]\((https?://[^)\s]+)\)')
+INTERVALO = re.compile(r'^\[\s*-?[\d.,]+\s*[,;]\s*-?[\d.,]+\s*[\])]')
 
 
 # ------------------------------------------------------------------ leitura do Markdown
 def ler(caminho):
     texto = caminho.read_text(encoding='utf-8').replace('\r', '')
-    return re.sub(r'<!--.*?-->', '', texto, flags=re.S)
+    texto = re.sub(r'<!--.*?-->', '', texto, flags=re.S)
+    return LINK.sub(r'\1 (\2)', texto)
 
 
 def estrutura(texto):
@@ -118,7 +123,9 @@ def blocos(linhas, rotulos):
 
 
 def preenchido(valor):
-    return bool(valor) and not valor.lstrip().startswith('[')
+    """Conteúdo de verdade: não vazio e não um espaço reservado "[...]" (intervalo numérico conta como conteúdo)."""
+    v = (valor or '').lstrip()
+    return bool(v) and (not v.startswith('[') or INTERVALO.match(v) is not None)
 
 
 # ------------------------------------------------------------------ utilidades do .docx
@@ -237,12 +244,12 @@ class Gerador:
 
     def preenche_tabela(self, tbl_el, linhas):
         tabela = Table(tbl_el, self.doc)
-        modelo = tabela.rows[-1]._tr
-        corpo = tabela.rows[1:]
-        for tr in [r._tr for r in corpo][len(linhas):]:
-            tbl_el.remove(tr)
-        while len(tabela.rows) - 1 < len(linhas):
-            tbl_el.append(copy.deepcopy(modelo))
+        # As linhas do template servem de modelo, em ciclo, para manter a alternância de cor das linhas
+        modelos = [copy.deepcopy(r._tr) for r in tabela.rows[1:]] or [copy.deepcopy(tabela.rows[-1]._tr)]
+        for r in tabela.rows[1:]:
+            tbl_el.remove(r._tr)
+        for k in range(len(linhas)):
+            tbl_el.append(copy.deepcopy(modelos[k % len(modelos)]))
         for linha, row in zip(linhas, tabela.rows[1:]):
             for texto, cell in zip(linha, row.cells):
                 p = cell.paragraphs[0]
@@ -267,6 +274,8 @@ class Gerador:
         tabelas = [el for el in corpo if tag(el) == 'tbl']
         if tabela and tabelas:
             self.preenche_tabela(tabelas[0], tabela)
+        elif tabela:
+            print(f'  aviso: "{nome}" não tem tabela no template; a tabela do Markdown não entrou (use texto ou lista)')
         checks = [b for b in conteudo if b[0] == 'check']
         caixas = [el for el in corpo if (par(el, self.doc) is not None and par(el, self.doc).text.startswith('☐'))]
         for (_, linha), el in zip(checks, caixas):
@@ -277,7 +286,8 @@ class Gerador:
         if texto:
             for el in corpo:  # remove os espaços reservados e as linhas em branco do template
                 p = par(el, self.doc)
-                if p is not None and (not p.text.strip() or p.text.strip().startswith('[')):
+                quebra = el.findall('.//' + qn('w:br'))  # nunca apaga a quebra de página entre seções
+                if p is not None and not quebra and (not p.text.strip() or p.text.strip().startswith('[')):
                     el.getparent().remove(el)
             ancora = faixa[alvo]
             for tipo, t in texto:
@@ -300,12 +310,11 @@ class Gerador:
         fim = next(i for i, el in enumerate(faixa) if i > inicio and estilo(par(el, self.doc)) == 'Heading 2'
                    and par(el, self.doc).text.strip() == 'Resumo das intervenções')
         bloco = faixa[inicio:fim]
-        ancora = bloco[-1]
+        resumo = faixa[fim]
         for grupo in grupos:
             copia = [copy.deepcopy(el) for el in bloco]
-            for el in copia:
-                ancora.addnext(el)
-                ancora = el
+            for el in copia:  # cada cópia entra logo antes de "Resumo das intervenções", na ordem D1, D2…
+                resumo.addprevious(el)
             rotulos = set(grupo['campos'])
             self.preenche_campos(copia, grupo['campos'])
             for nome, linhas in grupo['subs'].items():
@@ -377,6 +386,7 @@ def main():
     args = ap.parse_args()
 
     g = Gerador(args.template)
+    g.quebras_de_pagina()  # antes de preencher, para nenhuma seção perder a página nova
     arquivos = sorted(args.fonte.glob('*.md'))
     capa = next((a for a in arquivos if a.name.startswith('00')), None)
     if capa:
@@ -389,7 +399,6 @@ def main():
             g.secao(int(m.group(1)), estrutura(ler(arquivo)))
     if not args.manter_notas:
         g.remove_notas()
-    g.quebras_de_pagina()
 
     args.saida.parent.mkdir(parents=True, exist_ok=True)
     g.doc.save(args.saida)

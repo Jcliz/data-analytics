@@ -14,7 +14,7 @@
 #> Crie quantas células "# %%" precisar; comece cada uma com um comentário-título curto (ex.: "# Duplicados por id"),
 #> que é como o documento do RA1 cita a evidência.
 #> ATENÇÃO (enunciado do RA1, seção 6, e decisão do grupo em 15/10/2026): agregações analíticas, indicadores,
-#> visualizações e conclusões NÃO fazem parte do RA1. Aqui entram só transformações de PREPARO: juntar faixa com álbum/gênero, converter
+#> visualizações e conclusões NÃO fazem parte do RA1. Aqui entram só transformações de PREPARO (a junção com /track e /album já vem da seção 2): selecionar e renomear colunas para português, converter
 #> release_date em data e derivar ano_lancamento, duração em minutos, flags (explicita), ordenar colunas.
 #> Ao final: gravar PASTA_PREPARADOS / "faixas_preparadas.csv" (UTF-8, separador vírgula) e executar as
 #> verificações finais (tipos, domínios, ausências, duplicidade por id, integridade) com assert.
