@@ -1,0 +1,28 @@
+#!/bin/sh
+# Recusa commits com coautoria de IA (ADR-0007).
+# Ativação (uma vez por clone): git config core.hooksPath .githooks
+# O Claude Code ativa sozinho ao iniciar a sessão (.claude/settings.json).
+
+arquivo="$1"
+padrao_msg='^[[:space:]]*(co-authored-by:.*(claude|anthropic|copilot|openai|codex|chatgpt|cursor|gemini)|claude-session:)|generated with \[?claude'
+padrao_autor='claude|anthropic\.com|copilot|openai\.com'
+
+erro=0
+linhas=$(grep -v '^#' "$arquivo" | grep -inE "$padrao_msg")
+if [ -n "$linhas" ]; then
+  echo "commit recusado: a mensagem tem coautoria ou assinatura de IA (ADR-0007)." >&2
+  echo "$linhas" | sed 's/^/  linha /' >&2
+  echo "Remova essas linhas e faça o commit só com o autor real." >&2
+  erro=1
+fi
+
+for papel in GIT_AUTHOR_IDENT GIT_COMMITTER_IDENT; do
+  ident=$(git var "$papel" 2>/dev/null | sed 's/ [0-9]* [-+][0-9]*$//')
+  if echo "$ident" | grep -iqE "$padrao_autor"; then
+    echo "commit recusado: $papel é \"$ident\", e o autor tem de ser um integrante do grupo." >&2
+    echo "Configure neste repositório: git config user.name \"Seu Nome\"; git config user.email \"seu@email\"" >&2
+    erro=1
+  fi
+done
+
+exit $erro
