@@ -43,7 +43,7 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 ### Antes de começar
 
 1. Leia `CONTEXT.md` (já carregado acima) e a issue da tarefa.
-2. Atualize a `main` e crie a branch da tarefa: `ra1/<area>-<descricao-curta>` ou `ra2/<area>-<descricao-curta>`, em minúsculas e sem acento. Ex.: `ra1/b-ingestao`, `ra2/c-janelas`.
+2. Atualize a `main` e crie a branch da tarefa com nome curto, `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5. Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
 3. Confira na tabela de responsabilidade ([`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md), seção 2) quais arquivos a sua área pode alterar. Edite só esses.
 
 ### Notebook (código e respostas do notebook)

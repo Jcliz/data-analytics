@@ -35,7 +35,7 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 
 ## 3. Fluxo de trabalho
 
-- **Branch por tarefa:** `ra1/<area>-<descricao>` ou `ra2/<area>-<descricao>`, minúsculas, sem acento. Ex.: `ra1/b-ingestao`.
+- **Branch por tarefa, com nome curto:** `tNN-palavra` (número da tarefa com dois dígitos e uma palavra), tudo em minúsculas, sem acento e sem barra. O nome de cada tarefa está na coluna "Branch" da seção 5. Ajuste fora de tarefa: `ajuste-palavra`.
 - **Quadro (kanban):** GitHub Projects ligado ao repositório, colunas A fazer → Em andamento → Em revisão → Concluído. Quem pega a tarefa se atribui e move o card; PR aberto vai para Em revisão; merge fecha a issue e move para Concluído (README, "Quadro de tarefas").
 - **Pull request para a `main`** com `Closes #<n>` e a evidência de cada critério. Outro integrante revisa. Todos têm permissão de push na `main` para correções pequenas (erro de digitação, link quebrado); conteúdo de tarefa entra por PR.
 - **Commits sem coautoria de IA** ([ADR-0007](../docs/adr/0007-commits-sem-coautoria-de-ia.md)). Ative o hook uma vez: `git config core.hooksPath .githooks`.
@@ -56,23 +56,23 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 
 Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tnn — descrição` ou `[Geral] Tnn — descrição`.
 
-| ID | Issue | Tarefa | Área | Arquivos | Critérios | Bloqueada por | Prazo |
-|---|---|---|---|---|---|---|---|
-| T00 | [#1](https://github.com/Jcliz/data-analytics/issues/1) | Estrutura do repositório, contexto e regras para agentes | Geral | todos os de base | — | — | 15/10 |
-| T01 | [#2](https://github.com/Jcliz/data-analytics/issues/2) | Problema, recorte e perguntas analíticas | A | nb 00a, 01; doc 00, 01 | C1.1–C1.4, N.1 | T00 | 16/10 |
-| T02 | [#3](https://github.com/Jcliz/data-analytics/issues/3) | Coleta pela API, retrato bruto e ficha da fonte | B | nb 00b, 02; doc 02; `dados/brutos/` | C2.1–C2.5 | T00 | 16/10 |
-| T03 | [#4](https://github.com/Jcliz/data-analytics/issues/4) | Exploração inicial e diagnóstico de qualidade | C | nb 03; doc 03 | C3.1–C3.5 | T02 | 17/10 |
-| T04 | [#5](https://github.com/Jcliz/data-analytics/issues/5) | Limpeza, preparo e conjunto resultante | D | nb 04, 05; doc 04, 05; `dados/preparados/` | C4.1–C4.5, C5.1–C5.5 | T03 | 19/10 |
-| T05 | [#6](https://github.com/Jcliz/data-analytics/issues/6) | Organização e reprodutibilidade | B | doc 06; `requirements.txt`; README (seção "Como executar") | C6.1–C6.4 | T02, T04 | 19/10 |
-| T06 | [#7](https://github.com/Jcliz/data-analytics/issues/7) | Considerações do RA1 | A | nb 07 | N.4 | T04 | 19/10 |
-| T07 | [#8](https://github.com/Jcliz/data-analytics/issues/8) | Objetivo da análise em streaming e considerações do RA2 | A | nb 08, 12 | S8.1, S12.1 | T01 | 19/10 |
-| T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
-| T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
-| T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
-| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
-| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1 | T01–T11 | 20/10 |
-| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
-| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
+| ID | Issue | Branch | Tarefa | Área | Arquivos | Critérios | Bloqueada por | Prazo |
+|---|---|---|---|---|---|---|---|---|
+| T00 | [#1](https://github.com/Jcliz/data-analytics/issues/1) | — | Estrutura do repositório, contexto e regras para agentes | Geral | todos os de base | — | — | 15/10 |
+| T01 | [#2](https://github.com/Jcliz/data-analytics/issues/2) | `t01-problema` | Problema, recorte e perguntas analíticas | A | nb 00a, 01; doc 00, 01 | C1.1–C1.4, N.1 | T00 | 16/10 |
+| T02 | [#3](https://github.com/Jcliz/data-analytics/issues/3) | `t02-coleta` | Coleta pela API, retrato bruto e ficha da fonte | B | nb 00b, 02; doc 02; `dados/brutos/` | C2.1–C2.5 | T00 | 16/10 |
+| T03 | [#4](https://github.com/Jcliz/data-analytics/issues/4) | `t03-qualidade` | Exploração inicial e diagnóstico de qualidade | C | nb 03; doc 03 | C3.1–C3.5 | T02 | 17/10 |
+| T04 | [#5](https://github.com/Jcliz/data-analytics/issues/5) | `t04-limpeza` | Limpeza, preparo e conjunto resultante | D | nb 04, 05; doc 04, 05; `dados/preparados/` | C4.1–C4.5, C5.1–C5.5 | T03 | 19/10 |
+| T05 | [#6](https://github.com/Jcliz/data-analytics/issues/6) | `t05-reproducao` | Organização e reprodutibilidade | B | doc 06; `requirements.txt`; README (seção "Como executar") | C6.1–C6.4 | T02, T04 | 19/10 |
+| T06 | [#7](https://github.com/Jcliz/data-analytics/issues/7) | `t06-consideracoes` | Considerações do RA1 | A | nb 07 | N.4 | T04 | 19/10 |
+| T07 | [#8](https://github.com/Jcliz/data-analytics/issues/8) | `t07-objetivo` | Objetivo da análise em streaming e considerações do RA2 | A | nb 08, 12 | S8.1, S12.1 | T01 | 19/10 |
+| T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | `t08-eventos` | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
+| T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
+| T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | `t10-resultados` | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
+| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1 | T01–T11 | 20/10 |
+| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
+| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-pdf` | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
 
 Prazo de entrega das duas tarefas no Canvas: **21/10/2026**.
 

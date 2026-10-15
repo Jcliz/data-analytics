@@ -196,7 +196,7 @@ Uma seção pode depender de algo que outra área ainda não fez (por exemplo, a
 
 ### Branches, push e pull requests
 
-- Uma branch por tarefa: `ra1/<area>-<descricao-curta>` ou `ra2/<area>-<descricao-curta>`, em minúsculas e sem acento. Exemplos: `ra1/b-ingestao`, `ra2/c-janelas`.
+- Uma branch por tarefa, com nome curto: `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5. Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
 - **Todos os integrantes têm push na `main` e podem abrir PRs para a `main`.** Conteúdo de tarefa entra por PR, com `Closes #<n>` e a evidência de cada critério; outro integrante revisa. Push direto na `main` fica para correções pequenas (erro de digitação, link quebrado).
 - Cada área edita só os seus arquivos (plano de tarefas, seção 2).
 
