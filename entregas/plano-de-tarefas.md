@@ -67,7 +67,7 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T06 | [#7](https://github.com/Jcliz/data-analytics/issues/7) | `t06-consideracoes` | Considerações do RA1 | A | nb 07 | C5.5, N.3–N.4 | T04 | 19/10 |
 | T07 | [#8](https://github.com/Jcliz/data-analytics/issues/8) | `t07-objetivo` | Objetivo da análise em streaming e considerações do RA2 | A | nb 08, 12 | S8.1, S12.1, N.3–N.4 | T01 (seção 8); T10 (seção 12) | 19/10 (seção 8); 20/10 (seção 12) |
 | T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | `t08-eventos` | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3, N.3–N.4 | T00 (amostra), T04 (final) | 19/10 |
-| T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2, N.3–N.4 | T08 | 19/10 |
+| T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2, N.3–N.4 | T08; T07 (seção 8) | 19/10 |
 | T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | `t10-resultados` | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2, N.3–N.4 | T09 | 20/10 |
 | T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF (parte 1 da entrega) | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7 | T01–T06 | 20/10 |
 | T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1, X.7 | T01–T11 | 20/10 |
