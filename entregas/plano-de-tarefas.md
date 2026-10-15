@@ -69,10 +69,10 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | `t08-eventos` | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
 | T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
 | T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | `t10-resultados` | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
-| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
-| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1 | T01–T11 | 20/10 |
-| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
-| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-pdf` | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7 | T01–T06 | 20/10 |
+| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1, X.7 | T01–T11 | 20/10 |
+| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, tag e envio do RA1 (PDF) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
+| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-pdf` | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, X.7, S.D | T12 | 21/10 |
 
 Prazo de entrega das duas tarefas no Canvas: **21/10/2026**.
 
@@ -116,16 +116,20 @@ Referência: `entregas/criterios-de-aceite.md`
 
 As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). As issues do Eduardo (área C) e do Rodrigo (área D) ficam sem responsável atribuído até eles aceitarem o convite de colaborador.
 
-## 8. Dúvidas em aberto (para o grupo decidir)
+## 8. Dúvidas do grupo
 
-Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha (os números das outras não mudam). Já respondidas pelo João em 15/10/2026: nomes da equipe, professora (Marina), turma (não entra), divisão das áreas (A João Correa, B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves) e responsável pelo `.docx` (João Correa).
+**Nenhuma dúvida em aberto.** Dúvida nova entra aqui como uma linha: a dúvida, onde surgiu e o padrão que o repositório segue até a resposta.
 
-| # | Dúvida | Onde surgiu | Padrão adotado até a resposta |
-|---|---|---|---|
-| 3 | O envio do RA1 é só a URL ou também um PDF do documento? | [enunciados/ra1.md](../enunciados/ra1.md) (envio por URL; entrega = `.ipynb` executado + `Template_RA1_Data_Analytics.docx`) | URL do repositório com a tag `ra1-entrega`; `.docx` e PDF em `output/` |
-| 4 | O RA1 e o RA2 vencem mesmo no mesmo dia? | As duas tarefas do Canvas mostram 21/10/2026 | 21/10/2026 para as duas, com prazos internos até 20/10 |
-| 5 | O que entra na seção 5 "Transformação" do notebook, se o RA1 não tem transformação analítica? | [template do notebook](../modelos/template_projeto_data_analytics.ipynb) §5 × [enunciados/ra1.md](../enunciados/ra1.md) §6 | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação |
-| 6 | O documento do RA1 terá declaração de uso de IA (critério X.7)? | [criterios-de-aceite.md](criterios-de-aceite.md) X.7; o aircraft exigia por causa do plano de ensino daquela disciplina | Não incluir até o grupo decidir |
-| 8 | Manter os templates do professor no repositório público? | [`modelos/`](../modelos/) (os scripts precisam deles) | Manter |
-| 9 | Montar o grafo de conhecimento (Graphify) como no aircraft? | `graphify-out/` do aircraft | Não montar: a base daqui é pequena |
+Respondidas pelo João em 15/10/2026:
 
+| Dúvida | Decisão |
+|---|---|
+| Nomes da equipe | Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso, exatamente assim; sem RA. |
+| Professora e turma | Professora Marina; a turma não entra na capa nem no notebook. |
+| Divisão das áreas | A João Correa (inclui o `.docx`, T11), B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. |
+| Envio do RA1 | **PDF** do documento do RA1 (gerado do `.docx`), com a URL do repositório na capa. |
+| Prazo | 21/10/2026 para o RA1 e o RA2. |
+| Seção 5 "Transformação" do notebook | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação. |
+| Declaração de uso de IA | **Não incluir** em nenhuma entrega (critério X.7). |
+| Templates do professor no repositório público | Ficam em `modelos/`, porque os scripts precisam deles. |
+| Grafo de conhecimento (Graphify) | Não será montado. |

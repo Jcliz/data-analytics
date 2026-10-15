@@ -13,5 +13,6 @@ Antes de responder sobre o notebook, o documento do RA1, os dados ou as decisõe
 5. Toda afirmação sobre os dados tem evidência (seção e célula do notebook, com a contagem e o denominador). Separe [Fato] de [Inferência] e cite fontes pelo número de base/fontes.md.
 6. Código do notebook vai em notebook/secoes/NN-*.py (formato percent), nunca no .ipynb gerado. Respeite os nomes fixos: RAIZ, PASTA_BRUTOS, PASTA_PREPARADOS, PASTA_STREAMING, BAIXAR_DA_API, df_bruto, df_preparado, spark, consulta.
 7. Commits: nenhum commit com Claude ou outra IA como coautor (sem Co-Authored-By de IA, sem Claude-Session). O autor é a pessoa do grupo.
-8. Responda em português do Brasil.
+8. Nenhuma declaração de uso de IA nas entregas (documento do RA1, notebook, PDFs). Não sugira nem escreva essa seção.
+9. Responda em português do Brasil.
 ```

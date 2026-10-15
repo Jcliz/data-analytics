@@ -87,7 +87,7 @@ Peso na rubrica entre parênteses.
 - [ ] **X.4** PDF do documento do RA1: capa preenchida, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.5** PDF do notebook (RA2): seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.6** Os mesmos números no documento, no notebook e na apresentação.
-- [ ] **X.7** Declaração de uso de IA (se o grupo decidir incluir; ver [dúvida 6 do plano](plano-de-tarefas.md#8-dúvidas-em-aberto-para-o-grupo-decidir)).
+- [ ] **X.7** **Nenhuma** declaração de uso de IA no documento do RA1, no notebook ou nos PDFs (decisão do grupo, 15/10/2026).
 
 ## 4. Revisão cruzada (T12)
 

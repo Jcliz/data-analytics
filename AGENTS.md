@@ -18,11 +18,12 @@ Regras para assistentes de IA (Claude Code, Codex, Copilot, Cursor e outros) que
 9. **Cada área edita só os seus arquivos** (tabela de responsabilidade em [`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md)). Precisa de algo de outra área? Não invente: registre a suposição como uma linha na issue `pendencia-cruzada` da área dona, ou avise quem pediu a tarefa.
 10. **Não edite** o arquivo gerado `notebook/projeto_data_analytics.ipynb` à mão nem os retratos em `dados/brutos/`. O notebook sai de `python scripts/montar_notebook.py`; o retrato sai da execução da seção 02 com `BAIXAR_DA_API = True`.
 11. **Sem segredos**: a API da Deezer não usa chave. Não grave tokens, senhas nem caminhos pessoais da sua máquina.
+12. **Nenhuma declaração de uso de IA nas entregas.** O documento do RA1, o notebook e os PDFs não têm seção, nota ou frase sobre o uso de assistentes de IA. É decisão do grupo e vale mesmo que um template ou o repositório do aircraft tenham essa seção.
 
 ## Commits (regra do grupo, sem exceção)
 
-12. **Nenhum commit pode ter Claude, ou qualquer IA, como coautor.** Não escreva `Co-Authored-By: Claude …`, `Co-Authored-By: … <noreply@anthropic.com>`, `Claude-Session: …`, nem linhas equivalentes de outras ferramentas (Copilot, Codex, Cursor). O autor e o committer são a pessoa do grupo que pediu o trabalho. Se a sua ferramenta acrescenta essas linhas por padrão, **pare antes de commitar, remova as linhas e refaça o commit só com o autor real**. O hook [`.githooks/commit-msg`](.githooks/commit-msg) e a verificação do GitHub Actions recusam commits fora dessa regra ([ADR-0007](docs/adr/0007-commits-sem-coautoria-de-ia.md)).
-13. Mensagem de commit em português, no imperativo, citando a tarefa: `ra1(qualidade): adiciona verificação de bpm igual a zero (#7)`.
+13. **Nenhum commit pode ter Claude, ou qualquer IA, como coautor.** Não escreva `Co-Authored-By: Claude …`, `Co-Authored-By: … <noreply@anthropic.com>`, `Claude-Session: …`, nem linhas equivalentes de outras ferramentas (Copilot, Codex, Cursor). O autor e o committer são a pessoa do grupo que pediu o trabalho. Se a sua ferramenta acrescenta essas linhas por padrão, **pare antes de commitar, remova as linhas e refaça o commit só com o autor real**. O hook [`.githooks/commit-msg`](.githooks/commit-msg) e a verificação do GitHub Actions recusam commits fora dessa regra ([ADR-0007](docs/adr/0007-commits-sem-coautoria-de-ia.md)).
+14. Mensagem de commit em português, no imperativo, citando a tarefa: `ra1(qualidade): adiciona verificação de bpm igual a zero (#7)`.
 
 ## Agent skills
 

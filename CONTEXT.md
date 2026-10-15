@@ -12,7 +12,7 @@
 
 | Entrega | O que se envia | Onde está a fonte | Decisão |
 |---|---|---|---|
-| RA1 | URL do repositório + notebook `.ipynb` com todas as células executadas + documento do RA1 (template `.docx`, exportado em PDF) | `notebook/secoes/` (seções 1 a 7) e `documentacao/ra1/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md) |
+| RA1 | **PDF** do documento do RA1 (template `.docx` exportado em PDF), com a URL do repositório na capa; o notebook `.ipynb` com todas as células executadas fica no repositório. A tarefa do Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026). | `notebook/secoes/` (seções 1 a 7) e `documentacao/ra1/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md) |
 | RA2 | PDF do notebook com as seções do RA1 e do RA2 | `notebook/secoes/` (seções 8 a 12) | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md) |
 
 Como o PDF final de cada entrega deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md).
@@ -84,6 +84,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 5. **Separe [Fato] de [Inferência]** quando o texto não for óbvio, e cite a fonte pelo número de [base/fontes.md](base/fontes.md).
 6. **Tudo em português do Brasil:** textos, nomes de variáveis novas, colunas do conjunto preparado, commits, issues e PRs. Nomes que vêm da API (`title`, `duration`, `rank`…) mantêm o original no retrato bruto e são renomeados para português no conjunto preparado.
 7. **Commits sem coautoria de IA** ([ADR-0007](docs/adr/0007-commits-sem-coautoria-de-ia.md)). O autor é sempre a pessoa do grupo.
+8. **Nenhuma declaração de uso de IA** em nenhuma entrega: documento do RA1, notebook e PDFs não mencionam assistentes de IA. Decisão do grupo (João, 15/10/2026); não acrescente essa seção nem quando um template, um modelo de outro projeto ou o seu padrão sugerir.
 
 ## 8. Onde fica cada coisa
 

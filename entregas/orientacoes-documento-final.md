@@ -6,10 +6,10 @@
 
 | Entrega | Envio no Canvas | Arquivos | Fonte no repositório |
 |---|---|---|---|
-| **RA1** | **URL** do repositório (tag `ra1-entrega`) | `notebook/projeto_data_analytics.ipynb` executado + `output/ra1-documentacao.pdf` (e `.docx`) | `notebook/secoes/`, `documentacao/ra1/` |
+| **RA1** | **Arquivo PDF**: `output/ra1-documentacao.pdf`, com a URL do repositório na capa | O PDF, e no repositório (tag `ra1-entrega`) o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados | `documentacao/ra1/`, `notebook/secoes/` |
 | **RA2** | **Arquivo PDF** | `output/projeto_data_analytics.pdf`: o notebook inteiro (RA1 + RA2) executado | `notebook/secoes/` |
 
-O repositório é público; confira que a URL abre numa janela anônima antes de enviar.
+O repositório é público; confira que a URL da capa abre numa janela anônima antes de enviar. A tarefa do RA1 no Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
 
 ## 2. Documento do RA1 (do `.docx` ao PDF)
 
@@ -25,6 +25,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 
 - **Visual do template do professor:** capa com PUCPR, "RA1 — Ingestão e preparação dos dados", e as sete seções "RA1 / 01" a "RA1 / 07" na ordem, com os títulos originais.
 - **Capa preenchida:** projeto, curso (sem turma), professora Marina, equipe com os quatro nomes do `CONTEXT.md` (seção 1), repositório (URL) e entrega (Curitiba • 21/10/2026). Responsável pelo `.docx`: João Correa (área A, T11).
+- **Sem declaração de uso de IA** (critério X.7): nem seção, nem nota, nem frase sobre assistentes de IA, no documento e no notebook. Decisão do grupo.
 - **Nenhum campo entre colchetes** e nenhuma nota cinza de orientação ("COMO PREENCHER", "Exemplo de formulação", "LIMITE DESTA ENTREGA"…). O script remove as notas; os colchetes que sobrarem são campos não preenchidos.
 - **Evidência em toda tabela:** a coluna "Evidência" cita o notebook pela seção e pelo título da célula (ex.: `notebook §3 — "Duplicados por id"`) ou o caminho do arquivo. Não colar blocos de código no documento.
 - **Números iguais aos do notebook executado** da entrega.
@@ -58,5 +59,5 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 
 1. `python scripts/verificar_entrega.py` sem pendência.
 2. Revisão cruzada (T12) concluída, com a tabela `ID | status | evidência`.
-3. Tag da entrega do RA1: `git tag ra1-entrega && git push origin ra1-entrega`; a URL enviada aponta para a tag ou para a `main` no mesmo commit.
+3. Tag da entrega do RA1: `git tag ra1-entrega && git push origin ra1-entrega`, no commit da `main` que gerou o PDF enviado; a URL da capa aponta para o repositório.
 4. PDFs abertos e conferidos página a página por alguém que não os gerou.

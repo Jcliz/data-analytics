@@ -73,4 +73,5 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - Não regere o retrato bruto (`BAIXAR_DA_API = True`) sem combinar: ele muda os números de todas as seções.
 - Não acrescente bibliotecas sem registrar em `requirements.txt` e avisar na issue.
 - Não coloque análise, gráficos de resultado ou conclusões no RA1.
+- **Não inclua declaração de uso de IA** em nenhuma entrega (documento do RA1, notebook, PDFs). É decisão do grupo.
 - Não edite arquivos de outra área; registre a pendência.

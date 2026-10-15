@@ -18,7 +18,7 @@ relacionados: []
 ## Contexto
 
 - O grupo usa assistentes de IA (Claude Code e outros) para escrever código e texto. Algumas ferramentas acrescentam por padrão linhas como `Co-Authored-By: Claude …` e `Claude-Session: …` ao commit, e às vezes o próprio autor fica configurado como a IA.
-- O grupo quer que o histórico mostre só os integrantes como autores. O uso de IA é declarado no documento, não no histórico de commits.
+- O grupo quer que o histórico mostre só os integrantes como autores.
 
 ## Decisão
 
