@@ -6,7 +6,7 @@ A fonte de dados é a **API pública da Deezer**, a mesma usada pelo app [rdsalv
 
 Este repositório guarda três coisas:
 
-1. as **entregas**: o notebook do projeto (montado a partir de uma seção por área) e o documento do RA1 (gerado no template `.docx` do professor);
+1. as **entregas**: o notebook do projeto (montado a partir de uma seção por área) e o documento do RA1 (gerado no template `.docx` do professor), que vão juntos num **PDF único** enviado no RA1 e no RA2;
 2. a **base de conhecimento** que sustenta as entregas: enunciados transcritos, decisões, notas sobre a API e sobre o material de aula;
 3. o **processo** de trabalho: plano de tarefas, critérios de aceite, orientações do PDF final e regras para assistentes de IA.
 
@@ -50,9 +50,9 @@ git config core.hooksPath .githooks
 │   ├── brutos/                retratos da API, um por data de coleta (nunca editados à mão)
 │   ├── preparados/            conjunto preparado do RA1 (entrada do RA2)
 │   └── streaming/             pastas temporárias do RA2 (fora do git)
-├── output/                    arquivos de entrega: .docx e PDF do RA1, PDF do notebook (RA2)
+├── output/                    arquivos de entrega: documento do RA1, PDF do notebook e o PDF único enviado
 │
-├── entregas/                  plano de tarefas, critérios de aceite e orientações do PDF final
+├── entregas/                  plano de tarefas, critérios de aceite, orientações do PDF e roteiro da apresentação
 ├── enunciados/                enunciados do RA1 e do RA2 transcritos
 ├── base/                      base de conhecimento: API da Deezer, qualidade, streaming, material de aula, fontes
 ├── docs/
@@ -114,7 +114,7 @@ documentacao/ra1/
 ├── 04-limpeza-e-preparacao.md          D
 ├── 05-conjunto-resultante.md           D
 ├── 06-organizacao-e-reprodutibilidade.md   B
-└── 07-referencias-e-anexos.md          Geral
+└── 07-referencias-e-anexos.md          A
 ```
 
 O script preenche o template do professor com esse conteúdo e exporta o PDF:
@@ -124,6 +124,16 @@ python scripts/gerar_docx_ra1.py
 ```
 
 Saída: `output/ra1-documentacao.docx` e `output/ra1-documentacao.pdf` (o PDF precisa do LibreOffice; sem ele, exporte pelo Word). Como o documento final deve ficar: [orientações do documento final](entregas/orientacoes-documento-final.md).
+
+## Entrega: um PDF único (RA1 e RA2)
+
+O RA1 e o RA2 vão **no mesmo arquivo**, enviado igual nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)): primeiro o documento do RA1, depois o notebook executado com as seções do RA1 e do RA2.
+
+```bash
+python scripts/gerar_docx_ra1.py      # parte 1: output/ra1-documentacao.pdf
+# parte 2: notebook executado exportado em output/projeto_data_analytics.pdf (orientações, seção 3)
+python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.pdf
+```
 
 ## Como executar
 

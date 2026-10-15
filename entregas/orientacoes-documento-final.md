@@ -1,15 +1,18 @@
-# Orientações do documento final (PDFs e envio)
+# Orientações do documento final (PDF único e envio)
 
-> Como cada entrega deve ficar antes de ir para o Canvas. Vale para pessoas e agentes. Prazo das duas: **21/10/2026**.
+> Como a entrega deve ficar antes de ir para o Canvas. Vale para pessoas e agentes. Prazo do RA1 e do RA2: **21/10/2026**.
 
-## 1. O que vai em cada entrega
+## 1. O que vai na entrega
 
-| Entrega | Envio no Canvas | Arquivos | Fonte no repositório |
+O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)): um PDF único, enviado igual nas duas tarefas do Canvas.
+
+| Parte do PDF único | Arquivo | Fonte no repositório | Como gerar |
 |---|---|---|---|
-| **RA1** | **Arquivo PDF**: `output/ra1-documentacao.pdf`, com a URL do repositório na capa | O PDF, e no repositório (tag `ra1-entrega`) o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados | `documentacao/ra1/`, `notebook/secoes/` |
-| **RA2** | **Arquivo PDF** | `output/projeto_data_analytics.pdf`: o notebook inteiro (RA1 + RA2) executado | `notebook/secoes/` |
+| 1. Documento do RA1 (template do professor), com a URL do repositório na capa | `output/ra1-documentacao.pdf` | `documentacao/ra1/` | seção 2 |
+| 2. Notebook executado: identificação, RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12) | `output/projeto_data_analytics.pdf` | `notebook/secoes/` | seção 3 |
+| **Arquivo enviado no RA1 e no RA2** | **`output/entrega-ra1-ra2.pdf`** | as duas partes acima | `python scripts/montar_entrega.py` |
 
-O repositório é público; confira que a URL da capa abre numa janela anônima antes de enviar. A tarefa do RA1 no Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
+No repositório (tag `entrega`) ficam também o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados. O repositório é público; confira que a URL da capa abre numa janela anônima antes de enviar. A tarefa do RA1 no Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
 
 ## 2. Documento do RA1 (do `.docx` ao PDF)
 
@@ -34,7 +37,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 - **Anexos opcionais:** remova a seção se não houver anexo (basta não escrevê-la no Markdown).
 - Tamanho de referência: o template tem 8 páginas; o documento preenchido deve ficar entre 8 e 15.
 
-## 3. Notebook (`.ipynb` do RA1 e PDF do RA2)
+## 3. Notebook (`.ipynb` executado e PDF)
 
 ### Como gerar e executar
 
@@ -53,11 +56,22 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 - **Saídas legíveis no PDF:** tabelas com no máximo 10 a 20 linhas (`head`, `show(n=…, truncate=False)`); nada de imprimir o DataFrame inteiro ou JSON cru grande; linhas de código com até ~100 caracteres para não cortar na impressão.
 - **Cada célula de código com um comentário de uma linha** dizendo o que faz; as células citadas no documento do RA1 começam com um título curto em comentário (ex.: `# Duplicados por id`), que é como o documento as referencia.
 - **RA2:** a saída depois de cada lote aparece no PDF (não só a final), para mostrar a chegada de novos registros.
-- Nome do arquivo enviado no RA2: `projeto_data_analytics.pdf` (ou o padrão que o professor pedir).
+- Grave o PDF do notebook como `output/projeto_data_analytics.pdf`: é a parte 2 do PDF único.
 
-## 4. Antes de enviar
+## 4. PDF único
+
+```bash
+python scripts/montar_entrega.py             # junta as duas partes em output/entrega-ra1-ra2.pdf
+```
+
+- **Ordem:** documento do RA1 primeiro (a capa dele é a capa da entrega), notebook em seguida. Cada parte vira um marcador no leitor de PDF.
+- O script recusa juntar se faltar uma parte e avisa se uma parte foi gerada antes da última mudança na sua fonte; nesse caso, gere a parte de novo.
+- **Sem declaração de uso de IA** em nenhuma das partes (critério X.7).
+
+## 5. Antes de enviar
 
 1. `python scripts/verificar_entrega.py` sem pendência.
 2. Revisão cruzada (T12) concluída, com a tabela `ID | status | evidência`.
-3. Tag da entrega do RA1: `git tag ra1-entrega && git push origin ra1-entrega`, no commit da `main` que gerou o PDF enviado; a URL da capa aponta para o repositório.
-4. PDFs abertos e conferidos página a página por alguém que não os gerou.
+3. Tag da entrega: `git tag entrega && git push origin entrega`, no commit da `main` que gerou o PDF enviado; a URL da capa aponta para o repositório.
+4. PDF único aberto e conferido página a página por alguém que não o gerou.
+5. O **mesmo** `output/entrega-ra1-ra2.pdf` enviado na tarefa do RA1 e na do RA2.

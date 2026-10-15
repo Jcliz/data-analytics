@@ -10,12 +10,14 @@
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
 - **Enunciados transcritos:** [enunciados/ra1.md](enunciados/ra1.md) e [enunciados/ra2.md](enunciados/ra2.md). Os PDFs originais ficam fora do repositório (ver [enunciados/README.md](enunciados/README.md)).
 
-| Entrega | O que se envia | Onde está a fonte | Decisão |
-|---|---|---|---|
-| RA1 | **PDF** do documento do RA1 (template `.docx` exportado em PDF), com a URL do repositório na capa; o notebook `.ipynb` com todas as células executadas fica no repositório. A tarefa do Canvas aparece como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026). | `notebook/secoes/` (seções 1 a 7) e `documentacao/ra1/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md) |
-| RA2 | PDF do notebook com as seções do RA1 e do RA2 | `notebook/secoes/` (seções 8 a 12) | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md) |
+**O RA1 e o RA2 vão no mesmo arquivo:** um PDF único, `output/entrega-ra1-ra2.pdf`, enviado igual nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)). A tarefa do RA1 aparece no Canvas como envio por URL, mas o grupo decidiu entregar o PDF (João, 15/10/2026).
 
-Como o PDF final de cada entrega deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md).
+| Parte do PDF único | O que é | Onde está a fonte | Decisão |
+|---|---|---|---|
+| 1. Documento do RA1 | Template `.docx` preenchido e exportado em PDF, com a URL do repositório na capa | `documentacao/ra1/` | [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md) |
+| 2. Notebook | Notebook inteiro executado (identificação, RA1 nas seções 1 a 7, RA2 nas seções 8 a 12), exportado em PDF; o `.ipynb` executado fica no repositório | `notebook/secoes/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md) |
+
+Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md).
 
 ## 2. Fonte de dados
 
@@ -58,6 +60,7 @@ Como o PDF final de cada entrega deve ficar: [entregas/orientacoes-documento-fin
 | 0006 | Ferramentas: pandas no RA1, PySpark 4.0.3 no RA2, Google Colab como ambiente de referência | proposta | [0006](docs/adr/0006-ferramentas-e-ambiente.md) |
 | 0007 | Nenhum commit com Claude (ou outra IA) como coautor | aceita | [0007](docs/adr/0007-commits-sem-coautoria-de-ia.md) |
 | 0008 | Divisão do trabalho em quatro áreas, uma por integrante | proposta | [0008](docs/adr/0008-divisao-em-quatro-areas.md) |
+| 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | aceita | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
 
@@ -104,4 +107,4 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | Compreensão e qualidade (C) | [qualidade-de-dados](base/qualidade-de-dados.md), [api-deezer](base/api-deezer.md) §4 | 0004 |
 | Limpeza, preparação e conjunto resultante (D) | [qualidade-de-dados](base/qualidade-de-dados.md), [material de aula](base/material-de-aula.md) (preparação × transformação) | 0004 |
 | RA2, qualquer seção | [enunciados/ra2.md](enunciados/ra2.md), [streaming-e-janelas](base/streaming-e-janelas.md) | 0005, 0006 |
-| Consolidação e PDF | [orientacoes-documento-final](entregas/orientacoes-documento-final.md), [criterios-de-aceite](entregas/criterios-de-aceite.md) | 0002, 0003 |
+| Consolidação e PDF | [orientacoes-documento-final](entregas/orientacoes-documento-final.md), [criterios-de-aceite](entregas/criterios-de-aceite.md) | 0002, 0003, 0009 |

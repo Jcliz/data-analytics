@@ -17,7 +17,7 @@ relacionados: [adr-0008]
 
 ## Contexto
 
-- O RA1 exige o `.ipynb` com todas as células executadas; o RA2 exige o PDF do notebook com as seções do RA1 e do RA2. O professor deu um template de notebook único (`modelos/template_projeto_data_analytics.ipynb`) que já tem as seções 1 a 12 [Fato, fonte 4].
+- O RA1 exige o `.ipynb` com todas as células executadas; o RA2 exige o PDF do notebook com as seções do RA1 e do RA2. O professor deu um template de notebook único (`modelos/template_projeto_data_analytics.ipynb`) que já tem as seções 1 a 12 [Fato, fonte 4]. O PDF do notebook é a segunda parte do PDF único enviado nas duas entregas ([ADR-0009](0009-entrega-unica-em-pdf.md)).
 - Um `.ipynb` é um JSON grande. Quatro pessoas editando o mesmo arquivo geram conflito de merge difícil de resolver, e o diff não é legível na revisão do PR.
 
 ## Opções consideradas

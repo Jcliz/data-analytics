@@ -66,6 +66,9 @@ Peso na rubrica entre parênteses.
 - [ ] **N.3** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando.
 - [ ] **N.4** Respostas do grupo curtas, com números tirados das saídas das células.
 
+### AP — Apresentação do RA1 (a avaliação do RA1 é feita na apresentação em sala)
+- [ ] **AP.1** Roteiro da apresentação em [roteiro-apresentacao.md](roteiro-apresentacao.md), com um bloco por critério da rubrica (problema e perguntas, compreensão, qualidade e preparação, ingestão e reprodutibilidade, organização), quem fala e qual página do PDF ou célula do notebook mostrar; cada integrante explica a parte da sua área.
+
 ## 2. RA2 — notebook (seções 8 a 12)
 
 - [ ] **S8.1** Objetivo: o que o grupo quer monitorar e que informação espera obter com o streaming.
@@ -77,17 +80,18 @@ Peso na rubrica entre parênteses.
 - [ ] **S11.1** Resultados depois de cada lote e interpretação de quais janelas mudaram e por quê. (Documentação e interpretação: 2,0.)
 - [ ] **S11.2** Consulta encerrada (`consulta.stop()`) e pastas temporárias limpas.
 - [ ] **S12.1** As três perguntas das considerações respondidas.
-- [ ] **S.D** Roteiro da demonstração oral de 5 minutos, com quem fala e qual célula mostrar. (Demonstração: 2,0.)
+- [ ] **S.D** Roteiro da demonstração oral de 5 minutos em [roteiro-apresentacao.md](roteiro-apresentacao.md), com quem fala, qual célula mostrar e a chegada de pelo menos um lote novo ao vivo. (Demonstração: 2,0.)
 
 ## 3. Regras gerais
 
 - [ ] **X.1** Tudo em português do Brasil.
 - [ ] **X.2** Nenhum commit com coautoria de IA (verificação "Verificar commits" verde na `main`).
 - [ ] **X.3** Os quatro nomes da equipe (`CONTEXT.md`, seção 1), iguais na capa do documento e na identificação do notebook.
-- [ ] **X.4** PDF do documento do RA1: capa preenchida, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
-- [ ] **X.5** PDF do notebook (RA2): seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
+- [ ] **X.4** Parte 1 do PDF único, o documento do RA1: capa preenchida com a URL do repositório, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
+- [ ] **X.5** Parte 2 do PDF único, o notebook: seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.6** Os mesmos números no documento, no notebook e na apresentação.
 - [ ] **X.7** **Nenhuma** declaração de uso de IA no documento do RA1, no notebook ou nos PDFs (decisão do grupo, 15/10/2026).
+- [ ] **X.8** PDF único `output/entrega-ra1-ra2.pdf` montado por `python scripts/montar_entrega.py` (documento do RA1 e depois o notebook, sem aviso de parte desatualizada) e o **mesmo** arquivo enviado nas tarefas do RA1 e do RA2 ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
 
 ## 4. Revisão cruzada (T12)
 

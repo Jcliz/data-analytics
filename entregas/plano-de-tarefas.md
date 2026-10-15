@@ -1,6 +1,6 @@
 # Plano de tarefas — RA1 e RA2
 
-> Divide o RA1 e o RA2 em tarefas, com responsáveis, arquivos, dependências e prazos. Os critérios (IDs `C`, `N`, `S`, `X`, `K`) estão em [criterios-de-aceite.md](criterios-de-aceite.md); aqui só se citam os IDs.
+> Divide o RA1 e o RA2 em tarefas, com responsáveis, arquivos, dependências e prazos. Os critérios (IDs `C`, `N`, `AP`, `S`, `X`, `K`) estão em [criterios-de-aceite.md](criterios-de-aceite.md); aqui só se citam os IDs.
 > **Status:** proposta de 15/10/2026, a confirmar pelo grupo (responsáveis por área e datas).
 
 ---
@@ -11,7 +11,7 @@ Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). Nomes e respo
 
 | Área | Escopo | Responsável (proposto) |
 |---|---|---|
-| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx` para a entrega** (referências, consolidação e PDF) | João Correa (`jvecodev`) |
+| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx`** (referências, consolidação e PDF, que é a parte 1 do PDF único) | João Correa (`jvecodev`) |
 | **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto, ambiente; reprodutibilidade; gerador de eventos e leitura em streaming | João Pedro Cardoso (`Jcliz`) |
 | **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | Eduardo Fabri (`eduardofabrii`) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, preparo, conjunto preparado; resultados e interpretação do RA2 | Rodrigo Alves (`rdsalvesPUC`) |
@@ -30,7 +30,7 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 | `documentacao/ra1/03-compreensao-e-qualidade.md` | C |
 | `notebook/secoes/04-limpeza-e-preparacao.py`, `05-transformacao.py`, `11-resultados.py` | D |
 | `documentacao/ra1/04-limpeza-e-preparacao.md`, `documentacao/ra1/05-conjunto-resultante.md`, `dados/preparados/` | D |
-| `output/projeto_data_analytics.pdf`, `notebook/projeto_data_analytics.ipynb` (gerado) | Geral |
+| `output/projeto_data_analytics.pdf`, `output/entrega-ra1-ra2.pdf`, `notebook/projeto_data_analytics.ipynb` (gerado) | Geral |
 | `README.md`, `CONTEXT.md`, `AGENTS.md`, `CLAUDE.md`, `docs/`, `base/`, `entregas/`, `scripts/` | Geral (mudança combinada no PR) |
 
 ## 3. Fluxo de trabalho
@@ -69,12 +69,12 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | `t08-eventos` | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
 | T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
 | T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | `t10-resultados` | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
-| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7 | T01–T06 | 20/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF (parte 1 da entrega) | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7 | T01–T06 | 20/10 |
 | T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1, X.7 | T01–T11 | 20/10 |
-| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, tag e envio do RA1 (PDF) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
-| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-pdf` | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, X.7, S.D | T12 | 21/10 |
+| T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, PDF único e envio no RA1 e no RA2 | Geral | notebook gerado; `output/projeto_data_analytics.pdf`, `output/entrega-ra1-ra2.pdf` | N.2–N.3, X.2, X.5–X.8 | T12 | 21/10 |
+| T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-roteiro` | Roteiro da apresentação do RA1 e da demonstração do RA2 | Geral | `entregas/roteiro-apresentacao.md` | AP.1, S.D | T12 | 21/10 |
 
-Prazo de entrega das duas tarefas no Canvas: **21/10/2026**.
+Prazo de entrega das duas tarefas no Canvas: **21/10/2026**. O mesmo PDF único vai nas duas ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
 
 ## 6. Corpo padrão de cada issue
 
@@ -127,7 +127,7 @@ Respondidas pelo João em 15/10/2026:
 | Nomes da equipe | Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso, exatamente assim; sem RA. |
 | Professora e turma | Professora Marina; a turma não entra na capa nem no notebook. |
 | Divisão das áreas | A João Correa (inclui o `.docx`, T11), B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. |
-| Envio do RA1 | **PDF** do documento do RA1 (gerado do `.docx`), com a URL do repositório na capa. |
+| Envio do RA1 e do RA2 | **Um PDF só**, enviado igual nas duas tarefas: o documento do RA1 (com a URL do repositório na capa) e depois o notebook executado ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)). |
 | Prazo | 21/10/2026 para o RA1 e o RA2. |
 | Seção 5 "Transformação" do notebook | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação. |
 | Declaração de uso de IA | **Não incluir** em nenhuma entrega (critério X.7). |

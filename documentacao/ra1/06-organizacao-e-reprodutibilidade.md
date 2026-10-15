@@ -5,7 +5,7 @@
 a partir de um clone limpo, seguindo só os passos abaixo.
 -->
 
-**Repositório e versão:** [https://github.com/Jcliz/data-analytics • tag ra1-entrega • commit]
+**Repositório e versão:** [https://github.com/Jcliz/data-analytics • tag entrega • commit]
 
 **Ambiente:** [Python 3.x • pandas x.y • requests x.y • requirements.txt • Google Colab]
 
