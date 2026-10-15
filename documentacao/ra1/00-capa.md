@@ -7,7 +7,7 @@ nomes exatamente assim, iguais aos da identificação do notebook; a turma não 
 
 **Projeto:** [Título do projeto]
 
-**Curso e turma:** Bacharelado em Sistemas de Informação
+**Curso e turma:** Bacharelado em Sistemas de Informação • 2º semestre de 2026
 
 **Professor ou professora:** Marina
 
