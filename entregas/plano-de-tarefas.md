@@ -7,13 +7,13 @@
 
 ## 1. Áreas e responsáveis
 
-Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). A atribuição de pessoas segue a do projeto de Especificação de Software e **precisa ser confirmada**.
+Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). Os nomes foram confirmados pelo João em 15/10/2026. A atribuição de pessoas às áreas segue a do projeto de Especificação de Software (dúvida 2 da seção 8); o documento do RA1 em `.docx` (T11) ficou com o Eduardo Fabri, por decisão do João.
 
 | Área | Escopo | Responsável (proposto) |
 |---|---|---|
-| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2 | Eduardo Fabri (`eduardofabrii`) |
-| **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto, ambiente; reprodutibilidade; gerador de eventos e leitura em streaming | João Pedro Cardoso de Liz (`Jcliz`) |
-| **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | João Vitor Correa Oliveira (`jvecodev`) |
+| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx` para a entrega** (referências, consolidação e PDF) | Eduardo Fabri (`eduardofabrii`) |
+| **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto, ambiente; reprodutibilidade; gerador de eventos e leitura em streaming | João Pedro Cardoso (`Jcliz`) |
+| **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | João Correa (`jvecodev`) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, preparo, conjunto preparado; resultados e interpretação do RA2 | Rodrigo Alves (`rdsalvesPUC`) |
 
 Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui na issue.
@@ -23,14 +23,14 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 | Arquivo | Área |
 |---|---|
 | `notebook/secoes/00a-identificacao.py`, `01-contexto-e-objetivo.py`, `07-consideracoes-ra1.py`, `08-objetivo-streaming.py`, `12-consideracoes-ra2.py` | A |
-| `documentacao/ra1/01-problema-e-perguntas.md`, `documentacao/ra1/00-capa.md` | A |
+| `documentacao/ra1/01-problema-e-perguntas.md`, `documentacao/ra1/00-capa.md`, `documentacao/ra1/07-referencias-e-anexos.md`, `output/ra1-documentacao.docx` e `.pdf` | A |
 | `notebook/secoes/00b-ambiente.py`, `02-fonte-e-ingestao.py`, `09-fonte-e-processamento.py` | B |
 | `documentacao/ra1/02-fontes-e-ingestao.md`, `documentacao/ra1/06-organizacao-e-reprodutibilidade.md`, `dados/brutos/`, `requirements.txt` | B |
 | `notebook/secoes/03-exploracao-inicial.py`, `10-janelas-temporais.py` | C |
 | `documentacao/ra1/03-compreensao-e-qualidade.md` | C |
 | `notebook/secoes/04-limpeza-e-preparacao.py`, `05-transformacao.py`, `11-resultados.py` | D |
 | `documentacao/ra1/04-limpeza-e-preparacao.md`, `documentacao/ra1/05-conjunto-resultante.md`, `dados/preparados/` | D |
-| `documentacao/ra1/07-referencias-e-anexos.md`, `output/`, `notebook/projeto_data_analytics.ipynb` (gerado) | Geral |
+| `output/projeto_data_analytics.pdf`, `notebook/projeto_data_analytics.ipynb` (gerado) | Geral |
 | `README.md`, `CONTEXT.md`, `AGENTS.md`, `CLAUDE.md`, `docs/`, `base/`, `entregas/`, `scripts/` | Geral (mudança combinada no PR) |
 
 ## 3. Fluxo de trabalho
@@ -68,7 +68,7 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3 | T00 (amostra), T04 (final) | 19/10 |
 | T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | Janela temporal e agregação | C | nb 10 | S10.1–S10.2 | T08 | 19/10 |
 | T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2 | T09 | 20/10 |
-| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | Referências, consolidação do documento do RA1 e PDF | Geral | doc 07; `output/` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | Referências, consolidação do documento do RA1 (`.docx`) e PDF | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4 | T01–T06 | 20/10 |
 | T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1 | T01–T11 | 20/10 |
 | T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | Execução final, tag e envio do RA1 (URL) | Geral | notebook gerado | N.2–N.3, X.2, X.6 | T12 | 21/10 |
 | T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | PDF do notebook, roteiro da demonstração e envio do RA2 | Geral | `output/` | X.5, S.D | T12 | 21/10 |
@@ -117,17 +117,15 @@ As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). Eduardo e Rod
 
 ## 8. Dúvidas em aberto (para o grupo decidir)
 
-Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha.
+Cada linha diz onde a dúvida surgiu e qual padrão o repositório segue até a resposta. Respondida a dúvida, atualize o arquivo afetado e apague a linha (os números das outras não mudam). Já respondidas pelo João em 15/10/2026: nomes da equipe, professora (Marina), turma (não entra) e responsável pelo `.docx` (Eduardo Fabri).
 
 | # | Dúvida | Onde surgiu | Padrão adotado até a resposta |
 |---|---|---|---|
-| 1 | Os integrantes e os logins são os mesmos do projeto de Especificação de Software? | Seção 1 deste plano e `README.md`, copiados do README do aircraft | Os quatro da tabela da seção 1 |
-| 2 | A divisão das áreas A a D entre as pessoas está boa? | Seção 1 e [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md) | Mesma ordem do aircraft (Eduardo A, João Pedro B, João Vitor C, Rodrigo D) |
+| 2 | A divisão das áreas A a D entre as pessoas está boa? | Seção 1 e [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md) | Mesma ordem do aircraft (Eduardo A, João Pedro B, João Correa C, Rodrigo D) |
 | 3 | O envio do RA1 é só a URL ou também um PDF do documento? | [enunciados/ra1.md](../enunciados/ra1.md) (envio por URL; entrega = `.ipynb` executado + `Template_RA1_Data_Analytics.docx`) | URL do repositório com a tag `ra1-entrega`; `.docx` e PDF em `output/` |
 | 4 | O RA1 e o RA2 vencem mesmo no mesmo dia? | As duas tarefas do Canvas mostram 21/10/2026 | 21/10/2026 para as duas, com prazos internos até 20/10 |
 | 5 | O que entra na seção 5 "Transformação" do notebook, se o RA1 não tem transformação analítica? | [template do notebook](../modelos/template_projeto_data_analytics.ipynb) §5 × [enunciados/ra1.md](../enunciados/ra1.md) §6 | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação |
 | 6 | O documento do RA1 terá declaração de uso de IA (critério X.7)? | [criterios-de-aceite.md](criterios-de-aceite.md) X.7; o aircraft exigia por causa do plano de ensino daquela disciplina | Não incluir até o grupo decidir |
-| 7 | Nome da professora e turma para a capa | [documentacao/ra1/00-capa.md](../documentacao/ra1/00-capa.md) e `notebook/secoes/00a-identificacao.py` | Campo entre colchetes, cobrado pelo verificador |
 | 8 | Manter os templates do professor no repositório público? | [`modelos/`](../modelos/) (os scripts precisam deles) | Manter |
 | 9 | Montar o grafo de conhecimento (Graphify) como no aircraft? | `graphify-out/` do aircraft | Não montar: a base daqui é pequena |
 

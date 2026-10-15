@@ -24,7 +24,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 ### Como deve ficar
 
 - **Visual do template do professor:** capa com PUCPR, "RA1 — Ingestão e preparação dos dados", e as sete seções "RA1 / 01" a "RA1 / 07" na ordem, com os títulos originais.
-- **Capa preenchida:** projeto, curso e turma, professor ou professora, equipe com **nomes completos** e identificação acadêmica, repositório (URL) e entrega (Curitiba • 21/10/2026).
+- **Capa preenchida:** projeto, curso (sem turma), professora Marina, equipe com os quatro nomes do `CONTEXT.md` (seção 1), repositório (URL) e entrega (Curitiba • 21/10/2026). Responsável pelo `.docx`: Eduardo Fabri (área A, T11).
 - **Nenhum campo entre colchetes** e nenhuma nota cinza de orientação ("COMO PREENCHER", "Exemplo de formulação", "LIMITE DESTA ENTREGA"…). O script remove as notas; os colchetes que sobrarem são campos não preenchidos.
 - **Evidência em toda tabela:** a coluna "Evidência" cita o notebook pela seção e pelo título da célula (ex.: `notebook §3 — "Duplicados por id"`) ou o caminho do arquivo. Não colar blocos de código no documento.
 - **Números iguais aos do notebook executado** da entrega.
@@ -46,7 +46,7 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 
 ### Como deve ficar
 
-- **Identificação preenchida** no topo (título, integrantes com nome completo, turma, descrição).
+- **Identificação preenchida** no topo (título, os quatro nomes da equipe como no `CONTEXT.md`, descrição). A turma não entra.
 - **Ordem do template:** RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12), com os enunciados do professor mantidos e as respostas do grupo no lugar de `[Preencha aqui.]`. A seção 6 não existe no template; não criar.
 - **Todas as células executadas em sequência** (contadores 1, 2, 3…), sem erro e sem aviso vermelho sobrando.
 - **Saídas legíveis no PDF:** tabelas com no máximo 10 a 20 linhas (`head`, `show(n=…, truncate=False)`); nada de imprimir o DataFrame inteiro ou JSON cru grande; linhas de código com até ~100 caracteres para não cortar na impressão.

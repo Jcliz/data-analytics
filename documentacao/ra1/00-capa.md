@@ -1,17 +1,17 @@
 # Capa
 
 <!--
-Área A (T01). Campos da capa do template. Nomes COMPLETOS de todos os integrantes, com a identificação
-acadêmica (RA/matrícula), iguais aos da identificação do notebook. Campo ainda entre colchetes fica em branco no documento.
+Área A (T01). Campos da capa do template. Equipe, professora e curso já definidos pelo grupo (CONTEXT.md, seção 1):
+nomes exatamente assim, iguais aos da identificação do notebook; a turma não entra. Campo ainda entre colchetes sai assim no documento e é cobrado por scripts/verificar_entrega.py.
 -->
 
 **Projeto:** [Título do projeto]
 
-**Curso e turma:** [Bacharelado em Sistemas de Informação • turma • 2026/2]
+**Curso e turma:** Bacharelado em Sistemas de Informação
 
-**Professor ou professora:** [Nome]
+**Professor ou professora:** Marina
 
-**Equipe:** [Nome completo (identificação acadêmica) de cada integrante, separados por " • "]
+**Equipe:** Eduardo Fabri • João Correa • Rodrigo Alves • João Pedro Cardoso
 
 **Repositório:** https://github.com/Jcliz/data-analytics
 

@@ -26,12 +26,12 @@ Quatro áreas seguindo o fluxo do enunciado ("Fontes → Ingestão → Compreens
 
 | Área | RA1 | RA2 |
 |---|---|---|
-| **A** — Problema e síntese | Problema, recorte e perguntas; identificação e considerações do notebook | Objetivo da análise em streaming (8) e considerações (12) |
+| **A** — Problema e síntese | Problema, recorte e perguntas; identificação e considerações do notebook; documento do RA1 em `.docx` para a entrega (referências, consolidação e PDF) | Objetivo da análise em streaming (8) e considerações (12) |
 | **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto; organização e reprodutibilidade | Fonte e processamento: gerador de eventos e `readStream` (9) |
 | **C** — Compreensão e qualidade | Exploração inicial, dicionário de dados, diagnóstico Q1…Qn | Janela temporal e agregação (10) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, transformações de preparo, conjunto preparado | Resultados e interpretação (11) |
 
-Tarefas gerais (referências, consolidação, revisão cruzada, execução final, PDFs e envio) ficam sem dono fixo: quem puxar se atribui. A atribuição de pessoas a áreas está no [plano de tarefas](../../entregas/plano-de-tarefas.md).
+Tarefas gerais (revisão cruzada, execução final, PDF do notebook e envio) ficam sem dono fixo: quem puxar se atribui. O documento do RA1 em `.docx` é da área A, por decisão do João (15/10/2026). A atribuição de pessoas a áreas está no [plano de tarefas](../../entregas/plano-de-tarefas.md).
 
 ## Consequências
 

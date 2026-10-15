@@ -5,7 +5,7 @@ tipo: decisao
 decisao: "0007"
 status: aceita
 data: 2026-10-15
-decisor: João Pedro Cardoso de Liz
+decisor: João Pedro Cardoso
 entregas: [RA1, RA2]
 areas: [A, B, C, D]
 fontes: []
@@ -13,7 +13,7 @@ relacionados: []
 ---
 # ADR-0007 — Nenhum commit com IA como coautora
 
-- **Status:** aceita · **Data:** 15/10/2026 · **Decisor:** João Pedro Cardoso de Liz
+- **Status:** aceita · **Data:** 15/10/2026 · **Decisor:** João Pedro Cardoso
 
 ## Contexto
 

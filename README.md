@@ -12,12 +12,12 @@ Este repositório guarda três coisas:
 
 | Integrante | GitHub | Área |
 |---|---|---|
-| Eduardo Fabri | `eduardofabrii` | A: problema e síntese |
-| João Pedro Cardoso de Liz | `Jcliz` | B: fonte, ingestão e reprodutibilidade |
-| João Vitor Correa Oliveira | `jvecodev` | C: compreensão e qualidade |
+| Eduardo Fabri | `eduardofabrii` | A: problema, síntese e documento do RA1 (`.docx` da entrega) |
+| João Pedro Cardoso | `Jcliz` | B: fonte, ingestão e reprodutibilidade |
+| João Correa | `jvecodev` | C: compreensão e qualidade |
 | Rodrigo Alves | `rdsalvesPUC` | D: limpeza e conjunto resultante |
 
-A divisão está em proposta ([ADR-0008](docs/adr/0008-divisao-em-quatro-areas.md)); o detalhe de cada área está no [plano de tarefas](entregas/plano-de-tarefas.md).
+Professora: Marina. A divisão está em proposta ([ADR-0008](docs/adr/0008-divisao-em-quatro-areas.md)); o detalhe de cada área está no [plano de tarefas](entregas/plano-de-tarefas.md).
 
 ## Comece por aqui
 

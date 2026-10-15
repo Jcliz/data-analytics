@@ -8,13 +8,12 @@
 # # Identificação do projeto
 #
 # **Título do projeto:** [Preencha aqui.]  
-# **Integrantes do grupo:** [Preencha aqui.]  
-# **Turma:** [Preencha aqui.]  
+# **Integrantes do grupo:** Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso  
 # **Descrição breve do problema ou contexto:** [Preencha aqui.]
 #
 # Preencha este notebook ao longo dos dois RAs. Registre decisões e interpretações em poucas frases e acrescente as células de código necessárias em cada etapa.
 #
 # <!--
-# Preencha título, nomes COMPLETOS dos integrantes (nome faltando = problema na avaliação), turma e uma
-# frase do problema. Use o mesmo título e os mesmos nomes da capa do documento do RA1 (documentacao/ra1/00-capa.md).
+# Integrantes já preenchidos (CONTEXT.md, seção 1); a linha "Turma" do template foi retirada porque o grupo
+# decidiu que a turma não entra. Falta o título e uma frase do problema, iguais aos da capa (documentacao/ra1/00-capa.md).
 # -->

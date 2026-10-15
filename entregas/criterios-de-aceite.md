@@ -61,7 +61,7 @@ Peso na rubrica entre parênteses.
 - [ ] **C7.2** "Conferência da entrega" do template com todos os itens marcados de verdade.
 
 ### N — Notebook
-- [ ] **N.1** Identificação preenchida: título, nomes completos dos integrantes, turma e descrição do problema.
+- [ ] **N.1** Identificação preenchida: título, nomes dos integrantes (exatamente como no `CONTEXT.md`, seção 1) e descrição do problema. A turma não entra.
 - [ ] **N.2** Todas as células executadas em ordem, sem erro, a partir de um ambiente limpo (contadores de execução em sequência).
 - [ ] **N.3** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando.
 - [ ] **N.4** Respostas do grupo curtas, com números tirados das saídas das células.
@@ -83,7 +83,7 @@ Peso na rubrica entre parênteses.
 
 - [ ] **X.1** Tudo em português do Brasil.
 - [ ] **X.2** Nenhum commit com coautoria de IA (verificação "Verificar commits" verde na `main`).
-- [ ] **X.3** Nomes completos dos integrantes na capa do documento e na identificação do notebook.
+- [ ] **X.3** Os quatro nomes da equipe (`CONTEXT.md`, seção 1), iguais na capa do documento e na identificação do notebook.
 - [ ] **X.4** PDF do documento do RA1: capa preenchida, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.5** PDF do notebook (RA2): seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.6** Os mesmos números no documento, no notebook e na apresentação.
