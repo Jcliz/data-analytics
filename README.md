@@ -137,6 +137,8 @@ python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.
 
 ## Como executar
 
+Não é preciso acessar a API da Deezer: o notebook lê o retrato bruto já versionado em `dados/brutos/2026-10-16/` (`BAIXAR_DA_API = False`), então a execução dá os mesmos números em qualquer máquina. Os passos, com o resultado esperado de cada um, estão também no [documento do RA1, seção 06](documentacao/ra1/06-organizacao-e-reprodutibilidade.md).
+
 ### No Google Colab (ambiente de referência)
 
 1. Abra `notebook/projeto_data_analytics.ipynb` no Colab (*Arquivo → Abrir notebook → GitHub*, repositório `Jcliz/data-analytics`).
@@ -144,7 +146,11 @@ python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.
 
 ### Localmente
 
+Precisa de Python 3.9 ou mais novo e, para o RA2, de Java 17 ou mais novo.
+
 ```bash
+git clone https://github.com/Jcliz/data-analytics.git
+cd data-analytics
 python -m venv .venv
 source .venv/bin/activate          # no Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -152,11 +158,23 @@ python scripts/montar_notebook.py
 jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb
 ```
 
-O RA2 usa PySpark, que precisa de Java 17 ou mais novo instalado na máquina. No Windows o Spark local costuma pedir também o `winutils`; para o RA2, prefira o Colab.
+No Windows o Spark local costuma pedir também o `winutils`; para o RA2, prefira o Colab.
 
 Para exportar o notebook em PDF localmente: `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (a primeira vez baixa o Chromium).
 
-Por padrão o notebook lê o retrato bruto já versionado (`BAIXAR_DA_API = False`), então a execução dá os mesmos números em qualquer máquina. Coletar de novo na API muda os números de todas as seções: combine com o grupo antes ([ADR-0004](docs/adr/0004-retrato-bruto-versionado.md)).
+### Como saber se deu certo
+
+| Onde olhar | Resultado esperado |
+|---|---|
+| Célula "Preparação do ambiente" (seção 00b) | Mostra a raiz do projeto, o ambiente e as versões de Python e pandas. |
+| Célula "Leitura do retrato bruto mais recente" (seção 2) | Lê `dados/brutos/2026-10-16` e lista os sete arquivos JSON do retrato. |
+| Célula "Verificação do carregamento" (seção 2) | `df_bruto` com 2.800 linhas e 102 colunas: 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, nenhum item sem detalhe. |
+| `dados/preparados/faixas_preparadas.csv` | Regravado pelas seções 04 e 05, com as linhas e colunas do documento do RA1, seção 05. |
+| Notebook inteiro | Nenhuma célula com erro. |
+
+### Se a API da Deezer estiver indisponível ou responder diferente
+
+A reprodução não chama a API, então não depende dela. O chart muda todo dia e pode mudar com o país de onde vem a requisição (o retrato da entrega foi coletado com país aparente US), por isso os números da entrega são os do retrato versionado. Coletar de novo (`BAIXAR_DA_API = True` na seção 00b) grava outra pasta em `dados/brutos/`, que passa a ser lida por ser a mais recente, e muda os números de todas as seções: combine com o grupo antes ([ADR-0004](docs/adr/0004-retrato-bruto-versionado.md)). Para voltar ao retrato da entrega, apague a pasta nova ou use um clone limpo.
 
 ### Verificações antes do PR
 
