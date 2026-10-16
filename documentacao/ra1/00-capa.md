@@ -9,7 +9,7 @@ nomes exatamente assim, iguais aos da identificação do notebook; a turma não 
 
 **Curso e turma:** Bacharelado em Sistemas de Informação • 2º semestre de 2026
 
-**Professor ou professora:** Marina
+**Professor ou professora:** Marina de Lara
 
 **Equipe:** Eduardo Fabri • João Correa • Rodrigo Alves • João Pedro Cardoso
 

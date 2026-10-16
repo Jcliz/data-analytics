@@ -17,7 +17,7 @@ Este repositório guarda três coisas:
 | Eduardo Fabri | `eduardofabrii` | C: compreensão e qualidade (código) |
 | Rodrigo Alves | `rdsalvesPUC` | D: limpeza e conjunto resultante (código) |
 
-Professora: Marina. A divisão está em proposta ([ADR-0008](docs/adr/0008-divisao-em-quatro-areas.md)); o detalhe de cada área está no [plano de tarefas](entregas/plano-de-tarefas.md).
+Professora: Marina de Lara. A divisão está em proposta ([ADR-0008](docs/adr/0008-divisao-em-quatro-areas.md)); o detalhe de cada área está no [plano de tarefas](entregas/plano-de-tarefas.md).
 
 ## Comece por aqui
 
