@@ -60,7 +60,7 @@ O dataaudio já lida com dois formatos do mesmo objeto (aninhado da API e plano 
 
 1. `/genre` → lista de gêneros.
 2. Para cada gênero (e o geral, `0`): `/chart/{id}/tracks` com paginação até acabar ou até um teto (ex.: 100 por gênero). Guardar o gênero de origem em cada item.
-3. Para cada `id` de faixa único: `/track/{id}` (campos extras). Para cada álbum único: `/album/{id}` (gênero, gravadora).
+3. Para cada `id` de faixa único: `/track/{id}` (campos extras). Para cada álbum único: `/album/{id}` (gênero, gravadora). Para cada artista único: `/artist/{id}` (`nb_fan`, `nb_album`).
 4. Gravar cada resposta crua em `dados/brutos/AAAA-MM-DD/` (um arquivo por endpoint e página, ou um JSON por tipo de objeto), mais um `metadados.json` com data, hora, quantidade de chamadas, erros e versões.
 5. Achatar para `df_bruto` (uma linha por item coletado, mantendo as duplicatas entre charts; deduplicar é decisão da área D).
 

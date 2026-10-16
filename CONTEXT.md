@@ -73,7 +73,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | `RAIZ` | `pathlib.Path` | 00b (ambiente) | todas | Raiz do repositório. |
 | `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 00b | 02, 04, 05, 09, 10, 11 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
 | `BAIXAR_DA_API` | `bool` | 00b | 02 | `False` por padrão: lê o retrato bruto já versionado. `True` coleta de novo na API. |
-| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}` e `/album/{id}` juntados pelo id. |
+| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}`, `/album/{id}` e `/artist/{id}` juntados pelo id (prefixos `detalhe_faixa_`, `detalhe_album_` e `detalhe_artista_`). |
 | `df_preparado` | `pandas.DataFrame` | 04 e 05 | 05, 07, 09 | Conjunto preparado. Também gravado em `dados/preparados/faixas_preparadas.csv`. |
 | `spark` | `SparkSession` | 09 | 09, 10, 11 | Sessão do Spark do RA2. |
 | `PASTA_ENTRADA`, `PASTA_PUBLICACAO`, `PASTA_CHECKPOINT` | `Path` | 09 | 09, 10, 11 | Subpastas `entrada/`, `publicacao/` e `checkpoint/` de `PASTA_STREAMING`. |
