@@ -114,7 +114,7 @@ Referência: `entregas/criterios-de-aceite.md`
 5. Preencher "Bloqueada por" e "Bloqueia" com os números reais.
 6. Conferir por contagem: 15 issues (T00–T14), cada uma com rótulo de entrega ou `geral`.
 
-As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). O Rodrigo (área D) foi atribuído às issues #5 e #11 em 16/10/2026. As issues do Eduardo (área C, #4 e #10) ficam sem responsável atribuído até ele aceitar o convite de colaborador.
+As 15 issues foram criadas em 15/10/2026 (T00 = #1 … T14 = #15). Em 16/10/2026, com os quatro integrantes já colaboradores, cada issue de área foi atribuída ao seu responsável (Eduardo: #4 e #10; Rodrigo: #5 e #11).
 
 ## 8. Dúvidas do grupo
 
