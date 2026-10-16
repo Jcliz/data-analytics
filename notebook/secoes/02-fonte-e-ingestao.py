@@ -16,13 +16,14 @@
 #
 # A fonte é a API pública da Deezer (`https://api.deezer.com`, documentação em `https://developers.deezer.com/api`), acessada sem autenticação e sem chave. Coletamos os charts de faixas mais tocadas: o chart geral e um chart por gênero da lista `/genre`. Cada registro do `df_bruto` é um item de um chart, ou seja, uma faixa na posição em que apareceu em um chart de origem; a mesma faixa pode aparecer em mais de um chart, e essas repetições ficam no bruto. Cada item recebe os campos extras da faixa (`/track/{id}`, como `bpm`, `isrc` e `release_date`), do álbum (`/album/{id}`, como gênero, gravadora e data de lançamento) e do artista (`/artist/{id}`, como `nb_fan` e `nb_album`), juntados pelo id.
 #
-# A ingestão é feita por código nas células abaixo: as chamadas passam por uma função com pausa entre requisições, novas tentativas e tratamento do objeto `error`, que a API devolve mesmo com HTTP 200. Os charts são paginados por `index` e `limit`. As respostas são gravadas cruas no retrato bruto `dados/brutos/AAAA-MM-DD/`, com um `metadados.json` da coleta, e o notebook lê esse retrato por padrão (`BAIXAR_DA_API = False`), para que os números sejam os mesmos em toda execução.
+# A ingestão é feita por código nas células abaixo: as chamadas passam por uma função com pausa entre requisições, novas tentativas e tratamento do objeto `error`, que a API devolve mesmo com HTTP 200. Os charts são paginados por `index` e `limit`. As respostas são gravadas cruas, em JSON compactado com gzip, no retrato bruto `dados/brutos/AAAA-MM-DD/`, com um `metadados.json` da coleta, e o notebook lê esse retrato por padrão (`BAIXAR_DA_API = False`), para que os números sejam os mesmos em toda execução.
 #
-# [Preencha após a coleta: data do retrato, país aparente, quantidade de chamadas e de erros, gêneros coletados e df_bruto.shape, com os números das saídas abaixo.]
+# O retrato usado é o de 16/10/2026, coletado com país aparente US: 6.591 chamadas à API, sem novas tentativas e sem erros. Vieram 28 charts (o geral e 27 gêneros), com 100 itens cada, e o `df_bruto` ficou com 2.800 linhas e 102 colunas, que cobrem 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, todos com o detalhe juntado.
 
 # %%
 #> Contrato (CONTEXT.md §6): esta seção cria df_bruto. Lê RAIZ, PASTA_BRUTOS e BAIXAR_DA_API da seção 00b.
 # Parâmetros da coleta e acesso à API
+import gzip
 import json
 import platform
 import time
@@ -142,9 +143,10 @@ if BAIXAR_DA_API:
     conteudo = {"infos.json": infos, "generos.json": resposta_generos, "charts.json": charts,
                 "faixas.json": faixas, "albuns.json": albuns, "artistas.json": artistas}
     for nome, dados in conteudo.items():
-        # Respostas cruas da API, sem nenhuma alteração; JSON compacto para o retrato caber no repositório
-        (pasta_retrato / nome).write_text(json.dumps(dados, ensure_ascii=False, separators=(",", ":")),
-                                          encoding="utf-8")
+        # Respostas cruas da API, sem nenhuma alteração; JSON compacto em gzip para o retrato caber
+        # no repositório (ADR-0004: sem compactar, o retrato de 16/10/2026 passava de 50 MB)
+        texto = json.dumps(dados, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        (pasta_retrato / f"{nome}.gz").write_bytes(gzip.compress(texto, compresslevel=9, mtime=0))
     metadados = {
         "inicio_utc": inicio_coleta.isoformat(timespec="seconds"),
         "fim_utc": fim_coleta.isoformat(timespec="seconds"),
@@ -163,7 +165,7 @@ if BAIXAR_DA_API:
         "faixas_unicas": len(ids_faixas),
         "albuns_unicos": len(ids_albuns),
         "artistas_unicos": len(ids_artistas),
-        "arquivos": sorted(conteudo) + ["metadados.json"],
+        "arquivos": sorted(f"{nome}.gz" for nome in conteudo) + ["metadados.json"],
         "ambiente": {"python": platform.python_version(), "pandas": pd.__version__,
                      "requests": requests.__version__, "colab": NO_COLAB},
     }
@@ -184,6 +186,10 @@ PASTA_RETRATO = retratos[-1]
 
 
 def ler_json(nome):
+    # Os arquivos de dados ficam em gzip (nome.json.gz); o metadados.json fica em texto puro
+    compactado = PASTA_RETRATO / f"{nome}.gz"
+    if compactado.exists():
+        return json.loads(gzip.decompress(compactado.read_bytes()).decode("utf-8"))
     return json.loads((PASTA_RETRATO / nome).read_text(encoding="utf-8"))
 
 
@@ -194,7 +200,7 @@ albuns = ler_json("albuns.json")
 artistas = ler_json("artistas.json")
 print(f"Retrato lido: {PASTA_RETRATO.relative_to(RAIZ)} ({len(retratos)} retrato(s) disponível(is))")
 for arquivo in sorted(PASTA_RETRATO.iterdir()):
-    print(f"  {arquivo.name:<15} {arquivo.stat().st_size / 1e6:6.2f} MB")
+    print(f"  {arquivo.name:<17} {arquivo.stat().st_size / 1e6:6.2f} MB")
 
 # %%
 # Metadados do retrato lido
