@@ -125,7 +125,7 @@ Respondidas pelo João em 15/10/2026:
 | Dúvida | Decisão |
 |---|---|
 | Nomes da equipe | Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso, exatamente assim; sem RA. |
-| Professora e turma | Professora Marina; a turma não entra na capa nem no notebook. |
+| Professora e turma | Professora Marina de Lara; a turma não entra na capa nem no notebook. |
 | Divisão das áreas | A João Correa (inclui o `.docx`, T11), B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. |
 | Envio do RA1 e do RA2 | **Um PDF só**: o documento do RA1 (com a URL do repositório na capa) e depois o notebook executado. No RA2 vai o arquivo; no RA1, cujo formulário só aceita URL, o link do mesmo PDF no repositório, na tag `entrega` ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)). |
 | Prazo | 21/10/2026 para o RA1 e o RA2. |
