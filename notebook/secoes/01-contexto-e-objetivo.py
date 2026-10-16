@@ -19,10 +19,11 @@
 # %% [markdown]
 # **Resposta do grupo:**
 #
-# [Preencha aqui.]
+# Os charts da Deezer mostram as faixas mais ouvidas em cada gênero, mas não o que elas têm em comum. O grupo quer descrever o perfil dessas faixas e ver se ele muda entre gêneros. O recorte é um único retrato dos charts da Deezer, o chart geral e o de cada gênero, na data da coleta registrada na seção 2. A unidade de observação é a faixa. As perguntas são:
 #
-# <!--
-# Resumo curto (3 a 6 frases) do problema, do recorte e das perguntas P1…Pn definidos em
-# documentacao/ra1/01-problema-e-perguntas.md. O detalhe fica no documento; aqui vai a síntese.
-# Ideias de partida: base/sugestoes-de-perguntas.md. Nada de resultado ou conclusão (RA1 não tem análise).
-# -->
+# - **P1:** como a duração das faixas varia entre os gêneros;
+# - **P2:** que parte das faixas de cada gênero foi lançada nos 12 meses anteriores à coleta;
+# - **P3:** se faixas de artistas com mais fãs têm `rank` mais alto, no geral e dentro de cada gênero;
+# - **P4:** quantos artistas distintos ocupam cada chart de gênero e que fatia das posições fica com os 5 artistas com mais faixas.
+#
+# O detalhe do recorte e das lacunas está na seção 01 do documento do RA1.
