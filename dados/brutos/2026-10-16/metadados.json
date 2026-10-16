@@ -36,12 +36,12 @@
   "albuns_unicos": 2292,
   "artistas_unicos": 1688,
   "arquivos": [
-    "albuns.json.gz",
-    "artistas.json.gz",
-    "charts.json.gz",
-    "faixas.json.gz",
-    "generos.json.gz",
-    "infos.json.gz",
+    "albuns.json",
+    "artistas.json",
+    "charts.json",
+    "faixas.json",
+    "generos.json",
+    "infos.json",
     "metadados.json"
   ],
   "ambiente": {

@@ -35,7 +35,7 @@ relacionados: [adr-0001, api-deezer]
 - A data da coleta e o país aparente da requisição entram na ficha da fonte (documento do RA1, seção 02).
 - Regerar o retrato muda todas as contagens; só se faz com o grupo de acordo, e antes da execução final.
 - O retrato deve caber no repositório (alguns MB). Se passar de 50 MB, o grupo reavalia (compactar em `.json.gz`).
-- O primeiro retrato (16/10/2026) passou do limite: 57,7 MB em JSON puro, quase tudo em `albuns.json`, porque cada álbum traz a lista de faixas. Por isso os arquivos de dados do retrato são gravados em `.json.gz` (5,7 MB, conteúdo idêntico) e só o `metadados.json` fica em texto puro.
+- O primeiro retrato (16/10/2026) passou do limite: 57,7 MB em JSON puro, quase tudo em `albuns.json`, porque cada álbum traz a lista de faixas. O João avaliou em 16/10/2026 e decidiu manter o JSON puro, sem compactar.
 
 ---
 
