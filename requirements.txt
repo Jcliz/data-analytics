@@ -1,0 +1,19 @@
+# Bibliotecas do projeto (ADR-0006). A área B confirma as versões na tarefa T05
+# e registra no documento do RA1 (seção 06) as versões usadas na execução final.
+
+# RA1: coleta, exploração e preparação
+pandas>=2.2,<3
+requests>=2.31
+
+# RA2: processamento em streaming (precisa de Java 17 ou mais novo)
+pyspark==4.0.3
+
+# Execução local do notebook e PDF do RA2
+jupyter>=1.0
+nbconvert[webpdf]>=7.16
+
+# Geração do documento do RA1 a partir do template .docx
+python-docx>=1.1
+
+# PDF único da entrega (documento do RA1 + notebook)
+pypdf>=4.0

@@ -1,0 +1,25 @@
+name: Verificar commits
+
+# Reprova PR ou push com commit que tenha coautoria de IA (ADR-0007).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  sem-coautoria-de-ia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Conferir mensagens e autores
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            intervalo="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          elif [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            intervalo="${{ github.sha }}"
+          else
+            intervalo="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          python3 scripts/verificar_commits.py "$intervalo"

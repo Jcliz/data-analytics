@@ -1,0 +1,32 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "includeCoAuthoredBy": false,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && { python3 .claude/hooks/bloquear_coautor_ia.py --iniciar || python .claude/hooks/bloquear_coautor_ia.py --iniciar; }"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && { command -v python3 >/dev/null && python3 .claude/hooks/bloquear_coautor_ia.py || python .claude/hooks/bloquear_coautor_ia.py; }",
+            "statusMessage": "Conferindo a regra de commit sem coautoria de IA"
+          }
+        ]
+      }
+    ]
+  }
+}
