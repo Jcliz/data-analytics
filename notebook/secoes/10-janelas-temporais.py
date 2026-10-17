@@ -42,8 +42,8 @@ agregado_janelas = eventos.groupBy(
 
 # %%
 # Consulta em memória com estado das janelas
-# Checkpoint próprio por execução: a saída memory começa vazia e relê os lotes da entrada.
-# Reutilizar um checkpoint anterior com uma tabela memory nova perderia a demonstração do primeiro lote.
+# Nome único para poder rodar a seção novamente.
+# O checkpoint é a pasta onde o Spark guarda o progresso desta consulta.
 TABELA_JANELAS = "janelas_" + uuid4().hex
 consulta = (
     agregado_janelas.writeStream
@@ -66,12 +66,9 @@ tabela_primeiro_lote.select(
     F.col("window.end").alias("fim"), "genero", "reproducoes"
 ).orderBy("inicio", F.desc("reproducoes"), "genero").show(n=max(1, quantidade_grupos), truncate=False)
 
-resumo_primeiro_lote = tabela_primeiro_lote.agg(
-    F.sum("reproducoes").alias("reproducoes"),
-    F.countDistinct("window").alias("janelas"),
-    F.countDistinct("genero").alias("generos"),
-).first()
-print(f"Após o primeiro lote: {resumo_primeiro_lote['reproducoes'] or 0} reproduções; "
-      f"{resumo_primeiro_lote['janelas']} janelas; {resumo_primeiro_lote['generos']} gêneros; "
-      f"{quantidade_grupos} pares janela-gênero.")
+# Somamos as contagens da tabela para conferir quantos eventos foram recebidos.
+total_reproducoes = tabela_primeiro_lote.agg(
+    F.sum("reproducoes").alias("total")
+).first()["total"]
+print(f"Total de reproduções recebidas: {total_reproducoes or 0}")
 # A consulta permanece ativa para os novos lotes e o encerramento da seção 11.
