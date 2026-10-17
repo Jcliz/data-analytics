@@ -22,9 +22,14 @@ Os campos "Preencha após a coleta" saem do metadados.json do retrato e das saí
 
 ## Relação com o problema
 
-A fonte descreve as faixas que estão no topo da Deezer em cada gênero, com atributos da própria faixa (duração, letra explícita, posição e `rank` no chart, data de lançamento), do álbum (gênero e gravadora) e do artista (número de fãs). Isso permite comparar perfis de faixas entre gêneros, medir a presença de lançamentos recentes e a concentração de artistas nos charts, que são os recortes discutidos para o problema. O retrato é de um único dia e de um único país aparente, então a fonte não apoia perguntas sobre evolução no tempo nem comparações entre países.
+A fonte apoia as quatro perguntas do problema (seção 01), porque todos os campos que elas pedem vieram no retrato de 16/10/2026 e estão no `df_bruto`, e porque cada item guarda o chart de gênero de onde saiu:
 
-[Preencha após a T01: IDs das perguntas P1…Pn que a fonte apoia e os campos que cada uma usa.]
+- **P1** (duração por gênero): `duration` e o gênero do chart de origem (`chart_id_genero`, `chart_nome_genero`).
+- **P2** (lançamentos dos 12 meses anteriores à coleta, por gênero): `detalhe_faixa_release_date`, o gênero do chart e a data da coleta, registrada no `metadados.json` do retrato.
+- **P3** (fãs do artista e `rank`): `rank`, `detalhe_artista_nb_fan` e o gênero do chart.
+- **P4** (concentração de artistas por chart): `artist_id`, `position` e o gênero do chart.
+
+O retrato é de um único dia e de um único país aparente (US), então a fonte descreve os charts dessa data e não apoia perguntas sobre evolução no tempo nem comparações entre países.
 
 ## Procedimento de ingestão
 
