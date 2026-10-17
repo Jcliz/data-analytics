@@ -28,17 +28,22 @@ Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orient
 
 ## 3. Problema e perguntas analíticas
 
-**Ainda não definidos.** São a primeira tarefa da área A (issue "Problema e perguntas analíticas"). Até lá, as outras áreas trabalham com o recorte provisório abaixo e não inventam perguntas próprias.
+**Problema:** o que caracteriza as faixas que estão no topo dos charts da Deezer e como esse perfil muda entre gêneros. Unidade de observação: a faixa; período: a data da coleta do retrato bruto (chart geral e charts por gênero). Decisão: [ADR-0010](docs/adr/0010-problema-e-perguntas.md); texto completo em [documentacao/ra1/01-problema-e-perguntas.md](documentacao/ra1/01-problema-e-perguntas.md).
 
-- **Recorte provisório:** faixas dos charts da Deezer (geral e por gênero), com os atributos da faixa, do artista e do álbum.
-- **Ideias de perguntas** (sugestões, não decisão): [base/sugestoes-de-perguntas.md](base/sugestoes-de-perguntas.md).
-- Quando a área A fechar o problema, atualize esta seção com o texto curto do problema e a lista P1…Pn, e registre a decisão como ADR.
+| ID | Pergunta | Dados |
+|---|---|---|
+| P1 | Como a duração das faixas varia entre os gêneros? | `duration`, gênero do chart |
+| P2 | Que parte das faixas de cada gênero foi lançada nos 12 meses anteriores à coleta? | `release_date`, gênero do chart |
+| P3 | Faixas de artistas com mais fãs têm `rank` mais alto, no geral e em cada gênero? | `rank`, `nb_fan`, gênero do chart |
+| P4 | Quantos artistas distintos ocupam cada chart de gênero e que fatia das posições fica com os 5 com mais faixas? | `artist.id`, `position`, gênero do chart |
+
+O gênero do chart de origem é o grupo de todas as perguntas: a deduplicação de faixas precisa preservá-lo.
 
 ## 4. Glossário mínimo
 
 | Termo | Significado no projeto |
 |---|---|
-| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação provisória: uma linha do conjunto preparado representa uma faixa. |
+| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação ([ADR-0010](docs/adr/0010-problema-e-perguntas.md)): uma linha do conjunto preparado representa uma faixa. |
 | **Chart** | Ranking de faixas mais populares devolvido por `/chart/{id_genero}/tracks`. |
 | **Retrato bruto** | Cópia fiel das respostas da API em JSON, gravada com a data da coleta em `dados/brutos/`. Nunca é editada à mão. |
 | **Conjunto preparado** | Saída do RA1: `dados/preparados/faixas_preparadas.csv`, já limpo e documentado. Entrada do RA2. |
@@ -61,6 +66,7 @@ Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orient
 | 0007 | Nenhum commit com Claude (ou outra IA) como coautor | aceita | [0007](docs/adr/0007-commits-sem-coautoria-de-ia.md) |
 | 0008 | Divisão do trabalho em quatro áreas, uma por integrante | proposta | [0008](docs/adr/0008-divisao-em-quatro-areas.md) |
 | 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | aceita | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
+| 0010 | Problema e perguntas: perfil das faixas populares nos charts da Deezer por gênero (P1 a P4) | proposta | [0010](docs/adr/0010-problema-e-perguntas.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
 

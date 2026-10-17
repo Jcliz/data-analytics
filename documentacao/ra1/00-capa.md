@@ -1,11 +1,6 @@
 # Capa
 
-<!--
-Área A (T01). Campos da capa do template. Equipe, professora e curso já definidos pelo grupo (CONTEXT.md, seção 1):
-nomes exatamente assim, iguais aos da identificação do notebook; a turma não entra. Campo ainda entre colchetes sai assim no documento e é cobrado por scripts/verificar_entrega.py.
--->
-
-**Projeto:** [Título do projeto]
+**Projeto:** Perfil das faixas populares nos charts da Deezer por gênero
 
 **Curso e turma:** Bacharelado em Sistemas de Informação • 2º semestre de 2026
 
