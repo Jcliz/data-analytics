@@ -3,8 +3,8 @@ id: adr-indice
 titulo: "Decisões do projeto (ADRs)"
 tipo: decisao-indice
 status: vigente
-atualizado: 2026-10-15
-relacionados: [adr-0001, adr-0002, adr-0003, adr-0004, adr-0005, adr-0006, adr-0007, adr-0008, adr-0009]
+atualizado: 2026-10-16
+relacionados: [adr-0001, adr-0002, adr-0003, adr-0004, adr-0005, adr-0006, adr-0007, adr-0008, adr-0009, adr-0010]
 ---
 # Decisões do projeto (ADRs)
 
@@ -23,6 +23,7 @@ relacionados: [adr-0001, adr-0002, adr-0003, adr-0004, adr-0005, adr-0006, adr-0
 | [0007](0007-commits-sem-coautoria-de-ia.md) | Nenhum commit com IA como coautora | aceita | todos |
 | [0008](0008-divisao-em-quatro-areas.md) | Trabalho dividido em quatro áreas, uma por integrante | proposta | todos |
 | [0009](0009-entrega-unica-em-pdf.md) | Entrega única: um PDF com o documento do RA1 e o notebook | aceita | RA1, RA2 |
+| [0010](0010-problema-e-perguntas.md) | Problema e perguntas analíticas: perfil das faixas populares por gênero (P1 a P4) | proposta | RA1, RA2 |
 
 ---
 
