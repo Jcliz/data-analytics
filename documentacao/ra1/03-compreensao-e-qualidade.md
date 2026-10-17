@@ -1,5 +1,11 @@
 # Compreensão e qualidade
 
+<!--
+Área C (T03) · Critérios C3.1 a C3.5 · Leia: base/qualidade-de-dados.md, base/api-deezer.md §4 e ADR-0004.
+Evidência = notebook §3 + título da célula. Contagens usam ocorrências nos charts do retrato de 16/10/2026.
+Esta seção diagnostica os problemas; as decisões de tratamento ficam com a Área D (T04).
+-->
+
 **Unidade de observação:** uma linha do bruto representa uma ocorrência de faixa em um chart de origem, no retrato de 16/10/2026. São 2.800 ocorrências, 102 atributos, 2.581 faixas e 28 charts (o geral e 27 gêneros). Evidência: notebook §3, célula “Visão geral e tipos observados”, executada sobre o retrato de `dados/brutos/2026-10-16/` do PR #21.
 
 **Identificação dos registros:** `id` identifica a faixa, mas se repete entre charts. A chave candidata no retrato é o par `chart_id_genero` e `id`: zero ocorrências excedentes em 2.800. Para combinar retratos futuros será preciso incluir a data da coleta na chave. A posição pertence ao chart, não à faixa em geral. Evidência: notebook §3, célula “Duplicidade e limite da chave”.

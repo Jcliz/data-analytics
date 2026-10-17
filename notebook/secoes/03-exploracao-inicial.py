@@ -1,4 +1,8 @@
-#> Área C · T03 · Diagnóstico sem alterar df_bruto.
+#> Seção do notebook: RA1 — 3. Exploração inicial dos dados
+#> Área responsável: C · Tarefa: T03 (entregas/plano-de-tarefas.md)
+#> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
+#> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
+#> Diagnóstico sem alterar df_bruto; tratamentos ficam com a Área D.
 
 # %% [markdown]
 # ## 3. Exploração inicial dos dados
