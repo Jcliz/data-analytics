@@ -1,4 +1,8 @@
-#> Área C · T09 · Contrato: lê eventos e cria TABELA_JANELAS e consulta para a seção 11.
+#> Seção do notebook: RA2 — 10. Aplicação de janelas temporais
+#> Área responsável: C · Tarefa: T09 (entregas/plano-de-tarefas.md)
+#> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
+#> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
+#> Contrato: lê eventos e cria TABELA_JANELAS e consulta para a seção 11.
 
 # %% [markdown]
 # ## 10. Aplicação de janelas temporais
