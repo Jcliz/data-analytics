@@ -1,8 +1,4 @@
-#> Seção do notebook: RA2 — 10. Aplicação de janelas temporais
-#> Área responsável: C · Tarefa: T09 (entregas/plano-de-tarefas.md)
-#> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
-#> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
-#> Mantenha os enunciados do professor; troque só o "[Preencha aqui.]" e escreva o código.
+#> Área C · T09 · Contrato: lê eventos e cria TABELA_JANELAS e consulta para a seção 11.
 
 # %% [markdown]
 # ## 10. Aplicação de janelas temporais
@@ -17,27 +13,65 @@
 # %% [markdown]
 # **Resposta do grupo:**
 #
-# [Informe o tipo, a duração, o deslocamento (quando aplicável) e o que será calculado em cada janela.]
+# Usamos uma única janela **tumbling de 5 minutos**, sem sobreposição.
+# Cada intervalo inclui seu início e exclui seu fim: um evento às 10:05:00
+# entra em 10:05–10:10, e não em 10:00–10:05. O deslocamento é igual à
+# duração (5 minutos), implícito nesse tipo de janela.
 #
-# <!--
-# Tipo (tumbling ou sliding), duração, deslocamento e a agregação (ex.: contagem de reproduções por
-# gênero em janela sliding de 5 min com deslocamento de 2 min). Só uma janela (enunciado do RA2).
-# -->
+# Contamos as reproduções por `genero` usando o instante do evento (`instante`),
+# conforme o objetivo da seção 8. A tabela mostra a contagem de cada gênero
+# em cada intervalo e permite identificar os gêneros com maior contagem,
+# inclusive empates. As contagens representam eventos simulados, não audiência
+# real da Deezer. O modo `complete` reexibe toda a tabela a cada lote; a saída
+# `memory` permite mostrar os resultados na célula e no PDF.
 
 # %%
-#> Template: "Utilize quantas células de código forem necessárias para esta etapa."
-#> Crie quantas células "# %%" precisar; comece cada uma com um comentário-título curto (ex.: "# Duplicados por id"),
-#> que é como o documento do RA1 cita a evidência.
-#> Passos esperados (base/streaming-e-janelas.md §2 e §3):
-#> 1. Pare consultas que tenham sobrado de uma execução anterior: for q in spark.streams.active: q.stop()
-#> 2. agregado = eventos.groupBy(window("instante", duração[, deslocamento]), "genero").agg(...)
-#>    Uma única janela (tumbling ou sliding), coerente com o objetivo da seção 8.
-#> 3. TABELA_JANELAS = nome da tabela em memória, único por execução (a aula usa uuid4().hex).
-#> 4. consulta = agregado.writeStream.outputMode("complete").format("memory").queryName(TABELA_JANELAS)
-#>               .option("checkpointLocation", str(PASTA_CHECKPOINT / "janelas")).start()
-#>    complete + memory é a combinação das aulas. Não use append (com janela, exige watermark e só mostra
-#>    janelas fechadas) nem format("console") (escreve no log, não na célula, e não vai para o PDF).
-#>    Watermark e trigger não são necessários.
-#> 5. consulta.processAllAvailable() e mostre a tabela do 1º lote (publicado na seção 9):
-#>    spark.table(TABELA_JANELAS).select("window.start", "window.end", ...).orderBy("start").show(truncate=False)
-#> Contrato (CONTEXT.md §6): esta seção cria TABELA_JANELAS e consulta; a seção 11 publica os lotes seguintes.
+# Agregação por gênero em janela tumbling de cinco minutos
+from uuid import uuid4
+from pyspark.sql import functions as F
+
+if not eventos.isStreaming:
+    raise ValueError("Execute a seção 9: eventos deve ser um DataFrame em streaming.")
+# Interrompe consultas remanescentes antes de iniciar a consulta desta seção.
+for consulta_anterior in spark.streams.active:
+    consulta_anterior.stop()
+
+agregado_janelas = eventos.groupBy(
+    F.window("instante", "5 minutes"), "genero"
+).agg(F.count("*").alias("reproducoes"))
+
+# %%
+# Consulta em memória com estado das janelas
+# Checkpoint próprio por execução: a saída memory começa vazia e relê os lotes da entrada.
+# Reutilizar um checkpoint anterior com uma tabela memory nova perderia a demonstração do primeiro lote.
+TABELA_JANELAS = "janelas_" + uuid4().hex
+consulta = (
+    agregado_janelas.writeStream
+    .outputMode("complete")
+    .format("memory")
+    .queryName(TABELA_JANELAS)
+    .option("checkpointLocation", str(PASTA_CHECKPOINT / TABELA_JANELAS))
+    .start()
+)
+print(f"Consulta ativa: {consulta.isActive}; tabela em memória: {TABELA_JANELAS}")
+
+# %%
+# Tabela das janelas após o primeiro lote
+consulta.processAllAvailable()
+tabela_primeiro_lote = spark.table(TABELA_JANELAS)
+quantidade_grupos = tabela_primeiro_lote.count()
+# O limite é o número real de grupos, para que show() não esconda linhas além das primeiras 20.
+tabela_primeiro_lote.select(
+    F.col("window.start").alias("inicio"),
+    F.col("window.end").alias("fim"), "genero", "reproducoes"
+).orderBy("inicio", F.desc("reproducoes"), "genero").show(n=max(1, quantidade_grupos), truncate=False)
+
+resumo_primeiro_lote = tabela_primeiro_lote.agg(
+    F.sum("reproducoes").alias("reproducoes"),
+    F.countDistinct("window").alias("janelas"),
+    F.countDistinct("genero").alias("generos"),
+).first()
+print(f"Após o primeiro lote: {resumo_primeiro_lote['reproducoes'] or 0} reproduções; "
+      f"{resumo_primeiro_lote['janelas']} janelas; {resumo_primeiro_lote['generos']} gêneros; "
+      f"{quantidade_grupos} pares janela-gênero.")
+# A consulta permanece ativa para os novos lotes e o encerramento da seção 11.
