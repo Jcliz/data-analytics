@@ -28,14 +28,18 @@ display(inventario.reset_index(names="atributo"))
 
 # %%
 # Ausências nulas e textos vazios
-# Listas e dicionários são objetos válidos: não são tratados como texto.
-def texto_vazio(valor):
-    return isinstance(valor, str) and not valor.strip()
+# isna() encontra nulos. Para textos, também contamos vazio e espaços como ausência.
+mascara_ausencias = df_bruto.isna()
+textos_vazios = pd.DataFrame(False, index=df_bruto.index, columns=df_bruto.columns)
 
-mascara_ausencias = df_bruto.isna() | df_bruto.apply(lambda coluna: coluna.map(texto_vazio))
+for coluna in df_bruto.columns:
+    if pd.api.types.is_string_dtype(df_bruto[coluna].dropna()):
+        textos_vazios[coluna] = df_bruto[coluna].str.strip().eq("").fillna(False)
+        mascara_ausencias[coluna] = mascara_ausencias[coluna] | textos_vazios[coluna]
+
 ausencias = pd.DataFrame({
     "nulos": df_bruto.isna().sum(),
-    "textos_vazios": df_bruto.apply(lambda coluna: coluna.map(texto_vazio)).sum(),
+    "textos_vazios": textos_vazios.sum(),
     "total_ausentes": mascara_ausencias.sum(),
 })
 ausencias["percentual"] = 100 * ausencias["total_ausentes"] / numero_linhas
@@ -43,12 +47,18 @@ display(ausencias.reset_index(names="atributo"))
 
 # %%
 # Duplicidade e limite da chave
-# Serialização canônica permite comparar linhas com listas/dicionários, sem modificar o bruto.
-linhas_canonicas = df_bruto.apply(
-    lambda coluna: coluna.map(lambda valor: json.dumps(valor, ensure_ascii=False, sort_keys=True)
-                             if isinstance(valor, (list, dict)) else valor)
-)
-duplicadas_inteiras = linhas_canonicas.duplicated()
+# Algumas colunas guardam listas. Só para comparar linhas, transformamos listas em texto.
+# df_bruto continua intacto: a comparação usa outra tabela.
+def texto_para_comparacao(valor):
+    if isinstance(valor, (list, dict)):
+        return json.dumps(valor, ensure_ascii=False, sort_keys=True)
+    return valor
+
+tabela_comparacao = df_bruto.copy()
+for coluna in tabela_comparacao.columns:
+    tabela_comparacao[coluna] = tabela_comparacao[coluna].map(texto_para_comparacao)
+
+duplicadas_inteiras = tabela_comparacao.duplicated()
 duplicadas_id = df_bruto.duplicated("id")
 duplicadas_chart = df_bruto.duplicated(["chart_id_genero", "id"])
 print(f"Ocorrências excedentes por id: {duplicadas_id.sum()}/{numero_linhas}; "
@@ -76,30 +86,39 @@ for coluna in colunas_inteiras + ["detalhe_faixa_bpm", "detalhe_faixa_gain"]:
         and not isinstance(valor, (bool, np.bool_))
     )
 tipos_invalidos |= ~df_bruto["explicit_lyrics"].map(lambda valor: isinstance(valor, (bool, np.bool_)))
-invalidos_numericos = (
-    numericos.isna().any(axis=1) | ~np.isfinite(numericos).all(axis=1)
-    | numericos["duration"].le(0) | numericos["rank"].lt(0)
-    | numericos["position"].le(0) | numericos["detalhe_artista_nb_fan"].lt(0)
-    | numericos["detalhe_faixa_bpm"].lt(0)
-)
+# Cada comparação devolve True nas linhas com problema.
+invalidos_numericos = numericos.isna().any(axis=1) | ~np.isfinite(numericos).all(axis=1)
+invalidos_numericos = invalidos_numericos | (numericos["duration"] <= 0)
+invalidos_numericos = invalidos_numericos | (numericos["position"] <= 0)
+invalidos_numericos = invalidos_numericos | (numericos["rank"] < 0)
+invalidos_numericos = invalidos_numericos | (numericos["detalhe_artista_nb_fan"] < 0)
+invalidos_numericos = invalidos_numericos | (numericos["detalhe_faixa_bpm"] < 0)
 for coluna in ["id", "artist_id", "album_id"]:
-    invalidos_numericos |= pd.to_numeric(df_bruto[coluna], errors="coerce").le(0)
-bpm_zero = numericos["detalhe_faixa_bpm"].eq(0)
-gain_zero = numericos["detalhe_faixa_gain"].eq(0)
+    valores = pd.to_numeric(df_bruto[coluna], errors="coerce")
+    invalidos_numericos = invalidos_numericos | (valores <= 0)
+bpm_zero = numericos["detalhe_faixa_bpm"] == 0
+gain_zero = numericos["detalhe_faixa_gain"] == 0
 # gain é um ajuste em dB: negativo é permitido; zero é sinalizado para avaliação, não prova de erro.
 
 # %%
 # Datas, formatos e categorias
 colunas_datas = ["detalhe_faixa_release_date", "detalhe_album_release_date"]
-datas = df_bruto[colunas_datas].apply(lambda coluna: pd.to_datetime(coluna, format="%Y-%m-%d", errors="coerce"))
-formatos_data = df_bruto[colunas_datas].apply(
-    lambda coluna: coluna.astype("string").str.fullmatch(r"\d{4}-\d{2}-\d{2}").fillna(False)
-)
-data_coleta = pd.Timestamp(metadados["inicio_utc"]).tz_convert("UTC").tz_localize(None).normalize()
-datas_invalidas = (~formatos_data | datas.isna() | datas.lt(pd.Timestamp("1900-01-01"))
-                   | datas.gt(data_coleta)).any(axis=1)
-textos = df_bruto[["title", "artist_name", "chart_nome_genero"]].astype("string")
-espacos = textos.ne(textos.apply(lambda coluna: coluna.str.strip())).any(axis=1)
+# A data de comparação vem dos metadados da coleta, para repetir o mesmo resultado depois.
+data_coleta = pd.Timestamp(metadados["inicio_utc"]).date()
+datas_invalidas = pd.Series(False, index=df_bruto.index)
+for coluna in colunas_datas:
+    texto = df_bruto[coluna].astype("string")
+    formato_correto = texto.str.fullmatch(r"\d{4}-\d{2}-\d{2}").fillna(False)
+    datas = pd.to_datetime(texto, format="%Y-%m-%d", errors="coerce")
+    problema = ~formato_correto | datas.isna()
+    problema = problema | (datas < pd.Timestamp("1900-01-01"))
+    problema = problema | (datas > pd.Timestamp(data_coleta))
+    datas_invalidas = datas_invalidas | problema
+
+espacos = pd.Series(False, index=df_bruto.index)
+for coluna in ["title", "artist_name", "chart_nome_genero"]:
+    texto = df_bruto[coluna].astype("string")
+    espacos = espacos | texto.ne(texto.str.strip()).fillna(False)
 nomes_por_artista = df_bruto.groupby("artist_id")["artist_name"].nunique()
 variacoes_artista = df_bruto["artist_id"].isin(nomes_por_artista[nomes_por_artista.gt(1)].index)
 nomes_por_genero = df_bruto.groupby("chart_id_genero")["chart_nome_genero"].nunique()
@@ -162,12 +181,20 @@ verificacoes = [
     ("Q20", "Duração do chart diferente da duração em /track", divergencia_duracao, "Possíveis outliers e integridade do enriquecimento"),
     ("Q21", "Rank do chart diferente do rank em /track", divergencia_rank, "Possíveis outliers e integridade do enriquecimento"),
 ]
-diagnostico = pd.DataFrame([
-    {"ID": identificador, "regra": regra, "quantidade": int(mascara.sum()),
-     "denominador": numero_linhas, "percentual": 100 * mascara.sum() / numero_linhas,
-     "celula": celula}
-    for identificador, regra, mascara, celula in verificacoes
-])
+# Somar uma coluna de True/False conta quantas linhas apresentaram o problema.
+resultados = []
+for identificador, regra, mascara, celula in verificacoes:
+    quantidade = int(mascara.sum())
+    resultados.append({
+        "ID": identificador,
+        "regra": regra,
+        "quantidade": quantidade,
+        "denominador": numero_linhas,
+        "percentual": 100 * quantidade / numero_linhas,
+        "celula": celula,
+    })
+
+diagnostico = pd.DataFrame(resultados)
 display(diagnostico)
 print("As proporções usam ocorrências nos charts e podem se sobrepor; não devem ser somadas.")
 
