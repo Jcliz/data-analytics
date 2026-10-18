@@ -4,7 +4,7 @@
 
 ## 1. Disciplina e entregas
 
-- **Disciplina:** Data Analytics, Projeto Baseado em Problemas (PjBL), BSI PUCPR, 2026. **Professora:** Marina.
+- **Disciplina:** Data Analytics, Projeto Baseado em Problemas (PjBL), BSI PUCPR, 2026. **Professora:** Marina de Lara.
 - **Equipe** (nomes exatamente assim na capa do documento e na identificação do notebook; a turma não entra): Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso. Áreas e logins: [plano de tarefas](entregas/plano-de-tarefas.md), seção 1.
 - **Entregas cobertas por este repositório:** RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais). O RA3 (análise e visualização) virá depois e usará o mesmo notebook e os mesmos dados.
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
@@ -28,17 +28,22 @@ Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orient
 
 ## 3. Problema e perguntas analíticas
 
-**Ainda não definidos.** São a primeira tarefa da área A (issue "Problema e perguntas analíticas"). Até lá, as outras áreas trabalham com o recorte provisório abaixo e não inventam perguntas próprias.
+**Problema:** o que caracteriza as faixas que estão no topo dos charts da Deezer e como esse perfil muda entre gêneros. Unidade de observação: a faixa; período: a data da coleta do retrato bruto (chart geral e charts por gênero). Decisão: [ADR-0010](docs/adr/0010-problema-e-perguntas.md); texto completo em [documentacao/ra1/01-problema-e-perguntas.md](documentacao/ra1/01-problema-e-perguntas.md).
 
-- **Recorte provisório:** faixas dos charts da Deezer (geral e por gênero), com os atributos da faixa, do artista e do álbum.
-- **Ideias de perguntas** (sugestões, não decisão): [base/sugestoes-de-perguntas.md](base/sugestoes-de-perguntas.md).
-- Quando a área A fechar o problema, atualize esta seção com o texto curto do problema e a lista P1…Pn, e registre a decisão como ADR.
+| ID | Pergunta | Dados |
+|---|---|---|
+| P1 | Como a duração das faixas varia entre os gêneros? | `duration`, gênero do chart |
+| P2 | Que parte das faixas de cada gênero foi lançada nos 12 meses anteriores à coleta? | `release_date`, gênero do chart |
+| P3 | Faixas de artistas com mais fãs têm `rank` mais alto, no geral e em cada gênero? | `rank`, `nb_fan`, gênero do chart |
+| P4 | Quantos artistas distintos ocupam cada chart de gênero e que fatia das posições fica com os 5 com mais faixas? | `artist.id`, `position`, gênero do chart |
+
+O gênero do chart de origem é o grupo de todas as perguntas: a deduplicação de faixas precisa preservá-lo.
 
 ## 4. Glossário mínimo
 
 | Termo | Significado no projeto |
 |---|---|
-| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação provisória: uma linha do conjunto preparado representa uma faixa. |
+| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação ([ADR-0010](docs/adr/0010-problema-e-perguntas.md)): uma linha do conjunto preparado representa uma faixa. |
 | **Chart** | Ranking de faixas mais populares devolvido por `/chart/{id_genero}/tracks`. |
 | **Retrato bruto** | Cópia fiel das respostas da API em JSON, gravada com a data da coleta em `dados/brutos/`. Nunca é editada à mão. |
 | **Conjunto preparado** | Saída do RA1: `dados/preparados/faixas_preparadas.csv`, já limpo e documentado. Entrada do RA2. |
@@ -61,6 +66,7 @@ Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orient
 | 0007 | Nenhum commit com Claude (ou outra IA) como coautor | aceita | [0007](docs/adr/0007-commits-sem-coautoria-de-ia.md) |
 | 0008 | Divisão do trabalho em quatro áreas, uma por integrante | proposta | [0008](docs/adr/0008-divisao-em-quatro-areas.md) |
 | 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | aceita | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
+| 0010 | Problema e perguntas: perfil das faixas populares nos charts da Deezer por gênero (P1 a P4) | proposta | [0010](docs/adr/0010-problema-e-perguntas.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
 
@@ -73,7 +79,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | `RAIZ` | `pathlib.Path` | 00b (ambiente) | todas | Raiz do repositório. |
 | `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 00b | 02, 04, 05, 09, 10, 11 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
 | `BAIXAR_DA_API` | `bool` | 00b | 02 | `False` por padrão: lê o retrato bruto já versionado. `True` coleta de novo na API. |
-| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}` e `/album/{id}` juntados pelo id. |
+| `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}`, `/album/{id}` e `/artist/{id}` juntados pelo id (prefixos `detalhe_faixa_`, `detalhe_album_` e `detalhe_artista_`). |
 | `df_preparado` | `pandas.DataFrame` | 04 e 05 | 05, 07, 09 | Conjunto preparado. Também gravado em `dados/preparados/faixas_preparadas.csv`. |
 | `spark` | `SparkSession` | 09 | 09, 10, 11 | Sessão do Spark do RA2. |
 | `PASTA_ENTRADA`, `PASTA_PUBLICACAO`, `PASTA_CHECKPOINT` | `Path` | 09 | 09, 10, 11 | Subpastas `entrada/`, `publicacao/` e `checkpoint/` de `PASTA_STREAMING`. |
