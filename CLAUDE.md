@@ -79,4 +79,5 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - Não acrescente bibliotecas sem registrar em `requirements.txt` e avisar na issue.
 - Não coloque análise, gráficos de resultado ou conclusões no RA1.
 - **Não inclua declaração de uso de IA** em nenhuma entrega (documento do RA1, notebook, PDFs). É decisão do grupo.
+- **Não cite a organização interna** no texto entregue (documento do RA1, células e saídas do notebook): nada de área, tarefa, issue, PR, branch ou kanban. Cite a seção, a célula ou o arquivo (critério X.9). Só as linhas `#>` e os comentários `<!-- -->` podem citar.
 - Não edite arquivos de outra área; registre a pendência.

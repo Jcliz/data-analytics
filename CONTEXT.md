@@ -101,6 +101,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 6. **Tudo em português do Brasil:** textos, nomes de variáveis novas, colunas do conjunto preparado, commits, issues e PRs. Nomes que vêm da API (`title`, `duration`, `rank`…) mantêm o original no retrato bruto e são renomeados para português no conjunto preparado.
 7. **Commits sem coautoria de IA** ([ADR-0007](docs/adr/0007-commits-sem-coautoria-de-ia.md)). O autor é sempre a pessoa do grupo.
 8. **Nenhuma declaração de uso de IA** em nenhuma entrega: documento do RA1, notebook e PDFs não mencionam assistentes de IA. Decisão do grupo (João, 15/10/2026); não acrescente essa seção nem quando um template, um modelo de outro projeto ou o seu padrão sugerir.
+9. **Nada da organização interna no texto entregue:** o texto que vai para a entrega (documento do RA1, células e saídas do notebook, PDFs) não cita área, tarefa (T01…T14), issue, PR, branch nem kanban; a evidência cita a seção, a célula ou o arquivo. Essa organização é do repositório, não do trabalho entregue (João, 18/10/2026; critério X.9). As linhas `#>` e os comentários `<!-- -->` podem citar, porque os scripts os descartam. `python scripts/verificar_entrega.py` acusa o que sobrar.
 
 ## 8. Onde fica cada coisa
 
