@@ -6,7 +6,7 @@ Evidência = notebook §3 + título da célula. Contagens usam ocorrências nos 
 Esta seção diagnostica os problemas; as decisões de tratamento ficam com a Área D (T04).
 -->
 
-**Unidade de observação:** uma linha do bruto representa uma ocorrência de faixa em um chart de origem, no retrato de 16/10/2026. São 2.800 ocorrências, 102 atributos, 2.581 faixas e 28 charts (o geral e 27 gêneros). Evidência: notebook §3, célula “Visão geral e tipos observados”, executada sobre o retrato de `dados/brutos/2026-10-16/` do PR #21.
+**Unidade de observação:** uma linha do bruto representa uma ocorrência de faixa em um chart de origem, no retrato de 16/10/2026. São 2.800 ocorrências, 102 atributos, 2.581 faixas e 28 charts (o geral e 27 gêneros). Evidência: notebook §3, célula “Visão geral e tipos observados”, executada sobre o retrato de `dados/brutos/2026-10-16/`.
 
 **Identificação dos registros:** `id` identifica a faixa, mas se repete entre charts. A chave candidata no retrato é o par `chart_id_genero` e `id`: zero ocorrências excedentes em 2.800. Para combinar retratos futuros será preciso incluir a data da coleta na chave. A posição pertence ao chart, não à faixa em geral. Evidência: notebook §3, célula “Duplicidade e limite da chave”.
 
@@ -50,13 +50,13 @@ Todas as proporções abaixo usam **2.800 ocorrências** como denominador; as ve
 |---|---|---|---|
 | Q1 | Ausência em pelo menos um campo essencial às P1–P4 ou RA2 | 0/2.800 (0,00%) | Célula “Ausências nulas e textos vazios” |
 | Q2 | Ausência de preview (nulo ou texto vazio) | 1/2.800 (0,04%) | Célula “Ausências nulas e textos vazios” |
-| Q3 | Ausência de title_version (nulo ou texto vazio) | 2533/2.800 (90,46%) | Célula “Ausências nulas e textos vazios” |
+| Q3 | Ausência de title_version (nulo ou texto vazio) | 2.533/2.800 (90,46%) | Célula “Ausências nulas e textos vazios” |
 | Q4 | Ocorrências excedentes por id, após a primeira | 219/2.800 (7,82%) | Célula “Duplicidade e limite da chave” |
 | Q5 | Ocorrências excedentes pelo par chart_id_genero e id | 0/2.800 (0,00%) | Célula “Duplicidade e limite da chave” |
 | Q6 | Linhas inteiras repetidas, após a primeira | 0/2.800 (0,00%) | Célula “Duplicidade e limite da chave” |
 | Q7 | Tipo divergente de numérico inteiro/real ou booleano esperado | 0/2.800 (0,00%) | Célula “Estatísticas descritivas e domínios numéricos” |
 | Q8 | Numéricos não finitos/ausentes ou fora dos domínios descritos | 0/2.800 (0,00%) | Célula “Estatísticas descritivas e domínios numéricos” |
-| Q9 | bpm igual a zero (sinal de dado não informado) | 1890/2.800 (67,50%) | Célula “Estatísticas descritivas e domínios numéricos” |
+| Q9 | bpm igual a zero (sinal de dado não informado) | 1.890/2.800 (67,50%) | Célula “Estatísticas descritivas e domínios numéricos” |
 | Q10 | gain igual a zero (a avaliar, não erro comprovado) | 27/2.800 (0,96%) | Célula “Estatísticas descritivas e domínios numéricos” |
 | Q11 | Data fora de AAAA-MM-DD, inválida ou fora de 1900 até a coleta | 1/2.800 (0,04%) | Célula “Datas, formatos e categorias” |
 | Q12 | Espaços nas pontas de título, artista ou gênero | 1/2.800 (0,04%) | Célula “Datas, formatos e categorias” |
@@ -78,8 +78,8 @@ A tabela completa de ausências também registra uma ocorrência sem capa e sem 
 
 ## Impacto dos problemas identificados
 
-A prioridade é preservar os grupos das P1–P4: Q4 não autoriza descartar os charts das 219 ocorrências excedentes. A Área D deve manter o vínculo faixa-chart, por pares ou por lista explícita de origens. Q15 exige distinguir o chart geral das comparações por gênero; Q16 reforça que o gênero do álbum não substitui o gênero de origem. Q11 requer uma decisão documentada para que o lançamento futuro não entre como lançamento já ocorrido nos 12 meses anteriores à coleta da P2.
+A prioridade é preservar os grupos das P1–P4: Q4 não autoriza descartar os charts das 219 ocorrências excedentes. A preparação deve manter o vínculo faixa-chart, por pares ou por lista explícita de origens. Q15 exige distinguir o chart geral das comparações por gênero; Q16 reforça que o gênero do álbum não substitui o gênero de origem. Q11 requer uma decisão documentada para que o lançamento futuro não entre como lançamento já ocorrido nos 12 meses anteriores à coleta da P2.
 
 Q9 e Q10 são secundários para P1–P4 e para o RA2, que não usam BPM nem gain. BPM zero é suspeita de dado não informado, não evidência confirmada de como a API calcula o campo; gain zero isoladamente não prova erro. Q12 pede inspecionar o espaço no texto antes de padronizar. Q17 pede revisar os extremos, mantendo-os quando forem faixas válidas: o critério IQR não demonstra erro. Q2 não afeta as perguntas nem exige excluir a faixa.
 
-Q1, Q5–Q8, Q13–Q14 e Q18–Q21 não encontraram ocorrências problemáticas segundo as regras descritas. Isso limita a conclusão aos campos e testes executados. Os códigos de tratamento D e as decisões de manter ou corrigir cada Q pertencem à Área D; esta seção diagnostica e não altera `df_bruto`.
+Q1, Q5–Q8, Q13–Q14 e Q18–Q21 não encontraram ocorrências problemáticas segundo as regras descritas. Isso limita a conclusão aos campos e testes executados. As decisões de manter ou corrigir cada Q estão documentadas na seção 04. Esta seção diagnostica e não altera `df_bruto`.
