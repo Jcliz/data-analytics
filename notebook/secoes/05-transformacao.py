@@ -34,7 +34,7 @@ print(f"D5: {df_bruto.shape[1]} atributos de origem → "
 
 # %%
 # Padronização dos nomes e tipos
-# D6: rank mantém o nome já esperado pelo gerador de eventos (issue #5).
+# D6: rank mantém o nome já esperado pelo gerador de eventos da seção 9.
 colunas_inteiras_preparadas = [
     "id_faixa", "id_chart", "posicao_chart", "id_artista", "id_album",
     "duracao_s", "rank", "numero_fas",
