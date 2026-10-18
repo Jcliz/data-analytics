@@ -97,7 +97,7 @@ elif "df_bruto" in globals():
         .rename(columns={"id": "id_faixa", "chart_nome_genero": "genero", "artist_name": "artista",
                          "duration": "duracao_s"})[list(COLUNAS_FONTE)]
     )
-    origem_faixas = "df_bruto, charts de gênero (provisório até a T04)"
+    origem_faixas = "df_bruto, charts de gênero (fonte provisória)"
 else:
     raise FileNotFoundError(
         "Conjunto preparado não encontrado (df_preparado ou dados/preparados/faixas_preparadas.csv). "
