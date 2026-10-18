@@ -1,28 +1,40 @@
 # Referências e anexos
 
-<!--
-Área A (T11) · Critérios C7.1 e C7.2. Referências no formato
-"Autor ou instituição. Título. Ano ou versão. Disponível em: URL. Acesso em: data." (base/fontes.md tem a lista).
-"Anexos opcionais": apague a seção inteira se não houver anexo (o gerador então a remove do documento).
-"Conferência da entrega": troque [ ] por [x] só no que estiver de fato atendido.
--->
-
 ## Referências
 
-[Autor ou instituição. Título do conjunto de dados ou material. Ano ou versão. Disponível em: URL. Acesso em: data.]
+DEEZER. *Deezer API*: documentação e API pública (`/infos`, `/genre`, `/chart/{id}/tracks`, `/track/{id}`, `/album/{id}`, `/artist/{id}`). 2026. Disponível em: https://developers.deezer.com/api e https://api.deezer.com. Acesso em: 16/10/2026.
+
+ALVES, Rodrigo et al. *DataAudio*: app Flutter que consome a API da Deezer. 2026. Disponível em: https://github.com/rdsalvesPUC/dataaudio. Acesso em: 16/10/2026.
+
+PYTHON SOFTWARE FOUNDATION. *Python 3.13 documentation*. Versão 3.13. Disponível em: https://docs.python.org/3.13/. Acesso em: 16/10/2026.
+
+PANDAS DEVELOPMENT TEAM. *pandas documentation*. Versão 2.3. Disponível em: https://pandas.pydata.org/docs/. Acesso em: 16/10/2026.
+
+REITZ, Kenneth. *Requests: HTTP for Humans*. Versão 2.34. Disponível em: https://requests.readthedocs.io/. Acesso em: 16/10/2026.
+
+PUCPR. Data Analytics. *PjBL – RA1* (enunciado) e *Template_RA1_Data_Analytics.docx*. 2026. Disponível em: Canvas PUCPR (acesso restrito). Acesso em: 15/10/2026.
+
+PUCPR. Data Analytics. Material de aula: *Data Ingestion and Data Quality*, *From Data Preparation to Data Transformation* e *Data Transformation*. 2026. Disponível em: Canvas PUCPR (acesso restrito). Acesso em: 15/10/2026.
 
 ## Anexos opcionais
 
 | Identificação | Conteúdo | Localização |
 |---|---|---|
-| [Anexo A] | [Dicionário completo, evidência ou complemento] | [Arquivo ou link] |
+| Anexo A | Dicionário do conjunto preparado | `dados/preparados/dicionario-faixas.md` |
+| Anexo B | Metadados da coleta de 16/10/2026 | `dados/brutos/2026-10-16/metadados.json` |
 
 ## Conferência da entrega
 
-- [ ] Problema, recorte e perguntas analíticas estão definidos.
-- [ ] Fontes e procedimentos de ingestão estão documentados.
-- [ ] A qualidade foi avaliada com evidências verificáveis.
-- [ ] As decisões de limpeza estão justificadas e validadas.
-- [ ] O conjunto de dados preparado está identificado.
-- [ ] O repositório contém instruções suficientes para reprodução.
+- [x] Problema, recorte e perguntas analíticas estão definidos.
+- [x] Fontes e procedimentos de ingestão estão documentados.
+- [x] A qualidade foi avaliada com evidências verificáveis.
+- [x] As decisões de limpeza estão justificadas e validadas.
+- [x] O conjunto de dados preparado está identificado.
+- [x] O repositório contém instruções suficientes para reprodução.
 - [ ] Os campos-modelo foram preenchidos e os exemplos revisados.
+
+<!--
+Último item da conferência: marcar quando a seção 06 ("Verificação da reprodução") for preenchida na T13
+e o documento for gerado de novo (critério C6.4). Datas de acesso do material de aula e do enunciado:
+15/10/2026, data em que foram lidos (base/fontes.md, fonte 3).
+-->
