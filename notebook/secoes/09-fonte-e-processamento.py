@@ -75,8 +75,8 @@ print("Arquivos na entrada:", sorted(p.name for p in PASTA_ENTRADA.iterdir()))
 # %%
 #> Provisório até a T04 (#5) integrar o conjunto preparado: sem df_preparado e sem o CSV, a fonte dos eventos são
 #> os itens dos charts de gênero do df_bruto (o chart geral "All" fica de fora, porque não é um gênero). Na execução
-#> final o df_preparado existe e este ramo não roda. COLUNAS_FONTE supõe os nomes em português da T04
-#> (pendência anotada na #5); se a T04 escolher outros nomes, ajuste só este dicionário.
+#> final o df_preparado existe e este ramo não roda. Do df_preparado entram só as linhas com tipo_chart igual a
+#> "genero" (o chart geral fica no conjunto para a P3, #30). COLUNAS_FONTE usa os nomes em português da T04.
 # Faixas que alimentam os eventos
 COLUNAS_FONTE = {"id_faixa": "id_faixa", "genero": "genero", "artista": "artista",
                  "duracao_s": "duracao_s", "rank": "rank"}
@@ -86,8 +86,11 @@ if "df_preparado" not in globals():
     if arquivo_preparado.exists():
         df_preparado = pd.read_csv(arquivo_preparado)
 if "df_preparado" in globals():
-    faixas_fonte = df_preparado.rename(columns={v: k for k, v in COLUNAS_FONTE.items()})[list(COLUNAS_FONTE)]
-    origem_faixas = "conjunto preparado do RA1"
+    faixas_fonte = (
+        df_preparado[df_preparado["tipo_chart"] == "genero"]
+        .rename(columns={v: k for k, v in COLUNAS_FONTE.items()})[list(COLUNAS_FONTE)]
+    )
+    origem_faixas = "conjunto preparado do RA1, charts de gênero"
 elif "df_bruto" in globals():
     faixas_fonte = (
         df_bruto[df_bruto["chart_id_genero"] != 0]
