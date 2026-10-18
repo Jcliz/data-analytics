@@ -95,6 +95,8 @@ N.3 e N.4 valem para toda tarefa que escreve no notebook, restritos à seção d
 - [ ] **X.7** **Nenhuma** declaração de uso de IA no documento do RA1, no notebook ou nos PDFs (decisão do grupo, 15/10/2026).
 - [ ] **X.8** PDF único `output/entrega-ra1-ra2.pdf` montado por `python scripts/montar_entrega.py` (documento do RA1 e depois o notebook, sem aviso de parte desatualizada) e o **mesmo** arquivo entregue nas duas tarefas: no RA2, o arquivo; no RA1 (que só aceita URL), o link dele no repositório, na tag `entrega` ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
 
+- [ ] **X.9** Nenhuma citação da organização interna do repositório no documento do RA1, no notebook (células e saídas) ou nos PDFs: área, tarefa, issue, PR, branch ou kanban; a evidência cita a seção, a célula ou o arquivo (decisão do grupo, 18/10/2026; `scripts/verificar_entrega.py` acusa).
+
 ## 4. Revisão cruzada (T12)
 
 - [ ] **K.1** Toda pergunta P tem os dados necessários no dicionário (C3.2) e no conjunto final (C5.1).

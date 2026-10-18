@@ -101,7 +101,7 @@ print(f"D4: {int(charts_gerais_preparacao.sum())}/{total_antes_preparacao} "
 
 # %%
 # Sinalização dos extremos de duração
-# D7 (Q17–Q18): reproduzir a regra da T03, sem alterar duração ou rank.
+# D7 (Q17–Q18): reproduzir a regra da seção 3, sem alterar duração ou rank.
 quartis_duracao_preparacao = df_bruto["duration"].quantile([0.25, 0.75])
 amplitude_duracao_preparacao = quartis_duracao_preparacao.iloc[1] - (
     quartis_duracao_preparacao.iloc[0]

@@ -126,7 +126,7 @@ Preservamos duração e rank e criamos duracao_fora_limites_iqr. Um extremo esta
 
 #### Validação após o tratamento
 
-As 143/2.800 ocorrências foram sinalizadas pela mesma regra da T03. Duração e rank permaneceram iguais aos valores de origem. Não houve corte, substituição por média nem exclusão. Evidências: notebook §4, "Sinalização dos extremos de duração", e §5, "Verificações finais do conjunto preparado".
+As 143/2.800 ocorrências foram sinalizadas pela mesma regra das verificações Q17 e Q18 (seção 03). Duração e rank permaneceram iguais aos valores de origem. Não houve corte, substituição por média nem exclusão. Evidências: notebook §4, "Sinalização dos extremos de duração", e §5, "Verificações finais do conjunto preparado".
 
 ### D8
 
