@@ -43,10 +43,10 @@ O gênero do chart de origem é o grupo de todas as perguntas: a deduplicação 
 
 | Termo | Significado no projeto |
 |---|---|
-| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação ([ADR-0010](docs/adr/0010-problema-e-perguntas.md)): uma linha do conjunto preparado representa uma faixa. |
+| **Faixa** | Uma música da Deezer (objeto `track`). É a unidade de observação ([ADR-0010](docs/adr/0010-problema-e-perguntas.md)). Como a mesma faixa pode estar em mais de um chart, uma linha do conjunto preparado é uma **ocorrência** da faixa num chart, e não a faixa sozinha ([dicionário](dados/preparados/dicionario-faixas.md)). |
 | **Chart** | Ranking de faixas mais populares devolvido por `/chart/{id_genero}/tracks`. |
 | **Retrato bruto** | Cópia fiel das respostas da API em JSON, gravada com a data da coleta em `dados/brutos/`. Nunca é editada à mão. |
-| **Conjunto preparado** | Saída do RA1: `dados/preparados/faixas_preparadas.csv`, já limpo e documentado. Entrada do RA2. |
+| **Conjunto preparado** | Saída do RA1: `dados/preparados/faixas_preparadas.csv`, já limpo e documentado, com uma linha por ocorrência faixa-chart (chave `data_coleta`, `id_chart`, `id_faixa`). Entrada do RA2. |
 | **Evento de reprodução** | Registro artificial do RA2: "a faixa X foi tocada no instante T". Gerado a partir do conjunto preparado (cenário A). |
 | **Janela tumbling / sliding** | Janela temporal sem sobreposição / com sobreposição, usada na agregação do RA2. |
 | **Q1…Qn** | IDs das verificações de qualidade (documento do RA1, seção 03). |
