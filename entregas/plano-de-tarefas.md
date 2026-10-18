@@ -69,8 +69,8 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T08 | [#9](https://github.com/Jcliz/data-analytics/issues/9) | `t08-eventos` | Gerador de eventos e leitura em streaming | B | nb 09 | S9.1–S9.3, N.3–N.4 | T00 (amostra), T04 (final) | 19/10 |
 | T09 | [#10](https://github.com/Jcliz/data-analytics/issues/10) | `t09-janela` | Janela temporal e agregação | C | nb 10 | S10.1–S10.2, N.3–N.4 | T08; T07 (seção 8) | 19/10 |
 | T10 | [#11](https://github.com/Jcliz/data-analytics/issues/11) | `t10-resultados` | Resultados e interpretação do RA2 | D | nb 11 | S11.1–S11.2, N.3–N.4 | T09 | 20/10 |
-| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF (parte 1 da entrega) | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7 | T01–T06 | 20/10 |
-| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1, X.7 | T01–T11 | 20/10 |
+| T11 | [#12](https://github.com/Jcliz/data-analytics/issues/12) | `t11-docx` | Referências, consolidação do documento do RA1 (`.docx`) e PDF (parte 1 da entrega) | A | doc 07; `output/ra1-documentacao.*` | C7.1–C7.2, X.3–X.4, X.7, X.9 | T01–T06 | 20/10 |
+| T12 | [#13](https://github.com/Jcliz/data-analytics/issues/13) | `t12-revisao` | Revisão cruzada RA1 e RA2 | Geral | relatório na issue | K.1–K.8, X.1, X.7, X.9 | T01–T11 | 20/10 |
 | T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, PDF único e envio no RA1 e no RA2 | Geral | notebook gerado; doc 06 (só C6.4); `output/` | C6.4, N.2–N.3, X.2, X.5–X.8 | T12 | 21/10 |
 | T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-roteiro` | Roteiro da apresentação do RA1 e da demonstração do RA2 | Geral | `entregas/roteiro-apresentacao.md` | AP.1, S.D | T12 | 21/10 |
 
@@ -131,5 +131,6 @@ Respondidas pelo João em 15/10/2026:
 | Prazo | 21/10/2026 para o RA1 e o RA2. |
 | Seção 5 "Transformação" do notebook | Só transformações de preparo (tipos, colunas derivadas simples, nomes em português), sem agregação. |
 | Declaração de uso de IA | **Não incluir** em nenhuma entrega (critério X.7). |
+| Organização interna (área, tarefa, issue, PR, branch) | **Não citar** no texto entregue (critério X.9). |
 | Templates do professor no repositório público | Ficam em `modelos/`, porque os scripts precisam deles. |
 | Grafo de conhecimento (Graphify) | Não será montado. |

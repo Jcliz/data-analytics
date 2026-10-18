@@ -25,10 +25,6 @@
 # %% [markdown]
 # **Resposta do grupo:**
 #
-# [Preencha aqui.]
+# No RA1, o grupo compara entre gêneros o perfil das faixas que estão no topo dos charts da Deezer. No RA2, o grupo quer **monitorar as reproduções dessas faixas por gênero ao longo do tempo**. Como a API da Deezer não oferece um fluxo de reproduções, usamos o cenário A: eventos de reprodução simulados, sorteados entre as faixas e os gêneros do conjunto preparado do RA1.
 #
-# <!--
-# O que monitorar (ex.: reproduções por gênero ao longo do tempo) e que informação se espera (ex.: qual
-# gênero concentra mais reproduções nos últimos minutos). Coerente com o problema do RA1 (critério K.5)
-# e com a ADR-0005.
-# -->
+# Com o processamento em streaming, esperamos saber, a cada janela de tempo, **quantas reproduções cada gênero acumula** e **qual gênero concentra mais reproduções naquele intervalo**, e ver esses números mudarem conforme novos lotes de eventos chegam. O tipo e a duração da janela estão na seção 10.

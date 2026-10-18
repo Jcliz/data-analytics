@@ -19,4 +19,5 @@ Closes #
 - [ ] Rodei `python scripts/verificar_entrega.py` e não há pendência nos arquivos desta tarefa.
 - [ ] Respeitei o contrato de variáveis do notebook (`CONTEXT.md`, seção 6).
 - [ ] Suposições sobre outras áreas estão registradas na issue `pendencia-cruzada` da área dona.
+- [ ] O texto entregue (documento e notebook) não cita área, tarefa, issue, PR ou branch (X.9).
 - [ ] Nenhum commit tem coautoria de IA (`Co-Authored-By` de Claude ou outra IA, `Claude-Session`).

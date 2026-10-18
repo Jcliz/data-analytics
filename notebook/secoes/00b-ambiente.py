@@ -20,7 +20,7 @@ from pathlib import Path
 import pandas as pd
 
 URL_REPOSITORIO = "https://github.com/Jcliz/data-analytics.git"
-RAMO = "main"  # no Colab, troque pela branch da tarefa para testar antes do merge (ex.: "t02-coleta")
+RAMO = "main"  # no Colab, troque pelo ramo do repositório que quiser executar
 NO_COLAB = "google.colab" in sys.modules
 
 if NO_COLAB:

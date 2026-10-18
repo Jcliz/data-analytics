@@ -1,7 +1,7 @@
 """Lista o que ainda falta para a entrega: campos em branco, notebook desatualizado ou não executado e commits fora da regra.
 
 Uso: python scripts/verificar_entrega.py [--intervalo origin/main..HEAD]
-Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, K.7 (entregas/criterios-de-aceite.md).
+Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, X.9, K.7 (entregas/criterios-de-aceite.md).
 """
 import argparse
 import json
@@ -24,6 +24,10 @@ MARCA = re.compile(r'^\[(Fato|Infer[eê]ncia)\b', re.IGNORECASE)
 # Menção a assistente de IA no texto entregue: o grupo decidiu não ter declaração de uso de IA (critério X.7).
 MENCAO_IA = re.compile(r'intelig[eê]ncia artificial|\b(uso de IA|assistentes? de IA|ChatGPT|Claude|Copilot|Gemini|'
                        r'OpenAI|Anthropic|LLM)\b', re.IGNORECASE)
+# Organização interna do repositório no texto entregue (critério X.9): área, tarefa, issue, PR, branch ou kanban.
+REFERENCIA_INTERNA = re.compile(r'\b[ÁA]reas? [A-D]\b|\bT(?:0\d|1[0-4])\b|\b(?:issues?|PRs?|pull requests?)\s*#?\d+'
+                                r'|(?<![\w&/])#\d+\b|\bt\d\d-[a-z]+\b|\bkanban\b|\bpend[eê]ncia[- ]cruzada\b',
+                                re.IGNORECASE)
 
 
 def pendencias_texto(texto):
@@ -63,11 +67,28 @@ def documento():
     return achados
 
 
-def mencoes_ia():
-    textos = [(a, '\n'.join(t for tipo, t in montar_notebook.celulas(a) if tipo == 'markdown'))
+def textos_entregues(com_codigo=False):
+    """Texto que vai para o PDF: células do notebook (sem as linhas #>) e documento do RA1 sem comentários."""
+    tipos = {'markdown', 'code'} if com_codigo else {'markdown'}
+    textos = [(a, '\n'.join(t for tipo, t in montar_notebook.celulas(a) if tipo in tipos))
               for a in sorted((RAIZ / 'notebook' / 'secoes').glob('*.py'))]
     textos += [(a, re.sub(r'<!--.*?-->', '', a.read_text(encoding='utf-8'), flags=re.S))
                for a in sorted((RAIZ / 'documentacao' / 'ra1').glob('*.md'))]
+    return textos
+
+
+def referencias_internas():
+    achados = {}
+    for arquivo, texto in textos_entregues(com_codigo=True):
+        termos = sorted({m.group(0) for m in REFERENCIA_INTERNA.finditer(texto)})
+        if termos:
+            achados[arquivo.relative_to(RAIZ)] = (f'cita a organização interna ({", ".join(termos)}): '
+                                                  'cite a seção ou a célula, não área, tarefa, issue, PR ou branch (X.9)')
+    return achados
+
+
+def mencoes_ia():
+    textos = textos_entregues()
     achados = {}
     for arquivo, texto in textos:
         termos = sorted({m.group(0) for m in MENCAO_IA.finditer(texto)})
@@ -110,7 +131,8 @@ def main():
     args = ap.parse_args()
     total = 0
     for titulo, itens in [('Notebook (seções)', secoes()), ('Documento do RA1', documento()),
-                          ('Sem declaração de uso de IA', mencoes_ia())]:
+                          ('Sem declaração de uso de IA', mencoes_ia()),
+                          ('Sem citação da organização interna', referencias_internas())]:
         print(f'\n## {titulo}')
         for arquivo, msg in itens.items():
             print(f'- {arquivo}: {msg}')
