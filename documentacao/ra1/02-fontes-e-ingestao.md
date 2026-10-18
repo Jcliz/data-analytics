@@ -12,19 +12,24 @@ Os campos "Preencha após a coleta" saem do metadados.json do retrato e das saí
 
 **Identificação:** F1 • Charts de faixas da Deezer (chart geral e um chart por gênero), com os detalhes de cada faixa, álbum e artista.
 
-**Origem e acesso:** Deezer • API pública `https://api.deezer.com`, sem autenticação e sem chave (documentação: https://developers.deezer.com/api) • data de acesso: 2026-10-16.
+**Origem e acesso:** Deezer • API pública `https://api.deezer.com`, sem autenticação e sem chave (documentação: https://developers.deezer.com/api) • data de acesso: 16/10/2026.
 
 **Formato e volume:** JSON via API REST, gravado como recebido em arquivos JSON (57,7 MB no retrato de 16/10/2026) • 2.800 itens em 28 charts, com 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos • atributos da faixa (`id`, `title`, `duration`, `rank`, `explicit_lyrics`, `preview`, `position`, `bpm`, `isrc`, `release_date`), do álbum (`genre_id`, `genres`, `label`, `release_date`, `record_type`, `nb_tracks`) e do artista (`name`, `nb_fan`, `nb_album`); o `df_bruto` tem 102 colunas.
 
-**Cobertura:** charts do dia da coleta, sem histórico: cada chart traz as faixas mais populares no momento da requisição, até 300 itens por chart • país aparente da requisição: US (Estados Unidos) • charts incluídos: o geral (gênero 0) e os gêneros devolvidos por `/genre`.
+**Cobertura:** charts do dia da coleta, sem histórico: cada chart traz as 100 faixas mais populares no momento da requisição (a API informa `total` = 100 em todos os charts) • país aparente da requisição: US (Estados Unidos) • charts incluídos: o geral (gênero 0) e os gêneros devolvidos por `/genre`.
 
 **Condições de uso:** API pública da Deezer, sem autenticação; os dados pertencem à Deezer e aos detentores de direitos e são usados aqui só para fins acadêmicos, sem redistribuição das prévias de áudio. A coleta respeita o limite de chamadas da API com pausa entre requisições.
 
 ## Relação com o problema
 
-A fonte descreve as faixas que estão no topo da Deezer em cada gênero, com atributos da própria faixa (duração, letra explícita, posição e `rank` no chart, data de lançamento), do álbum (gênero e gravadora) e do artista (número de fãs). Isso permite comparar perfis de faixas entre gêneros, medir a presença de lançamentos recentes e a concentração de artistas nos charts, que são os recortes discutidos para o problema. O retrato é de um único dia e de um único país aparente, então a fonte não apoia perguntas sobre evolução no tempo nem comparações entre países.
+A fonte apoia as quatro perguntas do problema (seção 01), porque todos os campos que elas pedem vieram no retrato de 16/10/2026 e estão no `df_bruto`, e porque cada item guarda o chart de gênero de onde saiu:
 
-[Preencha após a T01: IDs das perguntas P1…Pn que a fonte apoia e os campos que cada uma usa.]
+- **P1** (duração por gênero): `duration` e o gênero do chart de origem (`chart_id_genero`, `chart_nome_genero`).
+- **P2** (lançamentos dos 12 meses anteriores à coleta, por gênero): `detalhe_faixa_release_date`, o gênero do chart e a data da coleta, registrada no `metadados.json` do retrato.
+- **P3** (fãs do artista e `rank`): `rank`, `detalhe_artista_nb_fan` e o gênero do chart.
+- **P4** (concentração de artistas por chart): `artist_id`, `position` e o gênero do chart.
+
+O retrato é de um único dia e de um único país aparente (US), então a fonte descreve os charts dessa data e não apoia perguntas sobre evolução no tempo nem comparações entre países.
 
 ## Procedimento de ingestão
 
@@ -40,4 +45,4 @@ A fonte descreve as faixas que estão no topo da Deezer em cada gênero, com atr
 
 ## Resultado da ingestão
 
-A coleta de 16/10/2026 (21h03 a 21h41 UTC) fez 6.591 chamadas, sem novas tentativas e sem erros (`dados/brutos/2026-10-16/metadados.json`). Os 28 charts (o geral e 27 gêneros) vieram com 100 itens cada, em uma página só, abaixo do teto de 300. O `df_bruto` tem 2.800 linhas e 102 colunas, uma linha por item de chart, com 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, e nenhum item ficou sem o detalhe da faixa, do álbum ou do artista (notebook §2, célula "Verificação do carregamento"). Os dados brutos ficam versionados em `dados/brutos/AAAA-MM-DD/`, e qualquer execução do notebook lê esse mesmo retrato. A única etapa manual é a coleta: ela roda uma vez, no Google Colab ou na máquina de um integrante, porque a API precisa de acesso direto à internet, e o retrato gerado é enviado ao repositório.
+A coleta de 16/10/2026 (21h03 a 21h41 UTC) fez 6.591 chamadas, sem novas tentativas e sem erros (`dados/brutos/2026-10-16/metadados.json`). Os 28 charts (o geral e 27 gêneros) vieram com 100 itens cada, em uma página só: é tudo o que a API oferece por chart (`total` = 100), abaixo do teto de 300 do código. O `df_bruto` tem 2.800 linhas e 102 colunas, uma linha por item de chart, com 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, e nenhum item ficou sem o detalhe da faixa, do álbum ou do artista (notebook §2, célula "Verificação do carregamento"). Os dados brutos ficam versionados em `dados/brutos/AAAA-MM-DD/`, e qualquer execução do notebook lê esse mesmo retrato. A única etapa manual é a coleta: ela roda uma vez, no Google Colab ou na máquina de um integrante, porque a API precisa de acesso direto à internet, e o retrato gerado é enviado ao repositório.
