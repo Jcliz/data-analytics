@@ -36,7 +36,7 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 - **Decisões de limpeza:** um bloco por decisão (D1, D2…), todos com problema, tratamento, implementação e validação.
 - **Conferência da entrega** marcada (☒) só no que estiver de fato atendido.
 - **Anexos opcionais:** remova a seção se não houver anexo (basta não escrevê-la no Markdown).
-- Tamanho de referência: o template tem 8 páginas; o documento preenchido deve ficar entre 8 e 15.
+- **Sem limite de páginas:** o documento pode ter quantas páginas precisar. O template tem 8 páginas, mas isso não é teto nem meta.
 
 ## 3. Notebook (`.ipynb` executado e PDF)
 
