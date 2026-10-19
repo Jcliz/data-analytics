@@ -1,6 +1,6 @@
 """Gera o documento do RA1 (.docx e, se houver LibreOffice, .pdf) a partir do template do professor (ADR-0003).
 
-Uso: python scripts/gerar_docx_ra1.py [--template T.docx] [--fonte PASTA] [--saida S.docx] [--manter-notas] [--quebra-por-secao] [--sem-pdf]
+Uso: python scripts/gerar_docx_ra1.py [--template T.docx] [--fonte PASTA] [--saida S.docx] [--manter-notas] [--sem-pdf]
      Padrões: modelos/Template_RA1_Data_Analytics.docx, documentacao/ra1/, output/ra1-documentacao.docx
 Precisa de python-docx (pip install python-docx).
 
@@ -16,8 +16,6 @@ Como o Markdown vira documento:
   Intervalos numéricos ("[0, 100]") contam como conteúdo. Links [texto](url) viram "texto (url)".
 - Tabela Markdown sob um subtítulo que não tem tabela no template não entra no documento (o script avisa).
 - As notas cinza de orientação do template são removidas (use --manter-notas para conferir o rascunho).
-- A capa fica sozinha e as seções 01 a 07 seguem em sequência, sem página nova para cada uma
-  (use --quebra-por-secao para abrir cada seção numa página, como no template).
 """
 import argparse
 import copy
@@ -358,23 +356,18 @@ class Gerador:
         for nome in REMOVIVEIS - presentes:
             self.remove_sub(self.faixas()[numero], nome)
 
-    def quebras_de_pagina(self, por_secao=False):
+    def quebras_de_pagina(self):
         """Troca o parágrafo de quebra de página antes de cada "RA1 / 0n" por "quebra antes" no próprio marcador.
 
         Assim, uma seção que ocupa a página inteira não deixa uma página em branco antes da seguinte.
-        Por padrão só a seção 01 abre página nova (a capa fica sozinha) e as demais seguem em sequência,
-        para o documento não sobrar meia página no fim de cada seção; por_secao=True mantém o template.
         """
         for el in self.elementos():
             p = par(el, self.doc)
             if p is None or p.text.strip() or not el.findall('.//' + qn('w:br')):
                 continue
             seguinte = el.getnext()
-            marcador = par(seguinte, self.doc) if seguinte is not None else None
-            if e_marcador(marcador):
-                if por_secao or marcador.text.strip().endswith('01'):
-                    marcador.paragraph_format.page_break_before = True
-                marcador.paragraph_format.keep_with_next = True  # o marcador não fica sozinho no pé da página
+            if seguinte is not None and e_marcador(par(seguinte, self.doc)):
+                par(seguinte, self.doc).paragraph_format.page_break_before = True
                 el.getparent().remove(el)
 
     def remove_notas(self):
@@ -389,12 +382,11 @@ def main():
     ap.add_argument('--fonte', type=Path, default=RAIZ / 'documentacao' / 'ra1')
     ap.add_argument('--saida', type=Path, default=RAIZ / 'output' / 'ra1-documentacao.docx')
     ap.add_argument('--manter-notas', action='store_true', help='mantém as notas cinza de orientação do template')
-    ap.add_argument('--quebra-por-secao', action='store_true', help='abre cada seção numa página nova, como no template')
     ap.add_argument('--sem-pdf', action='store_true', help='não tenta exportar o PDF com o LibreOffice')
     args = ap.parse_args()
 
     g = Gerador(args.template)
-    g.quebras_de_pagina(args.quebra_por_secao)  # antes de preencher, enquanto os marcadores estão intactos
+    g.quebras_de_pagina()  # antes de preencher, para nenhuma seção perder a página nova
     arquivos = sorted(args.fonte.glob('*.md'))
     capa = next((a for a in arquivos if a.name.startswith('00')), None)
     if capa:
