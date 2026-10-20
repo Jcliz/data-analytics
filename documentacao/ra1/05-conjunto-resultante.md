@@ -1,6 +1,6 @@
 # Conjunto de dados resultante
 
-**Arquivo ou conjunto final:** `dados/preparados/faixas_preparadas.csv`, CSV UTF-8, separador vírgula, sem coluna de índice: 2.800 registros, 16 atributos e 370.733 bytes. Evidência: notebook §5, célula "Gravação e releitura do conjunto preparado", e o próprio CSV.
+**Arquivo ou conjunto final:** `dados/preparados/faixas_preparadas.csv`, CSV UTF-8, separador vírgula, sem coluna de índice: 2.800 registros, 16 atributos e 367.932 bytes. Evidência: notebook §5, célula "Gravação e releitura do conjunto preparado", e o próprio CSV.
 
 **Unidade de observação final:** uma ocorrência de faixa em um chart de origem na data da coleta, com chave `data_coleta`, `id_chart` e `id_faixa`; a mesma faixa em charts diferentes não é duplicata. Evidência: notebook §5, célula "Verificações finais do conjunto preparado".
 
