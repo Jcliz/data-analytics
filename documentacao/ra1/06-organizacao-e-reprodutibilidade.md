@@ -1,12 +1,5 @@
 # Organização e reprodutibilidade
 
-<!--
-Área B (T05) · Critérios C6.1 a C6.3. A "Verificação da reprodução" (C6.4) é preenchida na T13, depois da execução
-final, por alguém que NÃO escreveu o código, a partir de um clone limpo e seguindo só os passos abaixo; o documento é
-gerado de novo em seguida. Na T13, confira também se as versões do campo "Ambiente" batem com a saída da célula
-"Preparação do ambiente" da execução final e ajuste se o Colab tiver mudado de versão.
--->
-
 **Repositório e versão:** https://github.com/Jcliz/data-analytics • tag `entrega`, no commit da execução final (o PDF entregue fica em `output/entrega-ra1-ra2.pdf` nessa tag)
 
 **Ambiente:** Google Colab (referência) ou Python 3.9 ou mais novo em máquina local • versões mínimas em `requirements.txt`: pandas 2.2 a 2.x e requests 2.31 ou mais novo (RA1), pyspark 4.0.3 com Java 17 ou mais novo (RA2), jupyter, nbconvert, python-docx e pypdf (notebook e PDFs) • conferidas em 16/10/2026 numa instalação limpa: Python 3.13.16, pandas 2.3.3, requests 2.34.2, pyspark 4.0.3, nbconvert 7.17.2, python-docx 1.2.0 e pypdf 6.21.0
@@ -33,4 +26,4 @@ A reprodução não depende da API (fora do ar, bloqueada ou com outro chart con
 
 ## Verificação da reprodução
 
-[Registre a data, o responsável, o ambiente e o resultado de uma execução completa a partir das instruções acima.]
+Em 20/10/2026, João Correa, que não escreveu o código das seções, seguiu os quatro passos acima a partir de um clone limpo: ambiente novo com `pip install -r requirements.txt` e execução com `jupyter nbconvert --execute`, em Linux (WSL2), Python 3.13.5, pandas 2.3.3, requests 2.34.2, PySpark 4.0.3 e Java 21. Resultado: 47 células de código em sequência, sem erro, em 14 s; `df_bruto` com 2.800 linhas × 102 colunas; `dados/preparados/faixas_preparadas.csv` regravado idêntico ao versionado; três lotes de 30 eventos processados (90 reproduções); `python scripts/verificar_entrega.py` sem pendência no notebook.
