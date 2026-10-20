@@ -137,7 +137,9 @@ print(f"Denominador das medidas por ocorrência: {total_antes_preparacao} antes 
 # %%
 # Gravação e releitura do conjunto preparado
 arquivo_preparado = PASTA_PREPARADOS / "faixas_preparadas.csv"
-df_preparado.to_csv(arquivo_preparado, index=False, encoding="utf-8", date_format="%Y-%m-%d")
+# Fim de linha "\n" fixo: o arquivo sai igual no Windows, no Linux e no Colab
+df_preparado.to_csv(arquivo_preparado, index=False, encoding="utf-8", date_format="%Y-%m-%d",
+                    lineterminator="\n")
 tipos_releitura_preparacao = {
     **{coluna: "int64" for coluna in colunas_inteiras_preparadas},
     **{coluna: "string" for coluna in colunas_textuais_preparadas},
@@ -148,7 +150,9 @@ releitura_preparacao = pd.read_csv(
     parse_dates=colunas_datas_preparadas,
 )
 pd.testing.assert_frame_equal(df_preparado, releitura_preparacao)
-print(f"Arquivo: {arquivo_preparado.relative_to(RAIZ)} · UTF-8, separador vírgula.")
+tamanho_preparado = f"{arquivo_preparado.stat().st_size:,}".replace(",", ".")
+print(f"Arquivo: {arquivo_preparado.relative_to(RAIZ)} · UTF-8, separador vírgula, "
+      f"{tamanho_preparado} bytes.")
 print(f"Releitura validada: {len(releitura_preparacao)} linhas × "
       f"{releitura_preparacao.shape[1]} colunas, sem perda de valores.")
 display(df_preparado.head(5))

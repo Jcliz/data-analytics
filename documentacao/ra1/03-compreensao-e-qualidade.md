@@ -12,7 +12,7 @@ Esta seção diagnostica os problemas; as decisões de tratamento ficam com a Á
 
 ## Dicionário inicial dos dados
 
-Atributos usados pelas P1–P4, pelo RA2 e por este diagnóstico; os demais (URLs, capas, países, colaboradores) ficam no bruto. Os 102 atributos e suas ausências estão nas células “Visão geral e tipos observados” e “Ausências nulas e textos vazios”. Tipos do pandas 2.2.3; textos são `object`, sem conversão de data.
+Atributos usados pelas P1–P4, pelo RA2 e por este diagnóstico; os demais (URLs, capas, países, colaboradores) ficam no bruto. Os 102 atributos e suas ausências estão nas células “Visão geral e tipos observados” e “Ausências nulas e textos vazios”. Tipos do pandas 2.3.3; textos são `object`, sem conversão de data.
 
 | Atributo | Significado e uso | Tipo observado | Unidade ou domínio |
 |---|---|---|---|
