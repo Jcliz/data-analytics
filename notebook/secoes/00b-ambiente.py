@@ -50,5 +50,5 @@ BAIXAR_DA_API = False
 
 pd.set_option("display.max_columns", 30)
 pd.set_option("display.width", 120)
-print(f"Raiz do projeto: {RAIZ}")
+print(f"Raiz do projeto: {RAIZ.name}")  # só o nome da pasta: o caminho completo é da máquina de quem executa
 print(f"Ambiente: {'Google Colab' if NO_COLAB else 'local'} · Python {sys.version.split()[0]} · pandas {pd.__version__}")

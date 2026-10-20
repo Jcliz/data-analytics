@@ -35,13 +35,29 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.types import IntegerType, LongType, StringType, StructField, StructType, TimestampType
 
-spark = (
-    SparkSession.builder.master("local[2]")
-    .appName("data-analytics — RA2")
-    .config("spark.sql.session.timeZone", "America/Sao_Paulo")
-    .config("spark.sql.shuffle.partitions", "2")
-    .getOrCreate()
-)
+import os
+
+# Os avisos de inicialização do Java e do Spark (nome da máquina, perfil de log) vão para um arquivo,
+# e não para a saída da célula; se a sessão não abrir, o fim desse arquivo é mostrado com o erro.
+LOG_SPARK = PASTA_STREAMING / "spark.log"
+saida_erro = os.dup(2)
+with open(LOG_SPARK, "w") as arquivo_log:
+    os.dup2(arquivo_log.fileno(), 2)
+    try:
+        spark = (
+            SparkSession.builder.master("local[2]")
+            .appName("data-analytics — RA2")
+            .config("spark.sql.session.timeZone", "America/Sao_Paulo")
+            .config("spark.sql.shuffle.partitions", "2")
+            .getOrCreate()
+        )
+    except Exception:
+        os.dup2(saida_erro, 2)
+        print(LOG_SPARK.read_text()[-2000:])
+        raise
+    finally:
+        os.dup2(saida_erro, 2)
+        os.close(saida_erro)
 # Aplica o fuso também se já houver uma sessão aberta (reexecução da seção)
 spark.conf.set("spark.sql.session.timeZone", "America/Sao_Paulo")
 spark.sparkContext.setLogLevel("ERROR")
