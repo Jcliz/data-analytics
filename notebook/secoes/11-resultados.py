@@ -88,6 +88,25 @@ resultados_apos_segundo_lote = resultados_atuais.copy()
 terceiro_lote = publicar_proximo_lote()
 resultados_apos_terceiro_lote = resultados_atuais.copy()
 
+# %%
+# Encerramento da consulta e limpeza das subpastas da simulação
+# Demonstração ao vivo: antes de executar esta célula, execute publicar_proximo_lote(10) em uma
+# célula de código para publicar mais dez eventos e mostrar as mudanças. A função continua a
+# sequência de IDs e instantes do lote anterior. Para repetir a demonstração desde o começo,
+# execute novamente as seções 9, 10 e 11.
+import shutil
+
+consulta.stop()
+spark.catalog.dropTempView(TABELA_JANELAS)
+for pasta in (PASTA_ENTRADA, PASTA_PUBLICACAO, PASTA_CHECKPOINT):
+    destino = pasta.resolve()
+    if destino.parent != (RAIZ / "dados" / "streaming").resolve():
+        raise ValueError(f"Pasta fora do diretório da simulação: {destino}")
+    if destino.exists():
+        shutil.rmtree(destino)
+print("Consulta ativa após o encerramento?", consulta.isActive)
+print("Subpastas de entrada, publicação e checkpoint removidas.")
+
 # %% [markdown]
 # **Resposta do grupo:**
 #
@@ -107,24 +126,3 @@ resultados_apos_terceiro_lote = resultados_atuais.copy()
 # cujo instante ainda pertence a ela. A tabela por gênero permite comparar quais gêneros
 # concentram as reproduções em cada intervalo; os valores representam uma simulação com
 # semente fixa, e não a audiência real da Deezer.
-
-# %% [markdown]
-# **Demonstração ao vivo:** antes de executar a célula de encerramento, execute
-# `publicar_proximo_lote(10)` em uma célula de código para publicar mais dez eventos
-# e mostrar as mudanças. A função continua a sequência de IDs e instantes do lote anterior.
-# Para repetir a demonstração desde o começo, execute novamente as seções 9, 10 e 11.
-
-# %%
-# Encerramento da consulta e limpeza das subpastas da simulação
-import shutil
-
-consulta.stop()
-spark.catalog.dropTempView(TABELA_JANELAS)
-for pasta in (PASTA_ENTRADA, PASTA_PUBLICACAO, PASTA_CHECKPOINT):
-    destino = pasta.resolve()
-    if destino.parent != (RAIZ / "dados" / "streaming").resolve():
-        raise ValueError(f"Pasta fora do diretório da simulação: {destino}")
-    if destino.exists():
-        shutil.rmtree(destino)
-print("Consulta ativa após o encerramento?", consulta.isActive)
-print("Subpastas de entrada, publicação e checkpoint removidas; README preservado.")

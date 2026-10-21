@@ -6,10 +6,6 @@
 # ## 5. Transformação dos dados
 #
 # Realize as transformações necessárias à análise, como criação de colunas, filtros, agrupamentos, conversões ou junções, quando aplicáveis.
-#
-# Selecionamos os atributos, padronizamos nomes e tipos e gravamos o conjunto
-# preparado. A unidade continua sendo uma ocorrência de faixa por chart e data
-# de coleta. As perguntas analíticas serão respondidas posteriormente.
 
 # %%
 # Seleção e organização dos atributos
@@ -159,6 +155,10 @@ display(df_preparado.head(5))
 
 # %% [markdown]
 # **Resposta do grupo:**
+#
+# Selecionamos os atributos, padronizamos nomes e tipos e gravamos o conjunto
+# preparado. A unidade continua sendo uma ocorrência de faixa por chart e data
+# de coleta. As perguntas analíticas serão respondidas posteriormente.
 #
 # O conjunto preparado está em `dados/preparados/faixas_preparadas.csv`, com
 # 2.800 ocorrências e 16 colunas: 12 atributos selecionados do bruto e quatro

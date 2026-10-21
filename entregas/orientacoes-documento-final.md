@@ -48,7 +48,8 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 
 - **Copie o `.ipynb` gerado** para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega (os dois ficam iguais). A primeira célula de código da seção 2 clona esse repositório no Colab.
 - **Colab (referência, gera o PDF do RA2):** abra o notebook do repositório da entrega (*Arquivo → Abrir notebook → GitHub*), *Ambiente de execução → Executar tudo* e, ao terminar sem erro, *Arquivo → Imprimir → Salvar como PDF*.
-- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (requer `pip install "nbconvert[webpdf]"`; na primeira vez a opção baixa o Chromium que o exportador usa).
+- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF de conferência, `python scripts/exportar_notebook_pdf.py` (quebra as linhas longas de código e de saída em vez de cortá-las).
+- **Arquivos enviados:** `python scripts/montar_entregas.py` gera `output/entrega-ra1.docx` e `.pdf` (só o documento) e `output/entrega-ra2.docx` e `.pdf` (documento do RA1 seguido do notebook executado).
 
 ### Como deve ficar
 

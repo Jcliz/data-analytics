@@ -129,8 +129,10 @@ Saída: `output/ra1-documentacao.docx` e `output/ra1-documentacao.pdf` (o PDF pr
 O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento, sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, [eduardofabrii/data-analytics-ras](https://github.com/eduardofabrii/data-analytics-ras), que recebe uma cópia igual do `.ipynb` montado aqui.
 
 ```bash
-python scripts/gerar_docx_ra1.py      # RA1: output/ra1-documentacao.pdf
+python scripts/gerar_docx_ra1.py      # documento do RA1: output/ra1-documentacao.docx e .pdf
 python scripts/montar_notebook.py     # notebook; copie para notebook/ra1-ra2-deezer.ipynb do repositório da entrega
+# notebook executado no Colab: output/projeto_data_analytics.pdf
+python scripts/montar_entregas.py     # output/entrega-ra1.* (documento) e output/entrega-ra2.* (documento + notebook)
 ```
 
 ## Como executar
@@ -158,7 +160,7 @@ jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analyt
 
 No Windows o Spark local costuma pedir também o `winutils`; para o RA2, prefira o Colab.
 
-Para exportar o notebook em PDF localmente: `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (a primeira vez baixa o Chromium).
+Para exportar o notebook em PDF localmente: `python scripts/exportar_notebook_pdf.py`, que grava `output/projeto_data_analytics.pdf` quebrando as linhas longas em vez de cortá-las (a primeira vez baixa o Chromium).
 
 ### Como saber se deu certo
 
