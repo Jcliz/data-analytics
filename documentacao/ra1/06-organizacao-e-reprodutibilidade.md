@@ -2,7 +2,7 @@
 
 **Repositório e versão:** https://github.com/eduardofabrii/data-analytics-ras • ramo `main`, com o notebook executado, os dados brutos e preparados e as dependências
 
-**Ambiente:** Google Colab (referência) ou Python 3.9 ou mais novo em máquina local • versões mínimas em `requirements.txt`: pandas 2.2 a 2.x e requests 2.31 ou mais novo (RA1), pyspark 4.0.3 com Java 17 ou mais novo (RA2), jupyter e nbconvert (execução do notebook) • conferidas em 16/10/2026 numa instalação limpa: Python 3.13.16, pandas 2.3.3, requests 2.34.2, pyspark 4.0.3, nbconvert 7.17.2, python-docx 1.2.0 e pypdf 6.21.0
+**Ambiente:** Google Colab (referência) ou Python 3.9 ou mais novo em máquina local • versões mínimas em `requirements.txt`: pandas 2.2 a 2.x e requests 2.31 ou mais novo (RA1), pyspark 4.0.3 com Java 17 ou mais novo (RA2), jupyter e nbconvert (execução do notebook) • conferidas em 16/10/2026 numa instalação limpa: Python 3.13.16, pandas 2.3.3, requests 2.34.2, pyspark 4.0.3 e nbconvert 7.17.2
 
 ## Localização dos artefatos
 
