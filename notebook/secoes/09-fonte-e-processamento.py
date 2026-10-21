@@ -17,7 +17,7 @@
 #
 #> Números tirados das saídas das células desta seção. Com o df_bruto provisório (antes da T04), os números mudam
 #> quando o conjunto preparado entrar: atualize-os depois de executar de novo.
-# Usamos o cenário A, de simulação, porque a API da Deezer não oferece um fluxo de reproduções em tempo real ([ADR-0005](../docs/adr/0005-ra2-cenario-a-simulacao.md)). Cada registro novo é uma reprodução de faixa, com `id_evento`, `id_faixa`, `genero`, `artista`, `duracao_ouvida_s` e `instante`. A função `gerar_eventos` sorteia faixas e gêneros reais do conjunto do RA1, com chance proporcional ao `rank` da Deezer, semente 42 e primeiro instante em 21/10/2026 às 10:00, e espaça os eventos de 5 a 30 segundos.
+# Usamos o cenário A, de simulação, porque a API da Deezer não oferece um fluxo de reproduções em tempo real. Cada registro novo é uma reprodução de faixa, com `id_evento`, `id_faixa`, `genero`, `artista`, `duracao_ouvida_s` e `instante`. A função `gerar_eventos` sorteia faixas e gêneros reais do conjunto do RA1, com chance proporcional ao `rank` da Deezer, semente 42 e primeiro instante em 21/10/2026 às 10:00, e espaça os eventos de 5 a 30 segundos.
 #
 # Os registros chegam em lotes: `publicar_lote` grava cada lote como um arquivo JSON, com um evento por linha, e só então o move para `dados/streaming/entrada/`, a pasta que o Spark monitora com `spark.readStream` e esquema explícito. A consulta de recebimento conta os eventos que chegaram: antes do 1º lote a tabela está vazia e, depois dele, mostra 30 eventos, de 10:00:28 a 10:09:05, de 19 gêneros. A janela temporal é aplicada na seção 10, e os lotes seguintes chegam na seção 11.
 

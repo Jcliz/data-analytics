@@ -21,7 +21,56 @@
 # O retrato usado é o de 16/10/2026 (país aparente US): 6.591 chamadas, sem erros, 28 charts de 100 itens (o geral e 27 gêneros). O `df_bruto` tem 2.800 linhas e 102 colunas, com 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, todos com o detalhe juntado.
 
 # %%
-#> Contrato (CONTEXT.md §6): esta seção cria df_bruto. Lê RAIZ, PASTA_BRUTOS e BAIXAR_DA_API da seção 00b.
+#> Contrato (CONTEXT.md §6): primeira célula de código da seção 2 (antes era a seção 00b, fora do template); define RAIZ, PASTA_BRUTOS, PASTA_PREPARADOS, PASTA_STREAMING e BAIXAR_DA_API.
+#> Não renomeie essas variáveis: as seções das outras áreas dependem delas.
+# Preparação do ambiente: bibliotecas, pastas do projeto e origem dos dados
+import subprocess
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+URL_REPOSITORIO = "https://github.com/eduardofabrii/data-analytics-ras.git"
+PASTA_CLONE = "data-analytics-ras"
+RAMO = "main"  # no Colab, troque pelo ramo do repositório que quiser executar
+NO_COLAB = "google.colab" in sys.modules
+
+if NO_COLAB:
+    if Path(PASTA_CLONE).exists():
+        # Clone de uma execução anterior nesta sessão do Colab: traz a versão mais nova do ramo
+        subprocess.run(["git", "-C", PASTA_CLONE, "pull", "-q", "origin", RAMO], check=False)
+    else:
+        subprocess.run(["git", "clone", "-q", "-b", RAMO, URL_REPOSITORIO], check=True)
+
+# A raiz é a pasta que contém o requirements.txt e os dados brutos (funciona no Colab, na raiz ou dentro de notebook/)
+candidatos = [Path(PASTA_CLONE), Path.cwd(), Path.cwd().parent]
+RAIZ = next(
+    (p.resolve() for p in candidatos if (p / "requirements.txt").exists() and (p / "dados" / "brutos").is_dir()),
+    None,
+)
+if RAIZ is None:
+    raise FileNotFoundError(
+        "Raiz do repositório não encontrada (pasta com o requirements.txt e dados/brutos). "
+        "Rode o notebook de dentro do clone "
+        f"(raiz ou notebook/) ou, no Colab, confira se o ramo '{RAMO}' já tem a estrutura do projeto."
+    )
+
+PASTA_BRUTOS = RAIZ / "dados" / "brutos"
+PASTA_PREPARADOS = RAIZ / "dados" / "preparados"
+PASTA_STREAMING = RAIZ / "dados" / "streaming"
+for pasta in (PASTA_BRUTOS, PASTA_PREPARADOS, PASTA_STREAMING):
+    pasta.mkdir(parents=True, exist_ok=True)
+
+# False: lê o retrato bruto versionado no repositório. True: coleta de novo na API da Deezer.
+BAIXAR_DA_API = False
+
+pd.set_option("display.max_columns", 30)
+pd.set_option("display.width", 120)
+print(f"Raiz do projeto: {RAIZ.name}")  # só o nome da pasta: o caminho completo é da máquina de quem executa
+print(f"Ambiente: {'Google Colab' if NO_COLAB else 'local'} · Python {sys.version.split()[0]} · pandas {pd.__version__}")
+
+# %%
+#> Contrato (CONTEXT.md §6): esta seção cria df_bruto. Lê RAIZ, PASTA_BRUTOS e BAIXAR_DA_API da primeira célula desta seção.
 # Parâmetros da coleta e acesso à API
 import json
 import platform
@@ -77,7 +126,7 @@ print(f"API: {URL_API} · limit={LIMITE_PAGINA} · teto por chart={TETO_POR_CHAR
 print(f"Coletar de novo na API: {BAIXAR_DA_API}")
 
 # %%
-#> Só roda com BAIXAR_DA_API = True (seção 00b). Coletar de novo muda todas as contagens: combine com o grupo antes.
+#> Só roda com BAIXAR_DA_API = True (primeira célula da seção 2). Coletar de novo muda todas as contagens: combine com o grupo antes.
 # Coleta dos charts por gênero
 if BAIXAR_DA_API:
     inicio_coleta = datetime.now(timezone.utc)
@@ -177,7 +226,7 @@ if BAIXAR_DA_API:
 retratos = sorted(p for p in PASTA_BRUTOS.glob("????-??-??") if (p / "metadados.json").exists())
 if not retratos:
     raise FileNotFoundError(
-        f"Nenhum retrato bruto em {PASTA_BRUTOS}. Atualize o clone do repositório ou rode a seção 00b "
+        f"Nenhum retrato bruto em {PASTA_BRUTOS}. Atualize o clone do repositório ou rode a primeira célula da seção 2 "
         "com BAIXAR_DA_API = True para coletar na API da Deezer."
     )
 PASTA_RETRATO = retratos[-1]

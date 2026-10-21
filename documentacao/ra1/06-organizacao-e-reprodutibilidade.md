@@ -8,8 +8,8 @@
 
 | Artefato | Caminho ou forma de obtenção |
 |---|---|
-| Dados brutos | `dados/brutos/2026-10-16/`, versionado: respostas cruas da API em JSON (`infos.json`, `generos.json`, `charts.json`, `faixas.json`, `albuns.json`, `artistas.json`, 57,7 MB) e `metadados.json` (horário, país aparente US, 6.591 chamadas, 0 erros). Nova coleta só com `BAIXAR_DA_API = True` na célula "Preparação do ambiente" |
-| Código de ingestão e preparação | `notebook/ra1-ra2-deezer.ipynb`, já executado e com as saídas salvas (ambiente na célula "Preparação do ambiente", ingestão na seção 2, exploração na 3, limpeza na 4 e transformação na 5) |
+| Dados brutos | `dados/brutos/2026-10-16/`, versionado: respostas cruas da API em JSON (`infos.json`, `generos.json`, `charts.json`, `faixas.json`, `albuns.json`, `artistas.json`, 57,7 MB) e `metadados.json` (horário, país aparente US, 6.591 chamadas, 0 erros). Nova coleta só com `BAIXAR_DA_API = True` na célula "Preparação do ambiente" (primeira célula de código da seção 2) |
+| Código de ingestão e preparação | `notebook/ra1-ra2-deezer.ipynb`, já executado e com as saídas salvas (ambiente e ingestão na seção 2, a partir da célula "Preparação do ambiente", exploração na 3, limpeza na 4 e transformação na 5) |
 | Dados preparados | `dados/preparados/faixas_preparadas.csv` (UTF-8, separador vírgula), regravado pelas seções 4 e 5 a cada execução; nunca editado à mão. Colunas descritas em `dados/preparados/dicionario-faixas.md` |
 | Documentação e dependências | `README.md` (seções "Execução no Google Colab", "Execução local" e "Dados e resultados esperados"), `dados/preparados/dicionario-faixas.md` e `requirements.txt` |
 
@@ -18,7 +18,7 @@
 | Ordem | Instrução executável | Resultado esperado |
 |---|---|---|
 | 1 | Preparar o ambiente. No Colab: *Arquivo → Abrir notebook → GitHub*, repositório `eduardofabrii/data-analytics-ras`, arquivo `notebook/ra1-ra2-deezer.ipynb`. Localmente: `git clone https://github.com/eduardofabrii/data-analytics-ras.git`, `cd data-analytics-ras`, `python -m venv .venv`, ativar e `pip install -r requirements.txt` | No Colab, o notebook abre com o RA1 e o RA2. Localmente, `pip` e `python -c "import pandas, requests"` terminam sem erro |
-| 2 | Obter os dados, sem acessar a API: a célula "Preparação do ambiente" clona o repositório no Colab com `BAIXAR_DA_API = False`, e a seção 2 lê o retrato versionado em `dados/brutos/` | "Preparação do ambiente" mostra a raiz do projeto; "Leitura do retrato bruto mais recente", `dados/brutos/2026-10-16` e os sete JSON |
+| 2 | Obter os dados, sem acessar a API: a célula "Preparação do ambiente", na seção 2, clona o repositório no Colab com `BAIXAR_DA_API = False`, e as células seguintes leem o retrato versionado em `dados/brutos/` | "Preparação do ambiente" mostra a raiz do projeto; "Leitura do retrato bruto mais recente", `dados/brutos/2026-10-16` e os sete JSON |
 | 3 | Executar do início ao fim. No Colab: *Ambiente de execução → Executar tudo*. Localmente: `python -m jupyter notebook notebook/ra1-ra2-deezer.ipynb` e executar todas as células na ordem, ou `jupyter nbconvert --to notebook --execute --inplace notebook/ra1-ra2-deezer.ipynb` | Nenhuma célula com erro; na seção 2, `df_bruto: 2800 linhas × 102 colunas`, 2.581 faixas, 2.292 álbuns, 1.688 artistas e nenhum item sem detalhe ("Verificação do carregamento") |
 | 4 | Validar a saída: conferir o conjunto preparado e as contagens do RA2 | `dados/preparados/faixas_preparadas.csv` regravado com 2.800 linhas e 16 colunas (seção 5, célula "Gravação e releitura do conjunto preparado"); na seção 11, totais de 30, 60 e 90 reproduções simuladas |
 

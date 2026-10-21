@@ -6,10 +6,6 @@
 # ## 4. Limpeza e preparação dos dados
 #
 # Realize a limpeza necessária ao projeto. Verifique valores ausentes, duplicados e inconsistências e trate os problemas encontrados, quando necessário.
-#
-# As decisões D1–D8 respondem às verificações Q1–Q21. A preparação preserva a
-# participação de cada faixa nos charts, corrige espaços e sinaliza situações que
-# exigem cuidado, sem excluir automaticamente dados por critérios estatísticos.
 
 # %%
 # Cópia de trabalho e referência do bruto
@@ -140,6 +136,10 @@ assert len(df_preparado) == total_antes_preparacao
 
 # %% [markdown]
 # **Resposta do grupo:**
+#
+# As decisões D1–D8 respondem às verificações Q1–Q21. A preparação preserva a
+# participação de cada faixa nos charts, corrige espaços e sinaliza situações que
+# exigem cuidado, sem excluir automaticamente dados por critérios estatísticos.
 #
 # Preservamos as 2.800 ocorrências e o vínculo faixa-chart (D1), com 219/2.800
 # excedentes por id e nenhuma duplicata pela chave composta. Corrigimos espaços

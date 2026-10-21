@@ -8,11 +8,6 @@
 # ## 3. Exploração inicial dos dados
 #
 # Investigue a quantidade de registros e colunas, os tipos de dados, os valores ausentes e outras características relevantes da base.
-#
-# Uma linha representa uma ocorrência de faixa em um chart no retrato da coleta.
-# A chave candidata é o par `chart_id_genero` e `id`, dentro desse retrato.
-# `id` identifica a faixa, mas não é único entre charts. As verificações abaixo
-# contam ocorrências, não faixas distintas, salvo indicação explícita.
 
 # %%
 # Visão geral e tipos observados
@@ -204,6 +199,11 @@ print("As proporções usam ocorrências nos charts e podem se sobrepor; não de
 
 # %% [markdown]
 # **Resposta do grupo:**
+#
+# Uma linha representa uma ocorrência de faixa em um chart no retrato da coleta.
+# A chave candidata é o par `chart_id_genero` e `id`, dentro desse retrato.
+# `id` identifica a faixa, mas não é único entre charts. As verificações acima
+# contam ocorrências, não faixas distintas, salvo indicação explícita.
 #
 # No retrato de 16/10/2026, são 2.800 ocorrências, 102 colunas e 2.581 faixas.
 # Há 219/2.800 repetições excedentes por `id` (7,82%), mas nenhuma pela chave
