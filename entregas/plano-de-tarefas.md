@@ -11,7 +11,7 @@ Decisão: [ADR-0008](../docs/adr/0008-divisao-em-quatro-areas.md). Nomes e respo
 
 | Área | Escopo | Responsável (proposto) |
 |---|---|---|
-| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx`** (referências, consolidação e PDF, que é a parte 1 do PDF único) | João Correa (`jvecodev`) |
+| **A** — Problema e síntese | Problema, recorte, perguntas; identificação; considerações do RA1; objetivo e considerações do RA2; **documento do RA1 em `.docx`** (referências, consolidação e PDF, que é a entrega do RA1) | João Correa (`jvecodev`) |
 | **B** — Fonte, ingestão e reprodutibilidade | Ficha da fonte, coleta pela API, retrato bruto, ambiente; reprodutibilidade; gerador de eventos e leitura em streaming | João Pedro Cardoso (`Jcliz`) |
 | **C** — Compreensão e qualidade | Exploração inicial, dicionário, diagnóstico Q1…Qn; janela temporal e agregação | Eduardo Fabri (`eduardofabrii`) |
 | **D** — Limpeza e conjunto resultante | Decisões D1…Dn, preparo, conjunto preparado; resultados e interpretação do RA2 | Rodrigo Alves (`rdsalvesPUC`) |
@@ -24,13 +24,13 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 |---|---|
 | `notebook/secoes/00a-identificacao.py`, `01-contexto-e-objetivo.py`, `07-consideracoes-ra1.py`, `08-objetivo-streaming.py`, `12-consideracoes-ra2.py` | A |
 | `documentacao/ra1/01-problema-e-perguntas.md`, `documentacao/ra1/00-capa.md`, `documentacao/ra1/07-referencias-e-anexos.md`, `output/ra1-documentacao.docx` e `.pdf` | A |
-| `notebook/secoes/00b-ambiente.py`, `02-fonte-e-ingestao.py`, `09-fonte-e-processamento.py` | B |
+| `notebook/secoes/02-fonte-e-ingestao.py` (com a preparação do ambiente na primeira célula de código), `09-fonte-e-processamento.py` | B |
 | `documentacao/ra1/02-fontes-e-ingestao.md`, `documentacao/ra1/06-organizacao-e-reprodutibilidade.md`, `dados/brutos/`, `requirements.txt` | B |
 | `notebook/secoes/03-exploracao-inicial.py`, `10-janelas-temporais.py` | C |
 | `documentacao/ra1/03-compreensao-e-qualidade.md` | C |
 | `notebook/secoes/04-limpeza-e-preparacao.py`, `05-transformacao.py`, `11-resultados.py` | D |
 | `documentacao/ra1/04-limpeza-e-preparacao.md`, `documentacao/ra1/05-conjunto-resultante.md`, `dados/preparados/` | D |
-| `output/projeto_data_analytics.pdf`, `output/entrega-ra1-ra2.pdf`, `notebook/projeto_data_analytics.ipynb` (gerado) | Geral |
+| `output/projeto_data_analytics.pdf` (conferência local), `notebook/projeto_data_analytics.ipynb` (gerado; copiado para o repositório da entrega) | Geral |
 | `README.md`, `CONTEXT.md`, `AGENTS.md`, `CLAUDE.md`, `docs/`, `base/`, `entregas/`, `scripts/` | Geral (mudança combinada no PR) |
 
 ## 3. Fluxo de trabalho
@@ -74,7 +74,7 @@ Convenção de título: `[RA1][Área X] Tnn — descrição`, `[RA2][Área X] Tn
 | T13 | [#14](https://github.com/Jcliz/data-analytics/issues/14) | `t13-envio` | Execução final, PDF único e envio no RA1 e no RA2 | Geral | notebook gerado; doc 06 (só C6.4); `output/` | C6.4, N.2–N.3, X.2, X.5–X.8 | T12 | 21/10 |
 | T14 | [#15](https://github.com/Jcliz/data-analytics/issues/15) | `t14-roteiro` | Roteiro da apresentação do RA1 e da demonstração do RA2 | Geral | `entregas/roteiro-apresentacao.md` | AP.1, S.D | T12 | 21/10 |
 
-Prazo de entrega das duas tarefas no Canvas: **21/10/2026**. O mesmo PDF único vai nas duas: o arquivo no RA2 e o link dele no RA1 ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
+Prazo de entrega das duas tarefas no Canvas: **21/10/2026**. Arquivos separados: no RA1, o link do PDF do documento; no RA2, o PDF do notebook exportado no Colab ([ADR-0011](../docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)).
 
 ## 6. Corpo padrão de cada issue
 
@@ -125,7 +125,7 @@ Respondidas pelo João em 15/10/2026:
 | Dúvida | Decisão |
 |---|---|
 | Nomes da equipe | Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso, exatamente assim; sem RA. |
-| Professora e turma | Professora Marina de Lara; a turma não entra na capa nem no notebook. |
+| Professora e turma | Professora Marina de Lara. Na capa, "Curso e turma" traz o curso e o período; no notebook, o campo "Turma" do template traz o mesmo texto. |
 | Divisão das áreas | A João Correa (inclui o `.docx`, T11), B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. |
 | Envio do RA1 e do RA2 | **Um PDF só**: o documento do RA1 (com a URL do repositório na capa) e depois o notebook executado. No RA2 vai o arquivo; no RA1, cujo formulário só aceita URL, o link do mesmo PDF no repositório, na tag `entrega` ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)). |
 | Prazo | 21/10/2026 para o RA1 e o RA2. |

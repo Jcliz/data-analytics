@@ -6,7 +6,7 @@ A fonte de dados é a **API pública da Deezer**, a mesma usada pelo app [rdsalv
 
 Este repositório guarda três coisas:
 
-1. as **entregas**: o notebook do projeto (montado a partir de uma seção por área) e o documento do RA1 (gerado no template `.docx` do professor), que vão juntos num **PDF único** enviado no RA1 e no RA2;
+1. as **entregas**: o notebook do projeto (montado a partir de uma seção por área) e o documento do RA1 (gerado no template `.docx` do professor), enviados em arquivos separados: o PDF do documento no RA1 e o PDF do notebook, exportado no Colab a partir do repositório da entrega ([eduardofabrii/data-analytics-ras](https://github.com/eduardofabrii/data-analytics-ras)), no RA2;
 2. a **base de conhecimento** que sustenta as entregas: enunciados transcritos, decisões, notas sobre a API e sobre o material de aula;
 3. o **processo** de trabalho: plano de tarefas, critérios de aceite, orientações do PDF final e regras para assistentes de IA.
 
@@ -50,7 +50,7 @@ git config core.hooksPath .githooks
 │   ├── brutos/                retratos da API, um por data de coleta (nunca editados à mão)
 │   ├── preparados/            conjunto preparado do RA1 (entrada do RA2)
 │   └── streaming/             pastas temporárias do RA2 (fora do git)
-├── output/                    arquivos de entrega: documento do RA1, PDF do notebook e o PDF único enviado
+├── output/                    arquivos de entrega: documento do RA1 (.docx e PDF) e o PDF do notebook para conferência local
 │
 ├── entregas/                  plano de tarefas, critérios de aceite, orientações do PDF e roteiro da apresentação
 ├── enunciados/                enunciados do RA1 e do RA2 transcritos
@@ -76,7 +76,6 @@ O professor pede **um notebook único** com as seções do RA1 e do RA2 ([templa
 ```
 notebook/secoes/
 ├── 00a-identificacao.py          A    capa do notebook (projeto, equipe, fonte)
-├── 00b-ambiente.py               B    instalação, clone no Colab, caminhos (RAIZ, PASTA_*)
 ├── 01-contexto-e-objetivo.py     A    RA1 §1
 ├── 02-fonte-e-ingestao.py        B    RA1 §2  → df_bruto
 ├── 03-exploracao-inicial.py      C    RA1 §3
@@ -125,14 +124,15 @@ python scripts/gerar_docx_ra1.py
 
 Saída: `output/ra1-documentacao.docx` e `output/ra1-documentacao.pdf` (o PDF precisa do LibreOffice; sem ele, exporte pelo Word). Como o documento final deve ficar: [orientações do documento final](entregas/orientacoes-documento-final.md).
 
-## Entrega: um PDF único (RA1 e RA2)
+## Entrega: RA1 e RA2 em arquivos separados
 
-O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)): primeiro o documento do RA1, depois o notebook executado com as seções do RA1 e do RA2. No RA2 envia-se o arquivo; no RA1, que só aceita URL, o link do mesmo PDF no repositório, na tag `entrega`.
+O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento, sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, [eduardofabrii/data-analytics-ras](https://github.com/eduardofabrii/data-analytics-ras), que recebe uma cópia igual do `.ipynb` montado aqui.
 
 ```bash
-python scripts/gerar_docx_ra1.py      # parte 1: output/ra1-documentacao.pdf
-python scripts/exportar_notebook_pdf.py  # parte 2: output/projeto_data_analytics.pdf (notebook já executado)
-python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.pdf
+python scripts/gerar_docx_ra1.py      # documento do RA1: output/ra1-documentacao.docx e .pdf
+python scripts/montar_notebook.py     # notebook; copie para notebook/ra1-ra2-deezer.ipynb do repositório da entrega
+# notebook executado no Colab: output/projeto_data_analytics.pdf
+python scripts/montar_entregas.py     # output/entrega-ra1.* (documento) e output/entrega-ra2.* (documento + notebook)
 ```
 
 ## Como executar
@@ -141,8 +141,8 @@ Não é preciso acessar a API da Deezer: o notebook lê o retrato bruto já vers
 
 ### No Google Colab (ambiente de referência)
 
-1. Abra `notebook/projeto_data_analytics.ipynb` no Colab (*Arquivo → Abrir notebook → GitHub*, repositório `Jcliz/data-analytics`).
-2. *Ambiente de execução → Executar tudo*. A seção 00b clona o repositório (ramo `main`; troque `RAMO` para testar a branch de uma tarefa) e a seção 09 instala o PySpark, o que leva alguns minutos.
+1. Abra `notebook/ra1-ra2-deezer.ipynb` no Colab (*Arquivo → Abrir notebook → GitHub*, repositório `eduardofabrii/data-analytics-ras`).
+2. *Ambiente de execução → Executar tudo*. A primeira célula de código da seção 2 clona o repositório da entrega (ramo `main`) e a seção 09 instala o PySpark, o que leva alguns minutos.
 
 ### Localmente
 
@@ -166,7 +166,7 @@ Para exportar o notebook em PDF localmente: `python scripts/exportar_notebook_pd
 
 | Onde olhar | Resultado esperado |
 |---|---|
-| Célula "Preparação do ambiente" (seção 00b) | Mostra a raiz do projeto, o ambiente e as versões de Python e pandas. |
+| Célula "Preparação do ambiente" (primeira célula de código da seção 2) | Mostra a raiz do projeto, o ambiente e as versões de Python e pandas. |
 | Célula "Leitura do retrato bruto mais recente" (seção 2) | Lê `dados/brutos/2026-10-16` e lista os sete arquivos JSON do retrato. |
 | Célula "Verificação do carregamento" (seção 2) | `df_bruto` com 2.800 linhas e 102 colunas: 2.581 faixas, 2.292 álbuns e 1.688 artistas únicos, nenhum item sem detalhe. |
 | `dados/preparados/faixas_preparadas.csv` | Regravado pelas seções 04 e 05, com as linhas e colunas do documento do RA1, seção 05. |
@@ -174,7 +174,7 @@ Para exportar o notebook em PDF localmente: `python scripts/exportar_notebook_pd
 
 ### Se a API da Deezer estiver indisponível ou responder diferente
 
-A reprodução não chama a API, então não depende dela. O chart muda todo dia e pode mudar com o país de onde vem a requisição (o retrato da entrega foi coletado com país aparente US), por isso os números da entrega são os do retrato versionado. Coletar de novo (`BAIXAR_DA_API = True` na seção 00b) grava outra pasta em `dados/brutos/`, que passa a ser lida por ser a mais recente, e muda os números de todas as seções: combine com o grupo antes ([ADR-0004](docs/adr/0004-retrato-bruto-versionado.md)). Para voltar ao retrato da entrega, apague a pasta nova ou use um clone limpo.
+A reprodução não chama a API, então não depende dela. O chart muda todo dia e pode mudar com o país de onde vem a requisição (o retrato da entrega foi coletado com país aparente US), por isso os números da entrega são os do retrato versionado. Coletar de novo (`BAIXAR_DA_API = True` na primeira célula de código da seção 2) grava outra pasta em `dados/brutos/`, que passa a ser lida por ser a mais recente, e muda os números de todas as seções: combine com o grupo antes ([ADR-0004](docs/adr/0004-retrato-bruto-versionado.md)). Para voltar ao retrato da entrega, apague a pasta nova ou use um clone limpo.
 
 ### Verificações antes do PR
 

@@ -61,10 +61,11 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - Toda linha de evidência aponta para o notebook (`notebook §3, célula "Duplicados por id"`) ou para um arquivo do repositório.
 - Gere o `.docx` com `python scripts/gerar_docx_ra1.py` e confira o PDF antes de abrir o PR da consolidação.
 
-### Entrega (PDF único)
+### Entrega
 
-- O RA1 e o RA2 vão **no mesmo arquivo**: `output/entrega-ra1-ra2.pdf`, com o documento do RA1 e depois o notebook executado: o arquivo vai no RA2 e o link dele no repositório (tag `entrega`) vai no RA1, que só aceita URL ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)).
-- Monte com `python scripts/montar_entrega.py` depois de gerar as duas partes; não junte os PDFs à mão. Se o script avisar que uma parte está desatualizada, gere essa parte de novo.
+- O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento (`output/ra1-documentacao.pdf`), sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, `eduardofabrii/data-analytics-ras`.
+- Os arquivos enviados saem de `python scripts/montar_entregas.py`: `output/entrega-ra1.*` (só o documento) e `output/entrega-ra2.*` (documento do RA1 seguido do notebook exportado do Colab).
+- O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega.
 
 ### Antes de abrir o PR
 

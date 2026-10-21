@@ -3,17 +3,17 @@ id: adr-0009
 titulo: "ADR-0009 — Entrega única: um PDF com o documento do RA1 e o notebook"
 tipo: decisao
 decisao: "0009"
-status: aceita
+status: substituída
 data: 2026-10-15
 decisor: João Pedro Cardoso
 entregas: [RA1, RA2]
 areas: [A, B, C, D]
 fontes: []
-relacionados: [adr-0002, adr-0003]
+relacionados: [adr-0002, adr-0003, adr-0011]
 ---
 # ADR-0009 — Entrega única: um PDF com o documento do RA1 e o notebook
 
-- **Status:** aceita · **Data:** 15/10/2026 · **Decisor:** João Pedro Cardoso
+- **Status:** substituída pelo [ADR-0011](0011-entregas-separadas-e-repositorio-da-entrega.md) em 21/10/2026 · **Data:** 15/10/2026 · **Decisor:** João Pedro Cardoso
 
 ## Contexto
 

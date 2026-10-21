@@ -61,7 +61,7 @@ Peso na rubrica entre parênteses.
 - [ ] **C7.2** "Conferência da entrega" do template com todos os itens marcados de verdade.
 
 ### N — Notebook
-- [ ] **N.1** Identificação preenchida: título, nomes dos integrantes (exatamente como no `CONTEXT.md`, seção 1) e descrição do problema. A turma não entra.
+- [ ] **N.1** Identificação preenchida: título, nomes dos integrantes (exatamente como no `CONTEXT.md`, seção 1) turma (curso e período, como na capa) e descrição do problema, nos campos do template.
 - [ ] **N.2** Todas as células executadas em ordem, sem erro, a partir de um ambiente limpo (contadores de execução em sequência).
 - [ ] **N.3** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando.
 - [ ] **N.4** Respostas do grupo curtas, com números tirados das saídas das células.
@@ -89,11 +89,11 @@ N.3 e N.4 valem para toda tarefa que escreve no notebook, restritos à seção d
 - [ ] **X.1** Tudo em português do Brasil.
 - [ ] **X.2** Nenhum commit com coautoria de IA (verificação "Verificar commits" verde na `main`).
 - [ ] **X.3** Os quatro nomes da equipe (`CONTEXT.md`, seção 1), iguais na capa do documento e na identificação do notebook.
-- [ ] **X.4** Parte 1 do PDF único, o documento do RA1: capa preenchida com a URL do repositório, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
-- [ ] **X.5** Parte 2 do PDF único, o notebook: seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
+- [ ] **X.4** PDF do RA1, o documento (sem o notebook): capa preenchida com a URL do repositório, notas cinza e exemplos do template removidos, nenhum campo entre colchetes, tabelas legíveis ([orientações](orientacoes-documento-final.md)).
+- [ ] **X.5** PDF do RA2, o notebook exportado no Colab a partir do repositório da entrega: seções do RA1 e do RA2 organizadas, saídas visíveis e sem corte ([orientações](orientacoes-documento-final.md)).
 - [ ] **X.6** Os mesmos números no documento, no notebook e na apresentação.
 - [ ] **X.7** **Nenhuma** declaração de uso de IA no documento do RA1, no notebook ou nos PDFs (decisão do grupo, 15/10/2026).
-- [ ] **X.8** PDF único `output/entrega-ra1-ra2.pdf` montado por `python scripts/montar_entrega.py` (documento do RA1 e depois o notebook, sem aviso de parte desatualizada) e o **mesmo** arquivo entregue nas duas tarefas: no RA2, o arquivo; no RA1 (que só aceita URL), o link dele no repositório, na tag `entrega` ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)).
+- [ ] **X.8** Entregas separadas ([ADR-0011](../docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1 (que só aceita URL), o link do PDF do documento; no RA2, o PDF do notebook exportado no Colab. O notebook do repositório da entrega é igual ao montado aqui e o texto entregue cita o repositório da entrega.
 
 - [ ] **X.9** Nenhuma citação da organização interna do repositório no documento do RA1, no notebook (células e saídas) ou nos PDFs: área, tarefa, issue, PR, branch ou kanban; a evidência cita a seção, a célula ou o arquivo (decisão do grupo, 18/10/2026; `scripts/verificar_entrega.py` acusa).
 
