@@ -64,6 +64,7 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 ### Entrega
 
 - O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento (`output/ra1-documentacao.pdf`), sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, `eduardofabrii/data-analytics-ras`.
+- Os arquivos enviados saem de `python scripts/montar_entregas.py`: `output/entrega-ra1.*` (só o documento) e `output/entrega-ra2.*` (documento do RA1 seguido do notebook exportado do Colab).
 - O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega.
 
 ### Antes de abrir o PR
