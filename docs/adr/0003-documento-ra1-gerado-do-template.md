@@ -35,7 +35,7 @@ relacionados: [adr-0002]
 - Blocos que o template manda duplicar (decisões de limpeza D1…Dn) são duplicados pelo script, um por bloco do Markdown.
 - Ajuste fino (quebra de página, largura de tabela) pode ser feito no `.docx` gerado, desde que o conteúdo volte para o Markdown.
 - O PDF final é gerado do `.docx` (no Word: *Arquivo → Exportar → PDF*; ou pelo script, com o LibreOffice).
-- Esse PDF, com a URL do repositório na capa, é a primeira parte do PDF único enviado no RA1 e no RA2 ([ADR-0009](0009-entrega-unica-em-pdf.md)).
+- Esse PDF, com a URL do repositório da entrega na capa, é o arquivo do RA1, sem o notebook ([ADR-0011](0011-entregas-separadas-e-repositorio-da-entrega.md), que substituiu o ADR-0009).
 
 ---
 

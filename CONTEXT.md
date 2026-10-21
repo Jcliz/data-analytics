@@ -5,17 +5,17 @@
 ## 1. Disciplina e entregas
 
 - **Disciplina:** Data Analytics, Projeto Baseado em Problemas (PjBL), BSI PUCPR, 2026. **Professora:** Marina de Lara.
-- **Equipe** (nomes exatamente assim na capa do documento e na identificação do notebook; a turma não entra): Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso. Áreas e logins: [plano de tarefas](entregas/plano-de-tarefas.md), seção 1.
+- **Equipe** (nomes exatamente assim na capa do documento e na identificação do notebook; no campo "Turma" do notebook vai o curso e o período, como na capa): Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso. Áreas e logins: [plano de tarefas](entregas/plano-de-tarefas.md), seção 1.
 - **Entregas cobertas por este repositório:** RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais). O RA3 (análise e visualização) virá depois e usará o mesmo notebook e os mesmos dados.
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
 - **Enunciados transcritos:** [enunciados/ra1.md](enunciados/ra1.md) e [enunciados/ra2.md](enunciados/ra2.md). Os PDFs originais ficam fora do repositório (ver [enunciados/README.md](enunciados/README.md)).
 
-**O RA1 e o RA2 vão no mesmo arquivo:** um PDF único, `output/entrega-ra1-ra2.pdf`, enviado nas duas tarefas do Canvas ([ADR-0009](docs/adr/0009-entrega-unica-em-pdf.md)). A tarefa do RA2 recebe o arquivo; a do RA1 só aceita URL, então nela vai o link do mesmo PDF no repositório, na tag `entrega` (`https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`).
+**O RA1 e o RA2 vão em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md), que substituiu o ADR-0009). O repositório citado no texto entregue é o da entrega, `https://github.com/eduardofabrii/data-analytics-ras` (notebook, dados e `requirements.txt`); este repositório continua sendo o de desenvolvimento.
 
-| Parte do PDF único | O que é | Onde está a fonte | Decisão |
+| Entrega | O que é | Onde está a fonte | Decisão |
 |---|---|---|---|
-| 1. Documento do RA1 | Template `.docx` preenchido e exportado em PDF, com a URL do repositório na capa | `documentacao/ra1/` | [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md) |
-| 2. Notebook | Notebook inteiro executado (identificação, RA1 nas seções 1 a 7, RA2 nas seções 8 a 12), exportado em PDF; o `.ipynb` executado fica no repositório | `notebook/secoes/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md) |
+| RA1 | Documento: template `.docx` preenchido e exportado em PDF (`output/ra1-documentacao.pdf`), com a URL do repositório da entrega na capa, sem o notebook | `documentacao/ra1/` | [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
+| RA2 | PDF do notebook inteiro executado (identificação, RA1 nas seções 1 a 7, RA2 nas seções 8 a 12), exportado no Colab a partir do repositório da entrega; o `.ipynb` é montado aqui e copiado igual para lá | `notebook/secoes/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
 
 Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md).
 
@@ -65,8 +65,9 @@ O gênero do chart de origem é o grupo de todas as perguntas: a deduplicação 
 | 0006 | Ferramentas: pandas no RA1, PySpark 4.0.3 no RA2, Google Colab como ambiente de referência | proposta | [0006](docs/adr/0006-ferramentas-e-ambiente.md) |
 | 0007 | Nenhum commit com Claude (ou outra IA) como coautor | aceita | [0007](docs/adr/0007-commits-sem-coautoria-de-ia.md) |
 | 0008 | Divisão do trabalho em quatro áreas, uma por integrante | proposta | [0008](docs/adr/0008-divisao-em-quatro-areas.md) |
-| 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | aceita | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
+| 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | substituída por 0011 | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
 | 0010 | Problema e perguntas: perfil das faixas populares nos charts da Deezer por gênero (P1 a P4) | proposta | [0010](docs/adr/0010-problema-e-perguntas.md) |
+| 0011 | RA1 só com o documento; PDF do notebook exportado no Colab do repositório da entrega (eduardofabrii/data-analytics-ras) | aceita | [0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
 
@@ -76,9 +77,9 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 
 | Nome | Tipo | Criado em | Usado em | Conteúdo |
 |---|---|---|---|---|
-| `RAIZ` | `pathlib.Path` | 00b (ambiente) | todas | Raiz do repositório. |
-| `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 00b | 02, 04, 05, 09, 10, 11 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
-| `BAIXAR_DA_API` | `bool` | 00b | 02 | `False` por padrão: lê o retrato bruto já versionado. `True` coleta de novo na API. |
+| `RAIZ` | `pathlib.Path` | 02 (1ª célula, ambiente) | todas | Raiz do repositório. |
+| `PASTA_BRUTOS`, `PASTA_PREPARADOS`, `PASTA_STREAMING` | `Path` | 02 (1ª célula) | 02, 04, 05, 09, 10, 11 | `dados/brutos`, `dados/preparados`, `dados/streaming`. |
+| `BAIXAR_DA_API` | `bool` | 02 (1ª célula) | 02 | `False` por padrão: lê o retrato bruto já versionado. `True` coleta de novo na API. |
 | `df_bruto` | `pandas.DataFrame` | 02 | 03, 04 | Faixas como vieram da API, sem limpeza: uma linha por item dos charts (com o chart de origem), já com os campos de `/track/{id}`, `/album/{id}` e `/artist/{id}` juntados pelo id (prefixos `detalhe_faixa_`, `detalhe_album_` e `detalhe_artista_`). |
 | `df_preparado` | `pandas.DataFrame` | 04 e 05 | 05, 07, 09 | Conjunto preparado. Também gravado em `dados/preparados/faixas_preparadas.csv`. |
 | `spark` | `SparkSession` | 09 | 09, 10, 11 | Sessão do Spark do RA2. |
@@ -121,4 +122,4 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | Compreensão e qualidade (C) | [qualidade-de-dados](base/qualidade-de-dados.md), [api-deezer](base/api-deezer.md) §4 | 0004 |
 | Limpeza, preparação e conjunto resultante (D) | [qualidade-de-dados](base/qualidade-de-dados.md), [material de aula](base/material-de-aula.md) (preparação × transformação) | 0004 |
 | RA2, qualquer seção | [enunciados/ra2.md](enunciados/ra2.md), [streaming-e-janelas](base/streaming-e-janelas.md) | 0005, 0006 |
-| Consolidação e PDF | [orientacoes-documento-final](entregas/orientacoes-documento-final.md), [criterios-de-aceite](entregas/criterios-de-aceite.md) | 0002, 0003, 0009 |
+| Consolidação e PDF | [orientacoes-documento-final](entregas/orientacoes-documento-final.md), [criterios-de-aceite](entregas/criterios-de-aceite.md) | 0002, 0003, 0011 |

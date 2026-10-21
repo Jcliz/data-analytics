@@ -2,7 +2,7 @@
 
 > Tarefa T14 (geral). Critérios AP.1 e S.D ([critérios de aceite](criterios-de-aceite.md)). O RA1 é avaliado na apresentação da equipe em sala ([enunciados/ra1.md](../enunciados/ra1.md), "Rubrica de avaliação"); o RA2 tem uma demonstração de 5 minutos só para a professora ([enunciados/ra2.md](../enunciados/ra2.md), seção 3). Use os números do notebook executado da entrega (critério X.6).
 
-**Páginas:** as do documento do RA1 (parte 1 do PDF único, 18 páginas, cada capítulo começando numa página nova). Confira de novo depois da execução final, que gera o documento outra vez; se algo mudar de página, ajuste aqui. As células do notebook são citadas pelo título, que é como aparecem no PDF.
+**Páginas:** as do documento do RA1 (PDF do RA1, 18 páginas, cada capítulo começando numa página nova). Confira de novo depois da execução final, que gera o documento outra vez; se algo mudar de página, ajuste aqui. As células do notebook são citadas pelo título, que é como aparecem no PDF.
 
 ## 1. Apresentação do RA1
 
@@ -34,6 +34,6 @@ Antes de começar, o notebook já foi executado até a célula anterior ao encer
 ## 3. Antes do dia
 
 - [ ] Notebook executado no ambiente da apresentação (Colab ou máquina de quem apresenta) até a célula anterior ao encerramento da seção 11. No Colab, a instalação do PySpark leva alguns minutos: rode antes de a apresentação começar.
-- [ ] PDF único aberto na página de cada bloco (p. 2, 4, 6, 7, 10, 14, 16 do documento).
+- [ ] PDF do documento do RA1 aberto na página de cada bloco (p. 2, 4, 6, 7, 10, 14, 16 do documento).
 - [ ] Ensaio cronometrado da demonstração (até 5 minutos), no ambiente em que ela será feita, incluindo o `publicar_proximo_lote(10);` ao vivo. Para repetir o ensaio do zero, execute de novo as seções 9, 10 e 11.
 - [ ] Páginas deste roteiro conferidas no PDF da execução final.

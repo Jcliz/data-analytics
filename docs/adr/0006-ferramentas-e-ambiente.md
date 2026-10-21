@@ -28,7 +28,7 @@ relacionados: [adr-0002]
 
 ## Consequências
 
-- `requirements.txt` lista as versões. No Colab, a seção 00b clona o repositório (para ter o retrato bruto) e a seção 09 instala o PySpark; pandas e requests já vêm no Colab.
+- `requirements.txt` lista as versões. No Colab, a primeira célula de código da seção 2 clona o repositório da entrega (para ter o retrato bruto) e a seção 09 instala o PySpark; pandas e requests já vêm no Colab.
 - No Windows, o Spark local precisa de Java 17 e costuma pedir o `winutils` (`HADOOP_HOME`) para o checkpoint; para o RA2, o grupo usa o Colab.
 - Gráficos não entram no RA1; se forem usados para mostrar distribuição na exploração, usar `matplotlib` sem conclusões analíticas.
 

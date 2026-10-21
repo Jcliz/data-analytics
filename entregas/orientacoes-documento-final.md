@@ -1,18 +1,17 @@
-# Orientações do documento final (PDF único e envio)
+# Orientações do documento final (PDFs e envio)
 
 > Como a entrega deve ficar antes de ir para o Canvas. Vale para pessoas e agentes. Prazo do RA1 e do RA2: **21/10/2026**.
 
 ## 1. O que vai na entrega
 
-O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](../docs/adr/0009-entrega-unica-em-pdf.md)): um PDF único. Na tarefa do **RA2**, envie o arquivo. A tarefa do **RA1** só aceita URL (campo "Insira o URL da web"): envie o link do mesmo PDF no repositório, na tag `entrega`: `https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`.
+O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](../docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md), que substituiu o ADR-0009). O repositório citado no texto entregue é o da entrega, `https://github.com/eduardofabrii/data-analytics-ras`.
 
-| Parte do PDF único | Arquivo | Fonte no repositório | Como gerar |
+| Entrega | Arquivo | Fonte | Como gerar |
 |---|---|---|---|
-| 1. Documento do RA1 (template do professor), com a URL do repositório na capa | `output/ra1-documentacao.pdf` | `documentacao/ra1/` | seção 2 |
-| 2. Notebook executado: identificação, RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12) | `output/projeto_data_analytics.pdf` | `notebook/secoes/` | seção 3 |
-| **Arquivo da entrega (RA2: o arquivo; RA1: o link dele)** | **`output/entrega-ra1-ra2.pdf`** (versionado) | as duas partes acima | `python scripts/montar_entrega.py` |
+| **RA1:** documento do template do professor, com a URL do repositório da entrega na capa, **sem o notebook** | `output/ra1-documentacao.pdf` | `documentacao/ra1/` | seção 2 |
+| **RA2:** PDF do notebook executado: identificação, RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12) | exportado no Colab | `notebook/secoes/`, copiado para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega | seção 3 |
 
-No repositório (tag `entrega`) ficam também o `.docx`, o notebook `notebook/projeto_data_analytics.ipynb` executado e os dados. O repositório é público; confira que a URL da capa e o link do PDF abrem numa janela anônima antes de enviar.
+A tarefa do **RA1** só aceita URL (campo "Insira o URL da web"): o link do PDF do documento ainda será definido pelo grupo (repositório da entrega ou este, na tag `entrega`). O repositório da entrega é público; confira que a URL da capa abre numa janela anônima antes de enviar.
 
 ## 2. Documento do RA1 (do `.docx` ao PDF)
 
@@ -47,33 +46,25 @@ Se não houver LibreOffice, abra o `.docx` no Word e use *Arquivo → Exportar �
 python scripts/montar_notebook.py            # gera notebook/projeto_data_analytics.ipynb
 ```
 
-- **Colab (referência):** envie o `.ipynb` gerado, *Ambiente de execução → Executar tudo*; ao terminar sem erro, *Arquivo → Fazer download → .ipynb* e substitua o do repositório. Para o PDF: *Arquivo → Imprimir → Salvar como PDF*.
+- **Copie o `.ipynb` gerado** para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega (os dois ficam iguais). A primeira célula de código da seção 2 clona esse repositório no Colab.
+- **Colab (referência, gera o PDF do RA2):** abra o notebook do repositório da entrega (*Arquivo → Abrir notebook → GitHub*), *Ambiente de execução → Executar tudo* e, ao terminar sem erro, *Arquivo → Imprimir → Salvar como PDF*.
 - **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (requer `pip install "nbconvert[webpdf]"`; na primeira vez a opção baixa o Chromium que o exportador usa).
 
 ### Como deve ficar
 
-- **Identificação preenchida** no topo (título, os quatro nomes da equipe como no `CONTEXT.md`, descrição). A turma não entra.
+- **Identificação preenchida** no topo, com os campos do template: título, os quatro nomes da equipe como no `CONTEXT.md`, turma (curso e período, como na capa do documento) e descrição.
 - **Ordem do template:** RA1 (seções 1 a 5 e 7) e RA2 (seções 8 a 12), com os enunciados do professor mantidos e as respostas do grupo no lugar de `[Preencha aqui.]`. A seção 6 não existe no template; não criar.
 - **Todas as células executadas em sequência** (contadores 1, 2, 3…), sem erro e sem aviso vermelho sobrando.
 - **Saídas legíveis no PDF:** tabelas com no máximo 10 a 20 linhas (`head`, `show(n=…, truncate=False)`); nada de imprimir o DataFrame inteiro ou JSON cru grande; linhas de código com até ~100 caracteres para não cortar na impressão.
 - **Cada célula de código com um comentário de uma linha** dizendo o que faz; as células citadas no documento do RA1 começam com um título curto em comentário (ex.: `# Duplicados por id`), que é como o documento as referencia.
 - **RA2:** a saída depois de cada lote aparece no PDF (não só a final), para mostrar a chegada de novos registros; início e fim da janela em colunas separadas. A célula do `%pip install` começa com `%%capture`, para a barra de progresso não sair no PDF.
-- Grave o PDF do notebook como `output/projeto_data_analytics.pdf`: é a parte 2 do PDF único.
+- **Estrutura do template à risca:** nenhuma célula fora das seções do template (a preparação do ambiente é a primeira célula de código da seção 2); a célula do enunciado fica como o professor escreveu, e o texto do grupo vai só na resposta; a ordem de enunciado, código e resposta de cada seção é a do template.
+- Para conferir localmente: `python scripts/exportar_notebook_pdf.py` grava `output/projeto_data_analytics.pdf`. O PDF enviado no RA2 é o do Colab.
 
-## 4. PDF único
-
-```bash
-python scripts/montar_entrega.py             # junta as duas partes em output/entrega-ra1-ra2.pdf
-```
-
-- **Ordem:** documento do RA1 primeiro (a capa dele é a capa da entrega), notebook em seguida. Cada parte vira um marcador no leitor de PDF.
-- O script recusa juntar se faltar uma parte e avisa se uma parte foi gerada antes da última mudança na sua fonte; nesse caso, gere a parte de novo.
-- **Sem declaração de uso de IA** em nenhuma das partes (critério X.7).
-
-## 5. Antes de enviar
+## 4. Antes de enviar
 
 1. `python scripts/verificar_entrega.py` sem pendência.
 2. Revisão cruzada (T12) concluída, com a tabela `ID | status | evidência`.
 3. Tag da entrega: `git tag entrega && git push origin entrega`, no commit da `main` que gerou o PDF enviado; a URL da capa aponta para o repositório.
-4. PDF único aberto e conferido página a página por alguém que não o gerou.
-5. `output/entrega-ra1-ra2.pdf` commitado na `main` antes da tag; no RA2, o arquivo enviado; no RA1, o link `https://github.com/Jcliz/data-analytics/blob/entrega/output/entrega-ra1-ra2.pdf`, conferido numa janela anônima.
+4. Os dois PDFs abertos e conferidos página a página por alguém que não os gerou.
+5. O notebook do repositório da entrega igual ao montado aqui; no RA2, o PDF do notebook exportado no Colab; no RA1, o link do PDF do documento, conferido numa janela anônima.
