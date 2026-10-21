@@ -26,7 +26,7 @@ relacionados: [adr-0002, adr-0003, adr-0006, adr-0009]
 1. **RA1:** o PDF do documento, `output/ra1-documentacao.pdf`, gerado do template (ADR-0003), sem o notebook. A capa e a seção 06 citam o repositório da entrega.
 2. **RA2:** o PDF do notebook inteiro (identificação, RA1 e RA2) exportado no Colab a partir de `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega.
 3. **Notebook:** é montado aqui (`python scripts/montar_notebook.py`) e copiado igual para o repositório da entrega. A primeira célula de código da seção 2 clona o repositório da entrega no Colab.
-4. O `scripts/montar_entrega.py` e o `output/entrega-ra1-ra2.pdf` saem do repositório. O `output/projeto_data_analytics.pdf` continua como conferência local (`python scripts/exportar_notebook_pdf.py`), mas não é o arquivo enviado.
+4. O `scripts/montar_entrega.py` e o `output/entrega-ra1-ra2.pdf` saem do repositório. O notebook executado no Colab e o PDF dele ficam nos dois repositórios: aqui em `notebook/projeto_data_analytics.ipynb` e `output/projeto_data_analytics.pdf`, e no repositório da entrega em `notebook/ra1-ra2-deezer.ipynb` e `output/pdf/ra1-ra2-deezer.pdf`.
 
 ## Consequências
 
