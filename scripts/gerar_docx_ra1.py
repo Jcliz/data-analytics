@@ -26,7 +26,6 @@ from pathlib import Path
 
 from docx import Document
 from docx.oxml.ns import qn
-from docx.shared import Pt
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
@@ -176,12 +175,12 @@ def limpa_cor(rpr):
 
 
 def escreve(paragrafo, texto, rpr_base=None):
-    """Escreve texto com **negrito**, *itálico* e `código` no parágrafo."""
+    """Escreve texto com **negrito** e *itálico* no parágrafo; `código` sai sem os acentos graves."""
     for parte in filter(None, INLINE.split(texto)):
         if parte.startswith('**'):
             run = paragrafo.add_run(parte[2:-2]); run.bold = True
         elif parte.startswith('`'):
-            run = paragrafo.add_run(parte[1:-1]); run.font.name = 'Consolas'; run.font.size = Pt(9)
+            run = paragrafo.add_run(parte[1:-1])  # na fonte do template, como o resto do texto
         elif parte.startswith('*'):
             run = paragrafo.add_run(parte[1:-1]); run.italic = True
         else:
@@ -284,9 +283,14 @@ class Gerador:
                 p.runs[0].text = p.runs[0].text.replace('☐', '☒', 1)
         texto = [b for b in conteudo if b[0] != 'check']
         if texto:
-            for el in corpo:  # remove os espaços reservados e as linhas em branco do template
+            # o fio cinza que fecha o subtítulo no template (último parágrafo vazio com borda) fica
+            fios = [el for el in corpo if par(el, self.doc) is not None and not par(el, self.doc).text.strip()
+                    and el.find(qn('w:pPr') + '/' + qn('w:pBdr')) is not None]
+            for el in corpo:  # remove os espaços reservados e as outras linhas em branco do template
                 p = par(el, self.doc)
                 quebra = el.findall('.//' + qn('w:br'))  # nunca apaga a quebra de página entre seções
+                if el in fios[-1:]:
+                    continue
                 if p is not None and not quebra and (not p.text.strip() or p.text.strip().startswith('[')):
                     el.getparent().remove(el)
             ancora = faixa[alvo]
