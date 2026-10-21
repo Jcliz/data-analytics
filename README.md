@@ -131,7 +131,7 @@ O RA1 e o RA2 vão **no mesmo arquivo** ([ADR-0009](docs/adr/0009-entrega-unica-
 
 ```bash
 python scripts/gerar_docx_ra1.py      # parte 1: output/ra1-documentacao.pdf
-# parte 2: notebook executado exportado em output/projeto_data_analytics.pdf (orientações, seção 3)
+python scripts/exportar_notebook_pdf.py  # parte 2: output/projeto_data_analytics.pdf (notebook já executado)
 python scripts/montar_entrega.py      # junta as duas em output/entrega-ra1-ra2.pdf
 ```
 
@@ -160,7 +160,7 @@ jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analyt
 
 No Windows o Spark local costuma pedir também o `winutils`; para o RA2, prefira o Colab.
 
-Para exportar o notebook em PDF localmente: `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (a primeira vez baixa o Chromium).
+Para exportar o notebook em PDF localmente: `python scripts/exportar_notebook_pdf.py`, que grava `output/projeto_data_analytics.pdf` quebrando as linhas longas em vez de cortá-las (a primeira vez baixa o Chromium).
 
 ### Como saber se deu certo
 

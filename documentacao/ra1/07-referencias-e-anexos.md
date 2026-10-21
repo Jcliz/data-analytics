@@ -31,10 +31,4 @@ PUCPR. Data Analytics. Material de aula: *Data Ingestion and Data Quality*, *Fro
 - [x] As decisões de limpeza estão justificadas e validadas.
 - [x] O conjunto de dados preparado está identificado.
 - [x] O repositório contém instruções suficientes para reprodução.
-- [ ] Os campos-modelo foram preenchidos e os exemplos revisados.
-
-<!--
-Último item da conferência: marcar quando a seção 06 ("Verificação da reprodução") for preenchida na T13
-e o documento for gerado de novo (critério C6.4). Datas de acesso do material de aula e do enunciado:
-15/10/2026, data em que foram lidos (base/fontes.md, fonte 3).
--->
+- [x] Os campos-modelo foram preenchidos e os exemplos revisados.

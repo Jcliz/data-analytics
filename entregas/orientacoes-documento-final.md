@@ -48,7 +48,7 @@ python scripts/montar_notebook.py            # gera notebook/projeto_data_analyt
 ```
 
 - **Colab (referência):** envie o `.ipynb` gerado, *Ambiente de execução → Executar tudo*; ao terminar sem erro, *Arquivo → Fazer download → .ipynb* e substitua o do repositório. Para o PDF: *Arquivo → Imprimir → Salvar como PDF*.
-- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `jupyter nbconvert --to webpdf --allow-chromium-download notebook/projeto_data_analytics.ipynb --output-dir output` (requer `pip install "nbconvert[webpdf]"`; na primeira vez a opção baixa o Chromium que o exportador usa).
+- **Local:** `jupyter nbconvert --to notebook --execute --inplace notebook/projeto_data_analytics.ipynb` e, para o PDF, `python scripts/exportar_notebook_pdf.py` (o mesmo exportador do `nbconvert --to webpdf`, mas quebrando as linhas longas de código e de saída em vez de cortá-las; na primeira vez baixa o Chromium que o exportador usa).
 
 ### Como deve ficar
 
