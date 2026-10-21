@@ -8,6 +8,6 @@
 
 **Equipe:** Eduardo Fabri • João Correa • Rodrigo Alves • João Pedro Cardoso
 
-**Repositório:** https://github.com/Jcliz/data-analytics
+**Repositório:** https://github.com/eduardofabrii/data-analytics-ras
 
 **Entrega:** Curitiba • 21/10/2026

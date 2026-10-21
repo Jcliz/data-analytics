@@ -27,6 +27,6 @@ Os charts da Deezer mostram as faixas mais ouvidas no geral e em cada gênero. A
 
 ## Viabilidade inicial
 
-Todos os campos das perguntas existem na API pública da Deezer, sem autenticação: `duration`, `rank`, `position` e `artist.id` em `/chart/{id_genero}/tracks`, `release_date` em `/track/{id}`, `nb_fan` em `/artist/{id}` e os gêneros em `/genre` (fontes 1 e 2; `base/api-deezer.md`, seções 2 e 3). Coletar cada chart de gênero registra o gênero de origem em cada item, sem depender do gênero do álbum.
+Todos os campos das perguntas existem na API pública da Deezer, sem autenticação: `duration`, `rank`, `position` e `artist.id` em `/chart/{id_genero}/tracks`, `release_date` em `/track/{id}`, `nb_fan` em `/artist/{id}` e os gêneros em `/genre` (fontes 1 e 2). Coletar cada chart de gênero registra o gênero de origem em cada item, sem depender do gênero do álbum.
 
 Lacunas a confirmar na seção 03: a faixa pode estar no chart geral e no do seu gênero, e a deduplicação precisa preservar o gênero de origem; `release_date` e `nb_fan` podem vir ausentes ou zerados, reduzindo a base de P2 e P3; o gênero do chart, da Deezer, pode diferir do gênero do álbum; e um único retrato não mostra tendência.
