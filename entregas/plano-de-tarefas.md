@@ -1,6 +1,7 @@
 # Plano de tarefas — RA1 e RA2
 
 > Divide o RA1 e o RA2 em tarefas, com responsáveis, arquivos, dependências e prazos. Os critérios (IDs `C`, `N`, `AP`, `S`, `X`, `K`) estão em [criterios-de-aceite.md](criterios-de-aceite.md); aqui só se citam os IDs.
+> **RA3:** as tarefas T15 a T24 estão em [plano-de-tarefas-ra3.md](plano-de-tarefas-ra3.md).
 > **Status:** proposta de 15/10/2026, a confirmar pelo grupo (responsáveis por área e datas).
 
 ---
@@ -45,7 +46,7 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 
 | Rótulo | Uso |
 |---|---|
-| `ra1`, `ra2` | Entrega |
+| `ra1`, `ra2`, `ra3` | Entrega |
 | `geral` | Tarefa sem área fixa |
 | `area-a` … `area-d` | Área (seção 1) |
 | `notebook`, `documento` | Onde a tarefa escreve |

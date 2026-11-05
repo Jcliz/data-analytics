@@ -43,8 +43,8 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 ### Antes de começar
 
 1. Leia `CONTEXT.md` (já carregado acima) e a issue da tarefa.
-2. Atualize a `main` e crie a branch da tarefa com nome curto, `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5. Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
-3. Confira na tabela de responsabilidade ([`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md), seção 2) quais arquivos a sua área pode alterar. Edite só esses.
+2. Atualize a `main` e crie a branch da tarefa com nome curto, `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5 (RA3: [plano do RA3](entregas/plano-de-tarefas-ra3.md), seção 5). Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
+3. Confira na tabela de responsabilidade ([`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md), seção 2; no RA3, [`entregas/plano-de-tarefas-ra3.md`](entregas/plano-de-tarefas-ra3.md), seção 2) quais arquivos a sua área pode alterar. Edite só esses.
 
 ### Notebook (código e respostas do notebook)
 
@@ -61,11 +61,19 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - Toda linha de evidência aponta para o notebook (`notebook §3, célula "Duplicados por id"`) ou para um arquivo do repositório.
 - Gere o `.docx` com `python scripts/gerar_docx_ra1.py` e confira o PDF antes de abrir o PR da consolidação.
 
+### RA3 (notebook próprio e `documentacao/ra3/`)
+
+- O RA1 e o RA2 já foram entregues: **não altere** `notebook/secoes/` nem `documentacao/ra1/`. O RA3 tem um notebook próprio, com as seções em `notebook/secoes-ra3/` (identificação e seções 1 a 5, uma por requisito do enunciado), montado por `python scripts/montar_notebook.py --ra3` em `notebook/ra3-deezer.ipynb` ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
+- O template não tem o RA3: o enunciado de cada seção é o requisito transcrito em [`enunciados/ra3.md`](enunciados/ra3.md). Mantenha esse texto e escreva só as células de código e a "Resposta do grupo".
+- Use `df_analise` (2ª célula de código da seção 1 do notebook do RA3) e não mexa em `df_preparado`. O enunciado não exige ferramenta; o grupo escolheu `matplotlib` e `scikit-learn` ([`base/analise-e-ml.md`](base/analise-e-ml.md)).
+- Separe o que o enunciado exige (critérios R, RD e RAP) do que o grupo recomenda (RC). Não apresente recomendação como regra da rubrica.
+- A documentação (técnicas, resultados, interpretações e instruções de execução) fica em `documentacao/ra3/README.md`. O RA3 é entregue num repositório próprio, `Jcliz/machine-learning-ra3`, só com o que é entregue (README, notebook executado, conjunto preparado e `requirements-ra3.txt` como `requirements.txt`). Issues, plano e desenvolvimento ficam aqui. Não use o `eduardofabrii/data-analytics-ras` no RA3 ([orientações](entregas/orientacoes-entrega-ra3.md)).
+
 ### Entrega
 
 - O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento (`output/ra1-documentacao.pdf`), sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, `eduardofabrii/data-analytics-ras`.
 - Os arquivos enviados saem de `python scripts/montar_entregas.py`: `output/entrega-ra1.*` (só o documento) e `output/entrega-ra2.*` (documento do RA1 seguido do notebook exportado do Colab).
-- O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` do repositório da entrega.
+- O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` (RA1 e RA2) do repositório da entrega do RA1 e do RA2, ou `notebook/ra3-deezer.ipynb` do `machine-learning-ra3` (RA3).
 
 ### Antes de abrir o PR
 

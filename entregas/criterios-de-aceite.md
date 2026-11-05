@@ -1,5 +1,7 @@
 # Critérios de aceite — RA1 e RA2
 
+> **RA3:** critérios em [criterios-de-aceite-ra3.md](criterios-de-aceite-ra3.md).
+
 > Definição de pronto das entregas. Cada tarefa do [plano](plano-de-tarefas.md) cita os IDs daqui. Os critérios saem dos enunciados ([ra1](../enunciados/ra1.md), [ra2](../enunciados/ra2.md)), dos templates do professor e da rubrica.
 
 ## 0. Protocolo para agentes de IA

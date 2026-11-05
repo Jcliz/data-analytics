@@ -1,6 +1,6 @@
 # data-analytics
 
-Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais). O RA3 (análise e visualização) virá depois, sobre os mesmos dados.
+Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e RA3 (análise estatística, visualização e Machine Learning), em andamento, num notebook próprio (`notebook/secoes-ra3/`, montado com `python scripts/montar_notebook.py --ra3`) sobre o conjunto preparado do RA1. Plano do RA3: [entregas/plano-de-tarefas-ra3.md](entregas/plano-de-tarefas-ra3.md). O RA3 é entregue em [Jcliz/machine-learning-ra3](https://github.com/Jcliz/machine-learning-ra3), que só tem o que é entregue; o desenvolvimento fica aqui.
 
 A fonte de dados é a **API pública da Deezer**, a mesma usada pelo app [rdsalvesPUC/dataaudio](https://github.com/rdsalvesPUC/dataaudio). O grupo coleta as faixas dos charts, guarda um retrato bruto no repositório, limpa e prepara os dados (RA1) e depois simula eventos de reprodução para processar em streaming (RA2).
 
@@ -43,18 +43,20 @@ git config core.hooksPath .githooks
 ├── CLAUDE.md                  carrega o AGENTS.md e o CONTEXT.md no Claude Code; regra de commit e passo a passo
 │
 ├── notebook/
-│   ├── secoes/                uma seção do notebook por arquivo (formato percent), cada uma de uma área
+│   ├── secoes/                uma seção do notebook do RA1 e do RA2 por arquivo (formato percent), cada uma de uma área
+│   ├── secoes-ra3/            seções do notebook do RA3 (gera notebook/ra3-deezer.ipynb)
 │   └── projeto_data_analytics.ipynb   notebook entregue, GERADO por scripts/montar_notebook.py
 ├── documentacao/ra1/          documento do RA1 em Markdown, um arquivo por seção do template
+├── documentacao/ra3/          documentação do RA3 (técnicas, resultados, instruções de execução), vira o README do machine-learning-ra3
 ├── dados/
 │   ├── brutos/                retratos da API, um por data de coleta (nunca editados à mão)
 │   ├── preparados/            conjunto preparado do RA1 (entrada do RA2)
 │   └── streaming/             pastas temporárias do RA2 (fora do git)
 ├── output/                    arquivos de entrega: documento do RA1 (.docx e PDF) e o PDF do notebook para conferência local
 │
-├── entregas/                  plano de tarefas, critérios de aceite, orientações do PDF e roteiro da apresentação
-├── enunciados/                enunciados do RA1 e do RA2 transcritos
-├── base/                      base de conhecimento: API da Deezer, qualidade, streaming, material de aula, fontes
+├── entregas/                  planos de tarefas, critérios de aceite, orientações da entrega e roteiros da apresentação (RA1/RA2 e RA3)
+├── enunciados/                enunciados do RA1, do RA2 e do RA3 transcritos
+├── base/                      base de conhecimento: API da Deezer, qualidade, streaming, análise e ML, material de aula, fontes
 ├── docs/
 │   ├── adr/                   decisões do projeto, uma por arquivo
 │   └── agents/                configuração das skills de IA (issues, rótulos, documentos de domínio)
@@ -66,6 +68,7 @@ git config core.hooksPath .githooks
 ├── .githooks/                 hook commit-msg do git (sem coautoria de IA)
 ├── .github/                   modelo de PR e verificação de commits no GitHub Actions
 ├── requirements.txt
+├── requirements-ra3.txt       bibliotecas do notebook do RA3 (vira o requirements.txt do machine-learning-ra3)
 └── .gitignore
 ```
 

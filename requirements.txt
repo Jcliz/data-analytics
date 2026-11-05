@@ -10,6 +10,10 @@ requests>=2.31
 # RA2: processamento em streaming (precisa de Java 17 ou mais novo)
 pyspark==4.0.3
 
+# RA3: gráficos e Machine Learning (já vêm no Colab; ADR-0012 e ADR-0013)
+matplotlib>=3.8
+scikit-learn>=1.4
+
 # Execução local do notebook e PDF do RA2
 jupyter>=1.0
 nbconvert[webpdf]>=7.16
