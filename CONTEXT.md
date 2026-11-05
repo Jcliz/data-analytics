@@ -8,7 +8,8 @@
 - **Equipe** (nomes exatamente assim na capa do documento e na identificação do notebook; no campo "Turma" do notebook vai o curso e o período, como na capa): Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso. Áreas e logins: [plano de tarefas](entregas/plano-de-tarefas.md), seção 1.
 - **Entregas cobertas por este repositório:** RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e **RA3 (análise estatística, visualização e Machine Learning)**, em andamento, num notebook próprio (`notebook/ra3-deezer.ipynb`) que parte do conjunto preparado do RA1 ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
-- **Prazo do RA3:** **18/11/2026**, envio da URL do repositório da entrega e avaliação somativa (apresentação e demonstração) no mesmo dia.
+- **Prazo do RA3:** **18/11/2026**, envio da URL do repositório da entrega do RA3 e avaliação somativa (apresentação e demonstração) no mesmo dia.
+- **Repositório da entrega do RA3:** `https://github.com/Jcliz/machine-learning-ra3` (decisão do João, 05/11/2026), só com o que é entregue: README com documentação e instruções, notebook executado, conjunto preparado e `requirements.txt`. O desenvolvimento e as issues continuam aqui. O `eduardofabrii/data-analytics-ras` é só do RA1 e do RA2.
 - **Enunciados transcritos:** [enunciados/ra1.md](enunciados/ra1.md), [enunciados/ra2.md](enunciados/ra2.md) e [enunciados/ra3.md](enunciados/ra3.md). Os PDFs originais ficam fora do repositório (ver [enunciados/README.md](enunciados/README.md)).
 
 **O RA1 e o RA2 vão em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md), que substituiu o ADR-0009). O repositório citado no texto entregue é o da entrega, `https://github.com/eduardofabrii/data-analytics-ras` (notebook, dados e `requirements.txt`); este repositório continua sendo o de desenvolvimento.
@@ -17,7 +18,7 @@
 |---|---|---|---|
 | RA1 | Documento: template `.docx` preenchido e exportado em PDF (`output/ra1-documentacao.pdf`), com a URL do repositório da entrega na capa, sem o notebook | `documentacao/ra1/` | [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
 | RA2 | PDF do notebook inteiro executado (identificação, RA1 nas seções 1 a 7, RA2 nas seções 8 a 12), exportado no Colab a partir do repositório da entrega; o `.ipynb` é montado aqui e copiado igual para lá | `notebook/secoes/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
-| RA3 | URL do repositório da entrega com o notebook do RA3 executado (`notebook/ra3-deezer.ipynb`, seções 1 a 5), a documentação das técnicas, resultados e interpretações, e as instruções de execução (`documentacao/ra3/README.md`), copiados daqui | `notebook/secoes-ra3/`, `documentacao/ra3/` | [ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), [ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md) |
+| RA3 | URL do `Jcliz/machine-learning-ra3`, com o notebook do RA3 executado (`notebook/ra3-deezer.ipynb`, seções 1 a 5), a documentação e as instruções de execução no `README.md`, o conjunto preparado e o `requirements.txt`, copiados daqui | `notebook/secoes-ra3/`, `documentacao/ra3/README.md`, `dados/preparados/`, `requirements-ra3.txt` | [ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), [ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md) |
 
 Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md). Como a entrega do RA3 deve ficar: [entregas/orientacoes-entrega-ra3.md](entregas/orientacoes-entrega-ra3.md).
 
@@ -74,7 +75,7 @@ No RA3, as perguntas recebem as respostas no notebook do RA3: medidas descritiva
 | 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | substituída por 0011 | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
 | 0010 | Problema e perguntas: perfil das faixas populares nos charts da Deezer por gênero (P1 a P4) | proposta | [0010](docs/adr/0010-problema-e-perguntas.md) |
 | 0011 | RA1 só com o documento; PDF do notebook exportado no Colab do repositório da entrega (eduardofabrii/data-analytics-ras) | aceita | [0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
-| 0012 | RA3 num notebook próprio, uma seção por requisito; documentação e instruções em `documentacao/ra3/README.md`; envio pela URL do repositório da entrega | aceita | [0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md) |
+| 0012 | RA3 num notebook próprio, uma seção por requisito; documentação e instruções em `documentacao/ra3/README.md`; envio pela URL do repositório novo `machine-learning-ra3` | aceita | [0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md) |
 | 0013 | Machine Learning do RA3: regressão do `rank` a partir de fãs, duração, idade e gênero | proposta | [0013](docs/adr/0013-ra3-regressao-do-rank.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
@@ -104,7 +105,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 
 | Nome | Tipo | Criado em | Usado em | Conteúdo |
 |---|---|---|---|---|
-| `RAIZ`, `PASTA_PREPARADOS` | `Path` | 1 (1ª célula de código, ambiente) | 1 a 4 | Raiz do repositório (clonado no Colab) e `dados/preparados`. |
+| `RAIZ`, `ARQUIVO_PREPARADO`, `PASTA_PREPARADOS` | `Path` | 1 (1ª célula de código, ambiente) | 1 a 4 | Raiz do repositório (o `machine-learning-ra3`, clonado no Colab, ou este) e o caminho do `faixas_preparadas.csv` (`dados/` lá, `dados/preparados/` aqui). |
 | `df_analise` | `pandas.DataFrame` | 1 (2ª célula de código) | 1, 2, 3, 4 | Conjunto preparado relido de `faixas_preparadas.csv` com os tipos do dicionário (2.800 linhas × 16 colunas). O notebook do RA3 não usa `df_preparado`. |
 | `SEMENTE_ML` | `int` | 4 (1ª célula de código) | 4 | Semente da separação treino e teste e do modelo, fixa para a execução final repetir os números (recomendação RC.4, não exigência do enunciado). |
 

@@ -26,7 +26,7 @@ Tarefas **gerais** (marcadas "Geral") não têm dono fixo: quem puxar se atribui
 | `notebook/secoes-ra3/03-representatividade.py`, `04-machine-learning.py`, `requirements.txt` (bibliotecas do modelo) | B |
 | `notebook/secoes-ra3/01-estatistica-descritiva.py` (as duas primeiras células de código, ambiente e `df_analise`, vêm prontas) | C |
 | `notebook/secoes-ra3/02-visualizacoes.py` | D |
-| `notebook/secoes-ra3/00-identificacao.py`, `notebook/ra3-deezer.ipynb` (gerado), cópia para o repositório da entrega, `entregas/roteiro-apresentacao-ra3.md` | Geral |
+| `notebook/secoes-ra3/00-identificacao.py`, `notebook/ra3-deezer.ipynb` (gerado), `requirements-ra3.txt`, cópia para o `machine-learning-ra3`, `entregas/roteiro-apresentacao-ra3.md` | Geral |
 | `README.md`, `CONTEXT.md`, `AGENTS.md`, `CLAUDE.md`, `docs/`, `base/`, `entregas/`, `scripts/` | Geral (mudança combinada no PR) |
 
 O notebook do RA1 e do RA2 (`notebook/secoes/`) e o documento do RA1 (`documentacao/ra1/`) não mudam no RA3. Se um número do RA1 precisar de correção, registre na issue e combine com o grupo antes.
@@ -55,10 +55,10 @@ Convenção de título: `[RA3][Área X] Tnn — descrição` ou `[Geral] Tnn —
 | T20 | — | `t20-conclusoes` | Conclusões do RA3 | A | nb RA3 §5 | R5.1–R5.4, RN.2–RN.3 | T16–T19 | 14/11 |
 | T21 | — | `t21-documentacao` | Documentação e instruções de execução do RA3 | A | `documentacao/ra3/README.md` | RD.2–RD.3 | T16–T19 (técnicas); T20 (conclusões) | 14/11 |
 | T22 | — | `t22-revisao` | Revisão cruzada do RA3 | Geral | relatório na issue | RK.1–RK.6, RN.4, RN.6 | T16–T21 | 15/11 |
-| T23 | — | `t23-envio` | Execução final, cópia para o repositório da entrega e envio da URL | Geral | `notebook/ra3-deezer.ipynb`; repositório da entrega | RN.1, RN.5, RD.1, RD.4, X.2, X.6 | T22 | 17/11 |
+| T23 | — | `t23-envio` | Execução final, cópia para o `machine-learning-ra3` e envio da URL | Geral | `notebook/ra3-deezer.ipynb`; `machine-learning-ra3` | RN.1, RN.5, RD.1, RD.4, X.2, X.6 | T22 | 17/11 |
 | T24 | — | `t24-roteiro` | Roteiro da apresentação do RA3 | Geral | `entregas/roteiro-apresentacao-ra3.md` | RAP.1–RAP.2 | T22 | 17/11 |
 
-Entrega no Canvas: **18/11/2026**, só a URL do repositório da entrega ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
+Entrega no Canvas: **18/11/2026**, só a URL do `Jcliz/machine-learning-ra3`, que tem só o que é entregue ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
 
 ## 6. Corpo padrão de cada issue
 
@@ -81,4 +81,4 @@ O da seção 6 do [plano do RA1 e do RA2](plano-de-tarefas.md), com estas trocas
 | Quem fica com o Machine Learning: João Pedro (B) ou Eduardo (C) | Seção 1 | João Pedro (B) |
 | Abordagem do modelo: regressão do `rank` | [ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md) | Regressão do `rank`, com classificação de lançamento recente como plano B |
 
-Respondida pelo João em 05/11/2026: o RA3 vai num notebook próprio, e não no notebook do RA1 e do RA2 ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
+Respondida pelo João em 05/11/2026: o RA3 vai num notebook próprio, e não no notebook do RA1 e do RA2 ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)). Também em 05/11: o RA3 é entregue num repositório novo, `Jcliz/machine-learning-ra3`, só com o que é entregue; o desenvolvimento e as issues ficam aqui.

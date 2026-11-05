@@ -65,7 +65,7 @@ Vêm das decisões e dos critérios do RA1 e do RA2, não do enunciado do RA3.
 - [ ] **RN.2** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando no notebook do RA3 (como o N.3).
 - [ ] **RN.3** Respostas do grupo curtas, com números tirados das saídas (como o N.4).
 - [ ] **RN.4** O notebook do RA1 e do RA2 (`notebook/secoes/`) e o documento do RA1, já entregues, não mudam.
-- [ ] **RN.5** Repositório citado na entrega é o `eduardofabrii/data-analytics-ras`, com `notebook/ra3-deezer.ipynb` igual ao montado aqui ([ADR-0011](../docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)).
+- [ ] **RN.5** Repositório da entrega do RA3 é o `Jcliz/machine-learning-ra3`, só com o que é entregue e com `notebook/ra3-deezer.ipynb` igual ao montado aqui ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), decisão do João de 05/11/2026).
 - [ ] **RN.6** Regras gerais X.1 (português), X.2 (commits sem coautoria de IA), X.6 (mesmos números em todo lugar), X.7 (nenhuma declaração de uso de IA) e X.9 (nenhuma citação da organização interna) de [criterios-de-aceite.md](criterios-de-aceite.md).
 
 RN.2 e RN.3 valem para toda tarefa que escreve no notebook, restritos à seção dela.

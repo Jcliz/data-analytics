@@ -1,4 +1,4 @@
-<!-- Documentação do RA3 (área A, T21). Copiado igual para documentacao/ra3/README.md do repositório da entrega.
+<!-- Documentação do RA3 (área A, T21). Copiado igual como README.md do repositório da entrega do RA3 (Jcliz/machine-learning-ra3).
      Orientações: entregas/orientacoes-entrega-ra3.md, seção 3. Critérios RD.2 e RD.3.
      Apague estes comentários quando a seção estiver pronta. Sem declaração de uso de IA e sem citar área, tarefa, issue, PR ou branch. -->
 

@@ -1,6 +1,6 @@
 ---
 id: adr-0012
-titulo: "ADR-0012 — RA3 num notebook próprio, com documentação e instruções no repositório da entrega"
+titulo: "ADR-0012 — RA3 num notebook próprio, entregue no repositório machine-learning-ra3"
 tipo: decisao
 decisao: "0012"
 status: aceita
@@ -11,16 +11,17 @@ areas: [A, B, C, D]
 fontes: [4, 13]
 relacionados: [adr-0002, adr-0006, adr-0008, adr-0010, adr-0011, adr-0013]
 ---
-# ADR-0012 — RA3 num notebook próprio, com documentação e instruções no repositório da entrega
+# ADR-0012 — RA3 num notebook próprio, entregue no repositório machine-learning-ra3
 
-- **Status:** aceita · **Data:** 05/11/2026 · **Decisor:** João Pedro Cardoso (notebook separado); o resto da organização é proposta da estrutura
+- **Status:** aceita · **Data:** 05/11/2026 · **Decisor:** João Pedro Cardoso (notebook separado e repositório novo da entrega); o resto da organização é proposta da estrutura
 
 ## Contexto
 
 - O RA3 pede três coisas no repositório: implementação (código ou notebook), documentação (técnicas, resultados e interpretações) e instruções de execução. O envio é só uma URL e a apresentação é em 18/11/2026 [Fato, fonte 13].
 - O enunciado deixa escolher: "as análises poderão ser incorporadas ao projeto existente ou organizadas em arquivos específicos para o RA3" [Fato, fonte 13].
 - O template do notebook só tem as partes do RA1 (seções 1 a 7) e do RA2 (seções 8 a 12); não há seção do RA3 nem template de documento do RA3 [Fato, fonte 4].
-- O RA1 e o RA2 já foram entregues, com o notebook seguindo o template à risca ([ADR-0011](0011-entregas-separadas-e-repositorio-da-entrega.md)).
+- O RA1 e o RA2 já foram entregues, com o notebook seguindo o template à risca, pelo repositório `eduardofabrii/data-analytics-ras` ([ADR-0011](0011-entregas-separadas-e-repositorio-da-entrega.md)).
+- Em 05/11/2026 o João decidiu que o RA3 tem um repositório de entrega novo, `machine-learning-ra3`, só com o que é entregue, sem usar o repositório do RA1 e do RA2 para os dados. O desenvolvimento, as issues e as orientações continuam neste repositório.
 
 ## Opções consideradas
 
@@ -40,12 +41,21 @@ relacionados: [adr-0002, adr-0006, adr-0008, adr-0010, adr-0011, adr-0013]
 | `04-machine-learning.py` | 4. Aplicação de Machine Learning | 2.4 |
 | `05-conclusoes.py` | 5. Conclusões do RA3 | 2.5 |
 
-1. **Montagem:** `python scripts/montar_notebook.py --ra3` grava `notebook/ra3-deezer.ipynb`, copiado igual para o mesmo caminho do repositório da entrega.
+1. **Repositório da entrega do RA3:** `https://github.com/Jcliz/machine-learning-ra3`, público, com Eduardo Fabri, João Correa e Rodrigo Alves como colaboradores. Tem **só o que é entregue**:
+
+   | Lá | Sai daqui |
+   |---|---|
+   | `README.md` (documentação e instruções de execução) | `documentacao/ra3/README.md` |
+   | `notebook/ra3-deezer.ipynb` (executado) | `python scripts/montar_notebook.py --ra3` |
+   | `dados/faixas_preparadas.csv` e `dados/dicionario-faixas.md` | `dados/preparados/` (cópia igual, sem mudança) |
+   | `requirements.txt` | `requirements-ra3.txt` |
+
+   Issues, PRs, plano, critérios e as seções do notebook ficam só aqui.
 2. **Enunciados das seções:** como não há template do RA3, o enunciado de cada seção é o texto do requisito transcrito em [enunciados/ra3.md](../../enunciados/ra3.md), sem mudar o sentido, no estilo do template do RA1 e do RA2 (enunciado, código e "Resposta do grupo").
-3. **Dados:** o notebook clona o repositório da entrega no Colab (como a seção 2 do outro) e relê `dados/preparados/faixas_preparadas.csv` com os tipos do dicionário. Não usa Spark nem o retrato bruto.
-4. **Bibliotecas:** escolha do grupo, porque o enunciado não exige ferramenta: pandas para as medidas, matplotlib para os gráficos e scikit-learn para o modelo, todas já presentes no Colab e registradas em `requirements.txt`. Pode-se trocar, desde que se registre em `requirements.txt` e na issue.
-5. **Documentação:** `documentacao/ra3/README.md`, em Markdown, com as técnicas, os resultados e a interpretação de cada seção, citando a célula do notebook, e as instruções de execução. É copiado igual para o repositório da entrega, no mesmo caminho, e o README principal de lá aponta para ele.
-6. **Envio:** a URL do repositório da entrega, com o notebook do RA3 executado. Um PDF dele é opcional.
+3. **Dados:** o notebook clona o `machine-learning-ra3` no Colab e relê o conjunto preparado do RA1 com os tipos do dicionário. Acha o arquivo em `dados/faixas_preparadas.csv` (repositório da entrega) ou em `dados/preparados/faixas_preparadas.csv` (este repositório). Não usa Spark, o retrato bruto nem o repositório do RA1 e do RA2.
+4. **Bibliotecas:** escolha do grupo, porque o enunciado não exige ferramenta: pandas para as medidas, matplotlib para os gráficos e scikit-learn para o modelo, todas já presentes no Colab e registradas em `requirements-ra3.txt` (e em `requirements.txt`, para quem desenvolve aqui). Pode-se trocar, desde que se registre nos dois arquivos e na issue.
+5. **Documentação:** `documentacao/ra3/README.md`, em Markdown, com as técnicas, os resultados e a interpretação de cada seção, citando a célula do notebook, e as instruções de execução. Vira o `README.md` do repositório da entrega, para aparecer na página dele.
+6. **Envio:** a URL do `machine-learning-ra3`, com o notebook do RA3 executado. Um PDF dele é opcional.
 
 ## Consequências
 

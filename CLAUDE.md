@@ -67,13 +67,13 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - O template não tem o RA3: o enunciado de cada seção é o requisito transcrito em [`enunciados/ra3.md`](enunciados/ra3.md). Mantenha esse texto e escreva só as células de código e a "Resposta do grupo".
 - Use `df_analise` (2ª célula de código da seção 1 do notebook do RA3) e não mexa em `df_preparado`. O enunciado não exige ferramenta; o grupo escolheu `matplotlib` e `scikit-learn` ([`base/analise-e-ml.md`](base/analise-e-ml.md)).
 - Separe o que o enunciado exige (critérios R, RD e RAP) do que o grupo recomenda (RC). Não apresente recomendação como regra da rubrica.
-- A documentação (técnicas, resultados, interpretações e instruções de execução) fica em `documentacao/ra3/README.md`, copiada igual para o repositório da entrega. A entrega é a URL desse repositório ([orientações](entregas/orientacoes-entrega-ra3.md)).
+- A documentação (técnicas, resultados, interpretações e instruções de execução) fica em `documentacao/ra3/README.md`. O RA3 é entregue num repositório próprio, `Jcliz/machine-learning-ra3`, só com o que é entregue (README, notebook executado, conjunto preparado e `requirements-ra3.txt` como `requirements.txt`). Issues, plano e desenvolvimento ficam aqui. Não use o `eduardofabrii/data-analytics-ras` no RA3 ([orientações](entregas/orientacoes-entrega-ra3.md)).
 
 ### Entrega
 
 - O RA1 e o RA2 vão **em arquivos separados** ([ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)): no RA1, o PDF do documento (`output/ra1-documentacao.pdf`), sem o notebook; no RA2, o PDF do notebook exportado no Colab a partir do repositório da entrega, `eduardofabrii/data-analytics-ras`.
 - Os arquivos enviados saem de `python scripts/montar_entregas.py`: `output/entrega-ra1.*` (só o documento) e `output/entrega-ra2.*` (documento do RA1 seguido do notebook exportado do Colab).
-- O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` (RA1 e RA2) ou `notebook/ra3-deezer.ipynb` (RA3) do repositório da entrega.
+- O texto entregue cita o repositório da entrega, não este. Mudou o notebook? Monte aqui e copie o `.ipynb` igual para `notebook/ra1-ra2-deezer.ipynb` (RA1 e RA2) do repositório da entrega do RA1 e do RA2, ou `notebook/ra3-deezer.ipynb` do `machine-learning-ra3` (RA3).
 
 ### Antes de abrir o PR
 

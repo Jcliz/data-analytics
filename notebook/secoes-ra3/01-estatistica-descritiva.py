@@ -17,7 +17,7 @@
 # As medidas utilizadas devem ser coerentes com as características dos dados e com o problema investigado. Apresente os resultados e explique o que eles representam no contexto do projeto.
 
 # %%
-#> Esta célula e a seguinte vêm prontas da estrutura (CONTEXT.md, seção 6): as seções 2 a 4 usam RAIZ, PASTA_PREPARADOS e df_analise.
+#> Esta célula e a seguinte vêm prontas da estrutura (CONTEXT.md, seção 6): as seções 2 a 4 usam RAIZ, ARQUIVO_PREPARADO e df_analise.
 # Preparação do ambiente: bibliotecas, pastas do projeto e origem dos dados
 import subprocess
 import sys
@@ -25,8 +25,8 @@ from pathlib import Path
 
 import pandas as pd
 
-URL_REPOSITORIO = "https://github.com/eduardofabrii/data-analytics-ras.git"
-PASTA_CLONE = "data-analytics-ras"
+URL_REPOSITORIO = "https://github.com/Jcliz/machine-learning-ra3.git"
+PASTA_CLONE = "machine-learning-ra3"
 RAMO = "main"  # no Colab, troque pelo ramo do repositório que quiser executar
 NO_COLAB = "google.colab" in sys.modules
 
@@ -37,19 +37,21 @@ if NO_COLAB:
     else:
         subprocess.run(["git", "clone", "-q", "-b", RAMO, URL_REPOSITORIO], check=True)
 
-# A raiz é a pasta que contém o requirements.txt e o conjunto preparado (Colab, raiz ou dentro de notebook/)
+# O conjunto preparado fica em dados/ no repositório da entrega e em dados/preparados/ no de desenvolvimento
 candidatos = [Path(PASTA_CLONE), Path.cwd(), Path.cwd().parent]
-RAIZ = next(
-    (p.resolve() for p in candidatos
-     if (p / "requirements.txt").exists() and (p / "dados" / "preparados" / "faixas_preparadas.csv").exists()),
-    None,
-)
-if RAIZ is None:
+encontrados = [
+    (p.resolve(), arquivo.resolve())
+    for p in candidatos if (p / "requirements.txt").exists()
+    for arquivo in (p / "dados" / "faixas_preparadas.csv", p / "dados" / "preparados" / "faixas_preparadas.csv")
+    if arquivo.exists()
+]
+if not encontrados:
     raise FileNotFoundError(
-        "Raiz do repositório não encontrada (pasta com o requirements.txt e dados/preparados). "
+        "Conjunto preparado não encontrado (dados/faixas_preparadas.csv ao lado do requirements.txt). "
         f"Rode o notebook de dentro do clone (raiz ou notebook/) ou, no Colab, confira o ramo '{RAMO}'."
     )
-PASTA_PREPARADOS = RAIZ / "dados" / "preparados"
+RAIZ, ARQUIVO_PREPARADO = encontrados[0]
+PASTA_PREPARADOS = ARQUIVO_PREPARADO.parent
 
 pd.set_option("display.max_columns", 30)
 pd.set_option("display.width", 120)
@@ -63,7 +65,7 @@ colunas_inteiras_analise = ["id_faixa", "id_chart", "posicao_chart", "id_artista
 colunas_texto_analise = ["titulo", "genero", "tipo_chart", "artista"]
 colunas_booleanas_analise = ["lancamento_posterior_coleta", "duracao_fora_limites_iqr"]
 df_analise = pd.read_csv(
-    PASTA_PREPARADOS / "faixas_preparadas.csv", encoding="utf-8",
+    ARQUIVO_PREPARADO, encoding="utf-8",
     dtype={**{c: "int64" for c in colunas_inteiras_analise},
            **{c: "string" for c in colunas_texto_analise},
            **{c: "bool" for c in colunas_booleanas_analise}},
