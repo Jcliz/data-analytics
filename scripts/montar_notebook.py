@@ -1,7 +1,9 @@
 """Monta o notebook entregue a partir das seções em notebook/secoes/ (ADR-0002).
 
-Uso: python scripts/montar_notebook.py [--saida CAMINHO]
-     Saída padrão: notebook/projeto_data_analytics.ipynb (sem saídas; execute depois no Colab ou com nbconvert).
+Uso: python scripts/montar_notebook.py [--ra3] [--saida CAMINHO]
+     Saída padrão: notebook/projeto_data_analytics.ipynb (RA1 e RA2, de notebook/secoes/).
+     Com --ra3: notebook/ra3-deezer.ipynb, o notebook próprio do RA3, de notebook/secoes-ra3/ (ADR-0012).
+     Sem saídas; execute depois no Colab ou com nbconvert.
 
 Cada seção é um arquivo .py no formato percent: "# %%" abre célula de código e "# %% [markdown]" abre
 célula de texto (cada linha de texto começa com "# "). Os arquivos entram em ordem alfabética.
@@ -17,6 +19,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 SECOES = RAIZ / 'notebook' / 'secoes'
 SAIDA = RAIZ / 'notebook' / 'projeto_data_analytics.ipynb'
+SECOES_RA3 = RAIZ / 'notebook' / 'secoes-ra3'
+SAIDA_RA3 = RAIZ / 'notebook' / 'ra3-deezer.ipynb'
 INICIO = re.compile(r'^# %%(?P<md> \[markdown\])?.*$')
 
 
@@ -72,9 +76,12 @@ def notebook(arquivos):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--saida', type=Path, default=SAIDA)
+    ap.add_argument('--ra3', action='store_true', help='monta o notebook do RA3 (notebook/secoes-ra3/)')
+    ap.add_argument('--saida', type=Path)
     args = ap.parse_args()
-    arquivos = sorted(SECOES.glob('*.py'))
+    secoes, padrao = (SECOES_RA3, SAIDA_RA3) if args.ra3 else (SECOES, SAIDA)
+    args.saida = args.saida or padrao
+    arquivos = sorted(secoes.glob('*.py'))
     nb = notebook(arquivos)
     args.saida.parent.mkdir(parents=True, exist_ok=True)
     args.saida.write_text(json.dumps(nb, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')

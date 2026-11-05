@@ -13,7 +13,7 @@ relacionados: [adr-0010, adr-0012, analise-e-ml]
 ---
 # ADR-0013 — Machine Learning do RA3: regressão do `rank` da faixa
 
-- **Status:** proposta · **Data:** 05/11/2026 · A área responsável pela seção 16 pode trocar a abordagem, desde que registre aqui o motivo. O que o enunciado exige está nos critérios R16; o resto desta proposta (log dos fãs, separação por faixa, semente, linha de base) é escolha do grupo.
+- **Status:** proposta · **Data:** 05/11/2026 · A área responsável pela seção 4 do notebook do RA3 pode trocar a abordagem, desde que registre aqui o motivo. O que o enunciado exige está nos critérios R4; o resto desta proposta (log dos fãs, separação por faixa, semente, linha de base) é escolha do grupo.
 
 ## Contexto
 
@@ -30,9 +30,9 @@ relacionados: [adr-0010, adr-0012, analise-e-ml]
 
 ## Decisão
 
-**(a)**, por ligar o modelo à P3 e por ter um sinal claro nos dados. Proposta de partida para a seção 16:
+**(a)**, por ligar o modelo à P3 e por ter um sinal claro nos dados. Proposta de partida para a seção 4:
 
-- **Alvo:** `rank` na escala original. Nos charts de gênero ele vai de 807 a 999.724, com média 441.632 e mediana 439.398, quase sem assimetria (0,17), então não precisa de transformação [Fato, mesmo cálculo de 05/11/2026; a seção 13 mostra os números no notebook].
+- **Alvo:** `rank` na escala original. Nos charts de gênero ele vai de 807 a 999.724, com média 441.632 e mediana 439.398, quase sem assimetria (0,17), então não precisa de transformação [Fato, mesmo cálculo de 05/11/2026; a seção 1 mostra os números no notebook].
 - **Características:** `numero_fas` em escala logarítmica (`log1p`), porque é muito assimétrico (assimetria 3,82; mediana de 64.586 fãs e máximo de 24,1 milhões), `duracao_s`, idade da faixa em dias (`data_coleta − data_lancamento`) e o gênero do chart em variáveis indicadoras. **Não entram** `posicao_chart` (é consequência do ranking do chart, não uma característica da faixa) nem identificadores.
 - **Recorte:** só `tipo_chart == "genero"`.
 - **Separação:** 80% treino e 20% teste, agrupando por `id_faixa` (a mesma faixa não fica dos dois lados), com semente fixa `SEMENTE_ML`.
@@ -43,7 +43,7 @@ relacionados: [adr-0010, adr-0012, analise-e-ml]
 
 ## Consequências
 
-- O resultado conversa com a P3 e com as conclusões (seção 17): mostra quanto da popularidade os fãs do artista explicam e o que fica de fora.
+- O resultado conversa com a P3 e com as conclusões (seção 5): mostra quanto da popularidade os fãs do artista explicam e o que fica de fora.
 - O enunciado diz que o foco está na adequação das técnicas e na interpretação dos resultados, e não na complexidade das implementações [Fato, fonte 13]. Um R² baixo, portanto, pede uma interpretação honesta do que o modelo não explica, e não um modelo mais complexo [Inferência].
 - `scikit-learn` entra em `requirements.txt` ([ADR-0012](0012-ra3-no-notebook-e-entrega-por-url.md)).
 

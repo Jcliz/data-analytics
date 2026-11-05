@@ -1,6 +1,6 @@
 # data-analytics
 
-Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e RA3 (análise estatística, visualização e Machine Learning), em andamento, nas seções 13 a 17 do mesmo notebook e sobre os mesmos dados. Plano do RA3: [entregas/plano-de-tarefas-ra3.md](entregas/plano-de-tarefas-ra3.md).
+Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e RA3 (análise estatística, visualização e Machine Learning), em andamento, num notebook próprio (`notebook/secoes-ra3/`, montado com `python scripts/montar_notebook.py --ra3`) sobre o conjunto preparado do RA1. Plano do RA3: [entregas/plano-de-tarefas-ra3.md](entregas/plano-de-tarefas-ra3.md).
 
 A fonte de dados é a **API pública da Deezer**, a mesma usada pelo app [rdsalvesPUC/dataaudio](https://github.com/rdsalvesPUC/dataaudio). O grupo coleta as faixas dos charts, guarda um retrato bruto no repositório, limpa e prepara os dados (RA1) e depois simula eventos de reprodução para processar em streaming (RA2).
 
@@ -43,7 +43,8 @@ git config core.hooksPath .githooks
 ├── CLAUDE.md                  carrega o AGENTS.md e o CONTEXT.md no Claude Code; regra de commit e passo a passo
 │
 ├── notebook/
-│   ├── secoes/                uma seção do notebook por arquivo (formato percent), cada uma de uma área
+│   ├── secoes/                uma seção do notebook do RA1 e do RA2 por arquivo (formato percent), cada uma de uma área
+│   ├── secoes-ra3/            seções do notebook do RA3 (gera notebook/ra3-deezer.ipynb)
 │   └── projeto_data_analytics.ipynb   notebook entregue, GERADO por scripts/montar_notebook.py
 ├── documentacao/ra1/          documento do RA1 em Markdown, um arquivo por seção do template
 ├── documentacao/ra3/          documentação do RA3 (técnicas, resultados, instruções de execução), copiada para o repositório da entrega

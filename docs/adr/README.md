@@ -25,7 +25,7 @@ relacionados: [adr-0001, adr-0002, adr-0003, adr-0004, adr-0005, adr-0006, adr-0
 | [0009](0009-entrega-unica-em-pdf.md) | Entrega única: um PDF com o documento do RA1 e o notebook | substituída por 0011 | RA1, RA2 |
 | [0010](0010-problema-e-perguntas.md) | Problema e perguntas analíticas: perfil das faixas populares por gênero (P1 a P4) | proposta | RA1, RA2 |
 | [0011](0011-entregas-separadas-e-repositorio-da-entrega.md) | Documento do RA1 sem o notebook; PDF do notebook exportado no Colab do repositório da entrega | aceita | RA1, RA2 |
-| [0012](0012-ra3-no-notebook-e-entrega-por-url.md) | RA3 nas seções 13 a 17 do mesmo notebook; documentação e instruções em `documentacao/ra3/`; envio pela URL do repositório da entrega | proposta | RA3 |
+| [0012](0012-ra3-no-notebook-e-entrega-por-url.md) | RA3 num notebook próprio, uma seção por requisito; documentação e instruções em `documentacao/ra3/`; envio pela URL do repositório da entrega | aceita | RA3 |
 | [0013](0013-ra3-regressao-do-rank.md) | Machine Learning do RA3: regressão do `rank` a partir de fãs, duração, idade e gênero | proposta | RA3 |
 
 ---

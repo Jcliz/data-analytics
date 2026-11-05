@@ -35,18 +35,27 @@ def pendencias_texto(texto):
     return [m.group(0) for m in CAMPO.finditer(texto) if not INTERVALO.match(m.group(0))]
 
 
+# Seções sem célula de código por natureza (texto do template ou respostas só em texto).
+SEM_CODIGO = {'00a-identificacao.py', '01-contexto-e-objetivo.py', '07-consideracoes-ra1.py',
+              '08-objetivo-streaming.py', '12-consideracoes-ra2.py',
+              '00-identificacao.py', '05-conclusoes.py'}  # as duas últimas são do notebook do RA3
+
+
+def arquivos_secoes():
+    """Seções dos dois notebooks: RA1 e RA2 (notebook/secoes/) e RA3 (notebook/secoes-ra3/, ADR-0012)."""
+    return [a for pasta in ('secoes', 'secoes-ra3') for a in sorted((RAIZ / 'notebook' / pasta).glob('*.py'))]
+
+
 def secoes():
     achados = {}
-    for arquivo in sorted((RAIZ / 'notebook' / 'secoes').glob('*.py')):
+    for arquivo in arquivos_secoes():
         texto = '\n'.join(t for tipo, t in montar_notebook.celulas(arquivo) if tipo == 'markdown')
         campos = [c for c in pendencias_texto(texto) if 'Preencha' in c or c.startswith('[Registre')
                   or c.startswith('[Indique') or c.startswith('[Explique') or c.startswith('[Informe')]
         codigo = [t for tipo, t in montar_notebook.celulas(arquivo) if tipo == 'code']
         if campos:
             achados[arquivo.relative_to(RAIZ)] = f'{len(campos)} resposta(s) em branco'
-        elif not codigo and arquivo.name not in {'00a-identificacao.py', '01-contexto-e-objetivo.py',
-                                                    '07-consideracoes-ra1.py', '08-objetivo-streaming.py',
-                                                    '12-consideracoes-ra2.py', '17-conclusoes-ra3.py'}:
+        elif not codigo and arquivo.name not in SEM_CODIGO:
             achados[arquivo.relative_to(RAIZ)] = 'sem célula de código'
     return achados
 
@@ -77,7 +86,7 @@ def textos_entregues(com_codigo=False):
     """Texto entregue: células do notebook (sem as linhas #>) e documentos do RA1 e do RA3 sem comentários."""
     tipos = {'markdown', 'code'} if com_codigo else {'markdown'}
     textos = [(a, '\n'.join(t for tipo, t in montar_notebook.celulas(a) if tipo in tipos))
-              for a in sorted((RAIZ / 'notebook' / 'secoes').glob('*.py'))]
+              for a in arquivos_secoes()]
     textos += [(a, re.sub(r'<!--.*?-->', '', a.read_text(encoding='utf-8'), flags=re.S))
                for a in documentos()]
     return textos
@@ -104,24 +113,29 @@ def mencoes_ia():
 
 
 def notebook():
-    caminho = RAIZ / 'notebook' / 'projeto_data_analytics.ipynb'
+    return (notebook_gerado(montar_notebook.SAIDA, montar_notebook.SECOES, '')
+            + notebook_gerado(montar_notebook.SAIDA_RA3, montar_notebook.SECOES_RA3, ' --ra3'))
+
+
+def notebook_gerado(caminho, pasta, opcao):
+    nome = caminho.relative_to(RAIZ)
     if not caminho.exists():
-        return ['notebook não gerado: rode python scripts/montar_notebook.py']
+        return [f'{nome} não gerado: rode python scripts/montar_notebook.py{opcao}']
     atual = json.loads(caminho.read_text(encoding='utf-8'))
-    esperado = montar_notebook.notebook(sorted((RAIZ / 'notebook' / 'secoes').glob('*.py')))
+    esperado = montar_notebook.notebook(sorted(pasta.glob('*.py')))
     fonte = lambda nb: [(c['cell_type'], ''.join(c['source']).strip()) for c in nb['cells']]
     problemas = []
     if fonte(atual) != fonte(esperado):
-        problemas.append('notebook desatualizado em relação a notebook/secoes/: monte de novo e execute')
+        problemas.append(f'{nome} desatualizado em relação a {pasta.relative_to(RAIZ)}/: monte de novo e execute')
     codigo = [c for c in atual['cells'] if c['cell_type'] == 'code']
     contadores = [c.get('execution_count') for c in codigo]
     if any(n is None for n in contadores):
-        problemas.append(f'{contadores.count(None)} de {len(codigo)} célula(s) de código sem execução')
+        problemas.append(f'{nome}: {contadores.count(None)} de {len(codigo)} célula(s) de código sem execução')
     elif contadores != sorted(contadores):
-        problemas.append('células executadas fora de ordem: reinicie e execute tudo')
+        problemas.append(f'{nome}: células executadas fora de ordem: reinicie e execute tudo')
     erros = sum(1 for c in codigo for o in c.get('outputs', []) if o.get('output_type') == 'error')
     if erros:
-        problemas.append(f'{erros} célula(s) com erro na saída')
+        problemas.append(f'{nome}: {erros} célula(s) com erro na saída')
     return problemas
 
 

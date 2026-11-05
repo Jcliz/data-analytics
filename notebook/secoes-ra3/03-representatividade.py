@@ -1,12 +1,12 @@
-#> Seção do notebook: RA3 — 15. Amostragem e representatividade
-#> Área responsável: B · Tarefa: T18 (entregas/plano-de-tarefas-ra3.md) · Critérios R15.1–R15.4
+#> Notebook do RA3 — 3. Amostragem e representatividade (requisito 3 do enunciado)
+#> Área responsável: B · Tarefa: T18 (entregas/plano-de-tarefas-ra3.md) · Critérios R3.1–R3.4
 #> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
 #> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
-#> O template não tem o RA3: o enunciado desta seção é o requisito 2.3 de enunciados/ra3.md (ADR-0012). Não mude o sentido.
+#> Não há template do RA3: o enunciado desta seção é o requisito 2.3 de enunciados/ra3.md (ADR-0012). Não mude o sentido.
 #> Leia antes: base/analise-e-ml.md, seção 5; documento do RA1, seções 02 e 05. As contagens de cobertura saem de df_analise.
 
 # %% [markdown]
-# ## 15. Amostragem e representatividade
+# ## 3. Amostragem e representatividade
 #
 # Apresente uma breve análise sobre a representatividade dos dados utilizados, abordando:
 #

@@ -6,33 +6,33 @@
 
 **Projeto:** Perfil das faixas populares nos charts da Deezer por gênero  
 **Equipe:** Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso  
-**Notebook:** `notebook/ra1-ra2-deezer.ipynb`, seções 13 a 17
+**Notebook:** `notebook/ra3-deezer.ipynb`
 
 [Preencha aqui: duas ou três frases sobre o que o RA3 faz com o conjunto preparado do RA1.]
 
-## 1. Análise estatística descritiva (notebook §13)
+## 1. Análise estatística descritiva (notebook §1)
 
 <!-- Técnicas (medidas de tendência central, dispersão e distribuição) e por que cada uma; resultados por pergunta P1 a P4, com números e a célula. -->
 
 [Preencha aqui.]
 
-## 2. Visualizações (notebook §14)
+## 2. Visualizações (notebook §2)
 
 <!-- Uma linha por gráfico: o que mostra, por que esse tipo, o padrão observado com número. -->
 
 [Preencha aqui.]
 
-## 3. Amostragem e representatividade (notebook §15)
+## 3. Amostragem e representatividade (notebook §3)
 
 [Preencha aqui.]
 
-## 4. Machine Learning (notebook §16)
+## 4. Machine Learning (notebook §4)
 
 <!-- Problema preditivo, alvo, características, separação, modelo, métrica, linha de base e interpretação. -->
 
 [Preencha aqui.]
 
-## 5. Conclusões (notebook §17)
+## 5. Conclusões (notebook §5)
 
 [Preencha aqui.]
 

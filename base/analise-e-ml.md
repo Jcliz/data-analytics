@@ -17,7 +17,7 @@ relacionados: [adr-0010, adr-0012, adr-0013, material-de-aula]
 - 2.581 faixas distintas no arquivo e 2.578 nos charts de gênero [Fato]: a mesma faixa pode aparecer em mais de um gênero. Contar ocorrências e contar faixas dá números diferentes; diga qual é.
 - Releitura com tipos: as oito colunas inteiras como `int64`, as datas com `parse_dates` (dicionário, "Leitura e limites de uso").
 
-## 2. Medidas coerentes com cada variável (seção 13)
+## 2. Medidas coerentes com cada variável (seção 1 do notebook do RA3)
 
 | Variável | Perguntas | Forma observada | Tendência central | Dispersão | Distribuição |
 |---|---|---|---|---|---|
@@ -29,7 +29,7 @@ relacionados: [adr-0010, adr-0012, adr-0013, material-de-aula]
 
 Regra prática: com assimetria forte ou extremos, a mediana e o IQR representam melhor; a média entra para comparar, nunca sozinha. Diga no texto por que escolheu cada medida (o enunciado pede medidas "coerentes com as características dos dados").
 
-## 3. Visualizações (seção 14)
+## 3. Visualizações (seção 2)
 
 O enunciado pede pelo menos três, de características diferentes, com identificação clara das variáveis e dos resultados e uma breve interpretação [Fato, fonte 13]. Título, eixos com nome e unidade e legenda quando houver grupos são a forma que o grupo usa para cumprir a "identificação clara". Sugestões, uma por pergunta:
 
@@ -42,7 +42,7 @@ O enunciado pede pelo menos três, de características diferentes, com identific
 
 Com 27 gêneros, prefira barras horizontais e ordenadas; evite pizza e cores demais. O grupo usa `matplotlib` (pandas `.plot` também serve); o enunciado aceita qualquer ferramenta. Cada gráfico numa célula própria com um comentário-título (`# Duração por gênero (boxplot)`), que é como a documentação o cita.
 
-## 4. Machine Learning (seção 16)
+## 4. Machine Learning (seção 4)
 
 Proposta em [ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md): regressão do `rank` a partir de fãs (log), duração, idade e gênero. O enunciado exige problema, alvo e características, separação treino e teste, treino com previsões e uma métrica [Fato, fonte 13]; os cuidados abaixo são recomendações do grupo (critério RC.4), não exigência:
 
@@ -53,9 +53,9 @@ Proposta em [ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md): regressão do
 - **Previsões:** mostre uma tabela curta (5 a 10 linhas) com valor real, previsto e erro.
 - **Interpretação:** o que o desempenho significa para a P3 e o que o modelo não captura (o `rank` da Deezer tem fórmula não publicada [Inferência]).
 
-## 5. Representatividade (seção 15)
+## 5. Representatividade (seção 3)
 
-Pontos que os dados já mostram: um retrato de um único dia (16/10/2026), de um único país aparente da coleta, limitado aos 100 primeiros de cada chart (limite da API), e 27 gêneros escolhidos pela própria Deezer (documento do RA1, seções 02 e 05). A população representada é "as faixas no topo dos charts da Deezer naquele dia", e não o catálogo inteiro nem a audiência de outros países. O conjunto inteiro é usado; não há amostragem, a não ser a separação treino e teste da seção 16.
+Pontos que os dados já mostram: um retrato de um único dia (16/10/2026), de um único país aparente da coleta, limitado aos 100 primeiros de cada chart (limite da API), e 27 gêneros escolhidos pela própria Deezer (documento do RA1, seções 02 e 05). A população representada é "as faixas no topo dos charts da Deezer naquele dia", e não o catálogo inteiro nem a audiência de outros países. O conjunto inteiro é usado; não há amostragem, a não ser a separação treino e teste da seção 4.
 
 ---
 

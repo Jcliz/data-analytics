@@ -6,7 +6,7 @@
 
 - **Disciplina:** Data Analytics, Projeto Baseado em Problemas (PjBL), BSI PUCPR, 2026. **Professora:** Marina de Lara.
 - **Equipe** (nomes exatamente assim na capa do documento e na identificação do notebook; no campo "Turma" do notebook vai o curso e o período, como na capa): Eduardo Fabri, João Correa, Rodrigo Alves e João Pedro Cardoso. Áreas e logins: [plano de tarefas](entregas/plano-de-tarefas.md), seção 1.
-- **Entregas cobertas por este repositório:** RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e **RA3 (análise estatística, visualização e Machine Learning)**, em andamento, no mesmo notebook (seções 13 a 17) e com os mesmos dados ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
+- **Entregas cobertas por este repositório:** RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e **RA3 (análise estatística, visualização e Machine Learning)**, em andamento, num notebook próprio (`notebook/ra3-deezer.ipynb`) que parte do conjunto preparado do RA1 ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
 - **Prazo do RA1 e do RA2:** **21/10/2026** (data que aparece nas duas tarefas do Canvas). O RA1 é avaliado na apresentação da equipe em sala; o RA2 tem demonstração oral de 5 minutos.
 - **Prazo do RA3:** **18/11/2026**, envio da URL do repositório da entrega e avaliação somativa (apresentação e demonstração) no mesmo dia.
 - **Enunciados transcritos:** [enunciados/ra1.md](enunciados/ra1.md), [enunciados/ra2.md](enunciados/ra2.md) e [enunciados/ra3.md](enunciados/ra3.md). Os PDFs originais ficam fora do repositório (ver [enunciados/README.md](enunciados/README.md)).
@@ -17,7 +17,7 @@
 |---|---|---|---|
 | RA1 | Documento: template `.docx` preenchido e exportado em PDF (`output/ra1-documentacao.pdf`), com a URL do repositório da entrega na capa, sem o notebook | `documentacao/ra1/` | [ADR-0003](docs/adr/0003-documento-ra1-gerado-do-template.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
 | RA2 | PDF do notebook inteiro executado (identificação, RA1 nas seções 1 a 7, RA2 nas seções 8 a 12), exportado no Colab a partir do repositório da entrega; o `.ipynb` é montado aqui e copiado igual para lá | `notebook/secoes/` | [ADR-0002](docs/adr/0002-notebook-montado-por-secoes.md), [ADR-0005](docs/adr/0005-ra2-cenario-a-simulacao.md), [ADR-0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
-| RA3 | URL do repositório da entrega com o notebook executado (seções 13 a 17), a documentação das técnicas, resultados e interpretações, e as instruções de execução (`documentacao/ra3/README.md`), copiados daqui | `notebook/secoes/13-*` a `17-*`, `documentacao/ra3/` | [ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), [ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md) |
+| RA3 | URL do repositório da entrega com o notebook do RA3 executado (`notebook/ra3-deezer.ipynb`, seções 1 a 5), a documentação das técnicas, resultados e interpretações, e as instruções de execução (`documentacao/ra3/README.md`), copiados daqui | `notebook/secoes-ra3/`, `documentacao/ra3/` | [ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), [ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md) |
 
 Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orientacoes-documento-final.md). Como a entrega do RA3 deve ficar: [entregas/orientacoes-entrega-ra3.md](entregas/orientacoes-entrega-ra3.md).
 
@@ -41,7 +41,7 @@ Como o PDF deve ficar: [entregas/orientacoes-documento-final.md](entregas/orient
 
 O gênero do chart de origem é o grupo de todas as perguntas: a deduplicação de faixas precisa preservá-lo.
 
-No RA3, as perguntas recebem as respostas: medidas descritivas na seção 13, visualizações na 14 e conclusões na 17. O Machine Learning (seção 16) estima o `rank` a partir dos fãs do artista, da duração, da idade da faixa e do gênero, ligado à P3 ([ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md), proposta).
+No RA3, as perguntas recebem as respostas no notebook do RA3: medidas descritivas na seção 1, visualizações na 2 e conclusões na 5. O Machine Learning (seção 4) estima o `rank` a partir dos fãs do artista, da duração, da idade da faixa e do gênero, ligado à P3 ([ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md), proposta).
 
 ## 4. Glossário mínimo
 
@@ -56,7 +56,7 @@ No RA3, as perguntas recebem as respostas: medidas descritivas na seção 13, vi
 | **Q1…Qn** | IDs das verificações de qualidade (documento do RA1, seção 03). |
 | **D1…Dn** | IDs das decisões de limpeza (documento do RA1, seção 04). Não confundir com as decisões do projeto, que são ADRs. |
 | **P1…Pn** | IDs das perguntas analíticas (documento do RA1, seção 01). |
-| **R13…R17, RN, RD, RAP, RK** | IDs dos critérios de aceite do RA3 ([criterios-de-aceite-ra3](entregas/criterios-de-aceite-ra3.md)). Não confundir com as seções do notebook, que têm o mesmo número. |
+| **R1…R5, RD, RAP, RN, RC, RK** | IDs dos critérios de aceite do RA3 ([criterios-de-aceite-ra3](entregas/criterios-de-aceite-ra3.md)). R1 a R5 seguem os requisitos 1 a 5 do enunciado e as seções 1 a 5 do notebook do RA3. |
 | **Linha de base** | No RA3, o modelo mais simples possível (ex.: prever sempre a mediana do treino), usado para saber se o modelo de Machine Learning ajuda. |
 
 ## 5. Decisões vigentes
@@ -74,7 +74,7 @@ No RA3, as perguntas recebem as respostas: medidas descritivas na seção 13, vi
 | 0009 | Entrega única: um PDF com o documento do RA1 e o notebook, enviado no RA1 e no RA2 | substituída por 0011 | [0009](docs/adr/0009-entrega-unica-em-pdf.md) |
 | 0010 | Problema e perguntas: perfil das faixas populares nos charts da Deezer por gênero (P1 a P4) | proposta | [0010](docs/adr/0010-problema-e-perguntas.md) |
 | 0011 | RA1 só com o documento; PDF do notebook exportado no Colab do repositório da entrega (eduardofabrii/data-analytics-ras) | aceita | [0011](docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md) |
-| 0012 | RA3 nas seções 13 a 17 do mesmo notebook; documentação e instruções em `documentacao/ra3/README.md`; envio pela URL do repositório da entrega | proposta | [0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md) |
+| 0012 | RA3 num notebook próprio, uma seção por requisito; documentação e instruções em `documentacao/ra3/README.md`; envio pela URL do repositório da entrega | aceita | [0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md) |
 | 0013 | Machine Learning do RA3: regressão do `rank` a partir de fãs, duração, idade e gênero | proposta | [0013](docs/adr/0013-ra3-regressao-do-rank.md) |
 
 "Proposta" quer dizer que o texto já orienta o trabalho, mas o grupo ainda pode mudar. Mudou? Atualize o ADR para "aceita" ou "substituída".
@@ -99,14 +99,20 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | `eventos` | `DataFrame` em streaming | 09 | 09, 10 | `spark.readStream` sobre `PASTA_ENTRADA`. |
 | `TABELA_JANELAS` | `str` | 10 | 11 | Nome da tabela em memória da consulta com a janela (`queryName`). |
 | `consulta` | `StreamingQuery` | 10 | 11 | Consulta em streaming com a janela. Encerrada na última célula da seção 11. |
-| `df_analise` | `pandas.DataFrame` | 13 (1ª célula de código) | 13, 14, 15, 16 | Conjunto preparado relido de `faixas_preparadas.csv` com os tipos do dicionário (2.800 linhas × 16 colunas). As seções do RA3 não alteram `df_preparado`. |
-| `SEMENTE_ML` | `int` | 16 (1ª célula de código) | 16 | Semente da separação treino e teste e do modelo, fixa para a execução final repetir os números (recomendação RC.4, não exigência do enunciado). |
+
+**Notebook do RA3** (`notebook/secoes-ra3/`, independente do anterior):
+
+| Nome | Tipo | Criado em | Usado em | Conteúdo |
+|---|---|---|---|---|
+| `RAIZ`, `PASTA_PREPARADOS` | `Path` | 1 (1ª célula de código, ambiente) | 1 a 4 | Raiz do repositório (clonado no Colab) e `dados/preparados`. |
+| `df_analise` | `pandas.DataFrame` | 1 (2ª célula de código) | 1, 2, 3, 4 | Conjunto preparado relido de `faixas_preparadas.csv` com os tipos do dicionário (2.800 linhas × 16 colunas). O notebook do RA3 não usa `df_preparado`. |
+| `SEMENTE_ML` | `int` | 4 (1ª célula de código) | 4 | Semente da separação treino e teste e do modelo, fixa para a execução final repetir os números (recomendação RC.4, não exigência do enunciado). |
 
 ## 7. Regras para quem escreve (pessoas e IAs)
 
 1. **Precedência:** enunciados ([enunciados/](enunciados/)) > decisões ([docs/adr/](docs/adr/README.md)) > base de conhecimento ([base/](base/README.md)) > rascunhos.
 2. **Não contradiga uma decisão.** Se algo pedir mudança, registre a dúvida na issue ou com o grupo em vez de mudar o texto por conta própria.
-3. **O RA1 não tem análise.** Agregações analíticas, indicadores, visualizações e conclusões ficam para os próximos RAs (enunciado do RA1, seção 6). No RA1 entram só exploração, qualidade, limpeza e preparação. **No RA3 a análise entra**, mas só nas seções 13 a 17; as seções 1 a 12 e o documento do RA1 não mudam.
+3. **O RA1 não tem análise.** Agregações analíticas, indicadores, visualizações e conclusões ficam para os próximos RAs (enunciado do RA1, seção 6). No RA1 entram só exploração, qualidade, limpeza e preparação. **No RA3 a análise entra**, mas só no notebook do RA3; o notebook do RA1 e do RA2 e o documento do RA1 não mudam.
 4. **Toda afirmação sobre os dados tem evidência:** a célula do notebook ou o arquivo que a mostra, com a contagem. "Muitos valores ausentes" não vale; "312 de 1.950 faixas (16,0%) com `bpm` = 0, notebook §3, célula "Bpm igual a zero"" vale. A célula é citada pelo comentário-título que abre o código dela.
 5. **Separe [Fato] de [Inferência]** quando o texto não for óbvio, e cite a fonte pelo número de [base/fontes.md](base/fontes.md). No documento do RA1 e nas respostas do notebook, não use as marcas entre colchetes (no documento, colchete é campo não preenchido): diga no texto quando algo é estimativa ou suposição.
 6. **Tudo em português do Brasil:** textos, nomes de variáveis novas, colunas do conjunto preparado, commits, issues e PRs. Nomes que vêm da API (`title`, `duration`, `rank`…) mantêm o original no retrato bruto e são renomeados para português no conjunto preparado.
@@ -133,9 +139,9 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | Limpeza, preparação e conjunto resultante (D) | [qualidade-de-dados](base/qualidade-de-dados.md), [material de aula](base/material-de-aula.md) (preparação × transformação) | 0004 |
 | RA2, qualquer seção | [enunciados/ra2.md](enunciados/ra2.md), [streaming-e-janelas](base/streaming-e-janelas.md) | 0005, 0006 |
 | Consolidação e PDF | [orientacoes-documento-final](entregas/orientacoes-documento-final.md), [criterios-de-aceite](entregas/criterios-de-aceite.md) | 0002, 0003, 0011 |
-| RA3 — Estatística descritiva (C, seção 13) | [enunciados/ra3.md](enunciados/ra3.md) §2.1, [analise-e-ml](base/analise-e-ml.md) §1–2, [dicionário](dados/preparados/dicionario-faixas.md) | 0010, 0012 |
-| RA3 — Visualizações (D, seção 14) | [enunciados/ra3.md](enunciados/ra3.md) §2.2, [analise-e-ml](base/analise-e-ml.md) §3 | 0010, 0012 |
-| RA3 — Representatividade (B, seção 15) | [enunciados/ra3.md](enunciados/ra3.md) §2.3, [analise-e-ml](base/analise-e-ml.md) §5, [api-deezer](base/api-deezer.md), documento do RA1 seções 02 e 05 | 0001, 0004, 0012 |
-| RA3 — Machine Learning (B, seção 16) | [enunciados/ra3.md](enunciados/ra3.md) §2.4, [analise-e-ml](base/analise-e-ml.md) §4 | 0012, 0013 |
-| RA3 — Conclusões e documentação (A, seção 17 e `documentacao/ra3/`) | [enunciados/ra3.md](enunciados/ra3.md) §2.5 e §3, [orientacoes-entrega-ra3](entregas/orientacoes-entrega-ra3.md) | 0010, 0012, 0013 |
+| RA3 — Estatística descritiva (C, seção 1) | [enunciados/ra3.md](enunciados/ra3.md) §2.1, [analise-e-ml](base/analise-e-ml.md) §1–2, [dicionário](dados/preparados/dicionario-faixas.md) | 0010, 0012 |
+| RA3 — Visualizações (D, seção 2) | [enunciados/ra3.md](enunciados/ra3.md) §2.2, [analise-e-ml](base/analise-e-ml.md) §3 | 0010, 0012 |
+| RA3 — Representatividade (B, seção 3) | [enunciados/ra3.md](enunciados/ra3.md) §2.3, [analise-e-ml](base/analise-e-ml.md) §5, [api-deezer](base/api-deezer.md), documento do RA1 seções 02 e 05 | 0001, 0004, 0012 |
+| RA3 — Machine Learning (B, seção 4) | [enunciados/ra3.md](enunciados/ra3.md) §2.4, [analise-e-ml](base/analise-e-ml.md) §4 | 0012, 0013 |
+| RA3 — Conclusões e documentação (A, seção 5 e `documentacao/ra3/`) | [enunciados/ra3.md](enunciados/ra3.md) §2.5 e §3, [orientacoes-entrega-ra3](entregas/orientacoes-entrega-ra3.md) | 0010, 0012, 0013 |
 | RA3 — Revisão, envio e apresentação (geral) | [criterios-de-aceite-ra3](entregas/criterios-de-aceite-ra3.md), [orientacoes-entrega-ra3](entregas/orientacoes-entrega-ra3.md) | 0011, 0012 |
