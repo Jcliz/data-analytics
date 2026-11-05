@@ -6,5 +6,6 @@ Transcrição fiel das tarefas do Canvas, lidas em 15/10/2026. São a **fonte de
 |---|---|---|
 | [ra1.md](ra1.md) | RA1 — Data Ingestion and Data Quality (PjBL – RA1: Ingestão e Preparação dos Dados) | 21/10/2026 |
 | [ra2.md](ra2.md) | RA2 — Data Stream | 21/10/2026 |
+| [ra3.md](ra3.md) | RA3 — Analysis, Visualization and Machine Learning (lido em 05/11/2026) | 18/11/2026 |
 
-Os PDFs originais (`RA1.pdf`, `RA2.pdf`) e o material de aula ficam no contexto do projeto, fora do repositório. Os templates do professor estão em [`modelos/`](../modelos/), porque os scripts de montagem precisam deles.
+Os PDFs originais (`RA1.pdf`, `RA2.pdf`, `RA3.pdf`) e o material de aula ficam no contexto do projeto, fora do repositório. Os templates do professor estão em [`modelos/`](../modelos/), porque os scripts de montagem precisam deles.

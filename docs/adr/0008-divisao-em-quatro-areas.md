@@ -33,6 +33,8 @@ Quatro áreas seguindo o fluxo do enunciado ("Fontes → Ingestão → Compreens
 
 Tarefas gerais (revisão cruzada, execução final, PDF do notebook e envio) ficam sem dono fixo: quem puxar se atribui. O documento do RA1 em `.docx` é da área A, por decisão do João (15/10/2026), que também definiu as pessoas: A João Correa, B João Pedro Cardoso, C Eduardo Fabri, D Rodrigo Alves. A atribuição de pessoas a áreas está no [plano de tarefas](../../entregas/plano-de-tarefas.md).
 
+No RA3, as mesmas quatro áreas continuam, uma por requisito do enunciado: A conclusões e documentação; B representatividade e Machine Learning; C estatística descritiva; D visualizações. Detalhe e status em [plano-de-tarefas-ra3](../../entregas/plano-de-tarefas-ra3.md).
+
 ## Consequências
 
 - A qualidade e a preparação (35%) ficam com duas áreas (C diagnostica, D trata), que se alinham pelos IDs Q e D.

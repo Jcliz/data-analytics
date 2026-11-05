@@ -3,8 +3,8 @@ id: base-indice
 titulo: "Base de conhecimento"
 tipo: indice
 status: vigente
-atualizado: 2026-10-15
-relacionados: [api-deezer, qualidade-de-dados, streaming-e-janelas, material-de-aula, sugestoes-de-perguntas, fontes]
+atualizado: 2026-11-05
+relacionados: [analise-e-ml, api-deezer, qualidade-de-dados, streaming-e-janelas, material-de-aula, sugestoes-de-perguntas, fontes]
 ---
 # Base de conhecimento
 
@@ -15,6 +15,7 @@ relacionados: [api-deezer, qualidade-de-dados, streaming-e-janelas, material-de-
 | [api-deezer.md](api-deezer.md) | Endpoints, paginação, limites, objetos e armadilhas da API da Deezer; desenho sugerido da coleta | A, B, C, D |
 | [qualidade-de-dados.md](qualidade-de-dados.md) | Problemas de qualidade a investigar nesta base, com a regra de verificação e o tratamento possível | C, D |
 | [streaming-e-janelas.md](streaming-e-janelas.md) | Structured Streaming, janelas tumbling e sliding, modos de saída e o padrão de simulação das aulas | A, B, C, D (RA2) |
+| [analise-e-ml.md](analise-e-ml.md) | Medidas descritivas coerentes com cada variável, visualizações por pergunta, modelo de Machine Learning e representatividade | A, B, C, D (RA3) |
 | [material-de-aula.md](material-de-aula.md) | Resumo dos slides e notebooks da disciplina e onde cada um ajuda | todas |
 | [sugestoes-de-perguntas.md](sugestoes-de-perguntas.md) | Ideias de problema e perguntas analíticas, para a área A escolher | A |
 | [fontes.md](fontes.md) | Lista única de fontes, numeradas | todas |

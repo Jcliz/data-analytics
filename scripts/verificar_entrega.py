@@ -1,7 +1,8 @@
 """Lista o que ainda falta para a entrega: campos em branco, notebook desatualizado ou não executado e commits fora da regra.
 
 Uso: python scripts/verificar_entrega.py [--intervalo origin/main..HEAD]
-Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, X.9, K.7 (entregas/criterios-de-aceite.md).
+Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, X.9, K.7 (entregas/criterios-de-aceite.md); RN.2, RN.3, RK.5
+(entregas/criterios-de-aceite-ra3.md).
 """
 import argparse
 import json
@@ -25,7 +26,7 @@ MARCA = re.compile(r'^\[(Fato|Infer[eê]ncia)\b', re.IGNORECASE)
 MENCAO_IA = re.compile(r'intelig[eê]ncia artificial|\b(uso de IA|assistentes? de IA|ChatGPT|Claude|Copilot|Gemini|'
                        r'OpenAI|Anthropic|LLM)\b', re.IGNORECASE)
 # Organização interna do repositório no texto entregue (critério X.9): área, tarefa, issue, PR, branch ou kanban.
-REFERENCIA_INTERNA = re.compile(r'\b[ÁA]reas? [A-D]\b|\bT(?:0\d|1[0-4])\b|\b(?:issues?|PRs?|pull requests?)\s*#?\d+'
+REFERENCIA_INTERNA = re.compile(r'\b[ÁA]reas? [A-D]\b|\bT(?:0\d|1\d|2[0-4])\b|\b(?:issues?|PRs?|pull requests?)\s*#?\d+'
                                 r'|(?<![\w&/])#\d+\b|\bt\d\d-[a-z]+\b|\bkanban\b|\bpend[eê]ncia[- ]cruzada\b',
                                 re.IGNORECASE)
 
@@ -45,14 +46,19 @@ def secoes():
             achados[arquivo.relative_to(RAIZ)] = f'{len(campos)} resposta(s) em branco'
         elif not codigo and arquivo.name not in {'00a-identificacao.py', '01-contexto-e-objetivo.py',
                                                     '07-consideracoes-ra1.py', '08-objetivo-streaming.py',
-                                                    '12-consideracoes-ra2.py'}:
+                                                    '12-consideracoes-ra2.py', '17-conclusoes-ra3.py'}:
             achados[arquivo.relative_to(RAIZ)] = 'sem célula de código'
     return achados
 
 
+def documentos():
+    """Arquivos Markdown entregues: documento do RA1 e documentação do RA3 (ADR-0012)."""
+    return [a for pasta in ('ra1', 'ra3') for a in sorted((RAIZ / 'documentacao' / pasta).glob('*.md'))]
+
+
 def documento():
     achados = {}
-    for arquivo in sorted((RAIZ / 'documentacao' / 'ra1').glob('*.md')):
+    for arquivo in documentos():
         texto = re.sub(r'<!--.*?-->', '', arquivo.read_text(encoding='utf-8'), flags=re.S)
         campos = pendencias_texto(texto)
         marcas = [c for c in campos if MARCA.match(c)]
@@ -68,12 +74,12 @@ def documento():
 
 
 def textos_entregues(com_codigo=False):
-    """Texto que vai para o PDF: células do notebook (sem as linhas #>) e documento do RA1 sem comentários."""
+    """Texto entregue: células do notebook (sem as linhas #>) e documentos do RA1 e do RA3 sem comentários."""
     tipos = {'markdown', 'code'} if com_codigo else {'markdown'}
     textos = [(a, '\n'.join(t for tipo, t in montar_notebook.celulas(a) if tipo in tipos))
               for a in sorted((RAIZ / 'notebook' / 'secoes').glob('*.py'))]
     textos += [(a, re.sub(r'<!--.*?-->', '', a.read_text(encoding='utf-8'), flags=re.S))
-               for a in sorted((RAIZ / 'documentacao' / 'ra1').glob('*.md'))]
+               for a in documentos()]
     return textos
 
 
@@ -130,7 +136,7 @@ def main():
     ap.add_argument('--intervalo', default='origin/main..HEAD')
     args = ap.parse_args()
     total = 0
-    for titulo, itens in [('Notebook (seções)', secoes()), ('Documento do RA1', documento()),
+    for titulo, itens in [('Notebook (seções)', secoes()), ('Documentos do RA1 e do RA3', documento()),
                           ('Sem declaração de uso de IA', mencoes_ia()),
                           ('Sem citação da organização interna', referencias_internas())]:
         print(f'\n## {titulo}')

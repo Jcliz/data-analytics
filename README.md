@@ -1,6 +1,6 @@
 # data-analytics
 
-Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais). O RA3 (análise e visualização) virá depois, sobre os mesmos dados.
+Trabalhos da disciplina **Data Analytics** (Projeto Baseado em Problemas, BSI PUCPR, 2026): RA1 (ingestão e preparação dos dados) e RA2 (processamento em streaming com janelas temporais), já entregues, e RA3 (análise estatística, visualização e Machine Learning), em andamento, nas seções 13 a 17 do mesmo notebook e sobre os mesmos dados. Plano do RA3: [entregas/plano-de-tarefas-ra3.md](entregas/plano-de-tarefas-ra3.md).
 
 A fonte de dados é a **API pública da Deezer**, a mesma usada pelo app [rdsalvesPUC/dataaudio](https://github.com/rdsalvesPUC/dataaudio). O grupo coleta as faixas dos charts, guarda um retrato bruto no repositório, limpa e prepara os dados (RA1) e depois simula eventos de reprodução para processar em streaming (RA2).
 
@@ -46,15 +46,16 @@ git config core.hooksPath .githooks
 │   ├── secoes/                uma seção do notebook por arquivo (formato percent), cada uma de uma área
 │   └── projeto_data_analytics.ipynb   notebook entregue, GERADO por scripts/montar_notebook.py
 ├── documentacao/ra1/          documento do RA1 em Markdown, um arquivo por seção do template
+├── documentacao/ra3/          documentação do RA3 (técnicas, resultados, instruções de execução), copiada para o repositório da entrega
 ├── dados/
 │   ├── brutos/                retratos da API, um por data de coleta (nunca editados à mão)
 │   ├── preparados/            conjunto preparado do RA1 (entrada do RA2)
 │   └── streaming/             pastas temporárias do RA2 (fora do git)
 ├── output/                    arquivos de entrega: documento do RA1 (.docx e PDF) e o PDF do notebook para conferência local
 │
-├── entregas/                  plano de tarefas, critérios de aceite, orientações do PDF e roteiro da apresentação
-├── enunciados/                enunciados do RA1 e do RA2 transcritos
-├── base/                      base de conhecimento: API da Deezer, qualidade, streaming, material de aula, fontes
+├── entregas/                  planos de tarefas, critérios de aceite, orientações da entrega e roteiros da apresentação (RA1/RA2 e RA3)
+├── enunciados/                enunciados do RA1, do RA2 e do RA3 transcritos
+├── base/                      base de conhecimento: API da Deezer, qualidade, streaming, análise e ML, material de aula, fontes
 ├── docs/
 │   ├── adr/                   decisões do projeto, uma por arquivo
 │   └── agents/                configuração das skills de IA (issues, rótulos, documentos de domínio)

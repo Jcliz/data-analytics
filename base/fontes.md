@@ -3,7 +3,7 @@ id: fontes
 titulo: "Fontes"
 tipo: fontes
 status: vigente
-atualizado: 2026-10-15
+atualizado: 2026-11-05
 relacionados: [base-indice]
 ---
 # Fontes
@@ -24,3 +24,6 @@ relacionados: [base-indice]
 | 10 | Material de aula. *Data Ingestion and Data Quality* (slides e notebook). | aula | contexto do projeto |
 | 11 | Material de aula. *From Data Preparation to Data Transformation* (slides) e *Data Transformation* (notebook). | aula | contexto do projeto |
 | 12 | Material de aula. *Fundamentals of Data Analytics* (slides). | aula | contexto do projeto |
+| 13 | PUCPR, Data Analytics. *RA3 — Analysis, Visualization and Machine Learning* (tarefa do Canvas, lida em 05/11/2026). | enunciado | [enunciados/ra3.md](../enunciados/ra3.md) |
+| 14 | scikit-learn developers. *scikit-learn User Guide* (separação de treino e teste, `GroupShuffleSplit`, `DummyRegressor`, métricas de regressão). | documentação técnica | https://scikit-learn.org/stable/user_guide.html |
+| 15 | Matplotlib development team. *Matplotlib documentation*. | documentação técnica | https://matplotlib.org/stable/ |

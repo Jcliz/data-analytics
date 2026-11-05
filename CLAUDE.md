@@ -43,8 +43,8 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 ### Antes de começar
 
 1. Leia `CONTEXT.md` (já carregado acima) e a issue da tarefa.
-2. Atualize a `main` e crie a branch da tarefa com nome curto, `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5. Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
-3. Confira na tabela de responsabilidade ([`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md), seção 2) quais arquivos a sua área pode alterar. Edite só esses.
+2. Atualize a `main` e crie a branch da tarefa com nome curto, `tNN-palavra`: o número da tarefa com dois dígitos e uma palavra que diga o que é, tudo em minúsculas, sem acento e sem barra. Ex.: `t02-coleta`, `t11-docx`. O nome de cada tarefa está na coluna "Branch" do [plano](entregas/plano-de-tarefas.md), seção 5 (RA3: [plano do RA3](entregas/plano-de-tarefas-ra3.md), seção 5). Ajuste fora de tarefa: `ajuste-palavra` (ex.: `ajuste-readme`).
+3. Confira na tabela de responsabilidade ([`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md), seção 2; no RA3, [`entregas/plano-de-tarefas-ra3.md`](entregas/plano-de-tarefas-ra3.md), seção 2) quais arquivos a sua área pode alterar. Edite só esses.
 
 ### Notebook (código e respostas do notebook)
 
@@ -60,6 +60,13 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 - Campos do template (ex.: "Unidade de observação") são linhas `**Campo:** valor`. Tabelas seguem o cabeçalho do template.
 - Toda linha de evidência aponta para o notebook (`notebook §3, célula "Duplicados por id"`) ou para um arquivo do repositório.
 - Gere o `.docx` com `python scripts/gerar_docx_ra1.py` e confira o PDF antes de abrir o PR da consolidação.
+
+### RA3 (seções 13 a 17 e `documentacao/ra3/`)
+
+- O RA1 e o RA2 já foram entregues: **não altere** as seções 1 a 12 nem `documentacao/ra1/`. O RA3 continua o mesmo notebook nas seções 13 a 17 ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
+- O template não tem o RA3: o enunciado de cada seção é o requisito transcrito em [`enunciados/ra3.md`](enunciados/ra3.md). Mantenha esse texto e escreva só as células de código e a "Resposta do grupo".
+- Use `df_analise` (1ª célula de código da seção 13) e não mexa em `df_preparado`. Gráficos com `matplotlib`, modelo com `scikit-learn` e `SEMENTE_ML` ([`base/analise-e-ml.md`](base/analise-e-ml.md)).
+- A documentação (técnicas, resultados, interpretações e instruções de execução) fica em `documentacao/ra3/README.md`, copiada igual para o repositório da entrega. A entrega é a URL desse repositório ([orientações](entregas/orientacoes-entrega-ra3.md)).
 
 ### Entrega
 

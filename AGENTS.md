@@ -5,7 +5,7 @@ Regras para assistentes de IA (Claude Code, Codex, Copilot, Cursor e outros) que
 ## Base de conhecimento (leia antes de qualquer tarefa)
 
 1. Leia [`CONTEXT.md`](CONTEXT.md). Ele resume entregas, fonte de dados, decisões, o contrato entre as seções do notebook e o que ler para cada tarefa (seção 9).
-2. Leia a **issue da tarefa**. Ela traz os critérios de aceite (IDs de [`entregas/criterios-de-aceite.md`](entregas/criterios-de-aceite.md)) e os arquivos que você pode alterar.
+2. Leia a **issue da tarefa**. Ela traz os critérios de aceite (IDs de [`entregas/criterios-de-aceite.md`](entregas/criterios-de-aceite.md) no RA1 e no RA2, e de [`entregas/criterios-de-aceite-ra3.md`](entregas/criterios-de-aceite-ra3.md) no RA3) e os arquivos que você pode alterar.
 3. Abra só os arquivos indicados para a tarefa. Não leia a base inteira.
 4. **Precedência:** enunciados (`enunciados/`) > decisões (`docs/adr/`) > base (`base/`) > rascunhos. Não contradiga uma decisão; se algo pedir mudança, registre a dúvida em vez de mudar o texto.
 
@@ -13,13 +13,14 @@ Regras para assistentes de IA (Claude Code, Codex, Copilot, Cursor e outros) que
 
 5. **Tudo em português do Brasil**: texto, células Markdown, comentários de código, nomes novos de variáveis e colunas, mensagens de commit, títulos de branch, issues e PRs.
 6. **Evidência para toda afirmação sobre os dados**: a seção e a célula do notebook, citada pelo comentário-título dela (ex.: `notebook §3, célula "Duplicados por id"`), ou o arquivo, com a contagem e o denominador. Separe [Fato] de [Inferência] e cite fontes por número de [`base/fontes.md`](base/fontes.md). Nas entregas (documento do RA1 e respostas do notebook), não escreva as marcas entre colchetes: diga no próprio texto quando algo é estimativa ou suposição; as marcas ficam na base de conhecimento.
-7. **O RA1 não tem análise**: nada de agregações analíticas, indicadores, gráficos de resultado ou conclusões sobre as perguntas. Isso é RA2/RA3.
+7. **O RA1 não tem análise**: nada de agregações analíticas, indicadores, gráficos de resultado ou conclusões sobre as perguntas. A análise é do RA3 e fica **só nas seções 13 a 17** do notebook e em `documentacao/ra3/`; as seções 1 a 12 e o documento do RA1 já foram entregues e não mudam.
+7a. **No RA3**, toda medida, gráfico e métrica tem a célula que a produz e o número da saída; escolha a medida pela forma dos dados (mediana onde há assimetria) e diga por quê; no Machine Learning, nada de vazamento (característica derivada do alvo ou identificador), separação de treino e teste com `SEMENTE_ML` e comparação com uma linha de base ([`base/analise-e-ml.md`](base/analise-e-ml.md), [ADR-0013](docs/adr/0013-ra3-regressao-do-rank.md)).
 8. **Respeite o contrato do notebook** (`CONTEXT.md`, seção 6). Não renomeie variáveis compartilhadas nem caminhos de dados.
-9. **Cada área edita só os seus arquivos** (tabela de responsabilidade em [`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md)). Precisa de algo de outra área? Não invente: registre a suposição como uma linha na issue `pendencia-cruzada` da área dona, ou avise quem pediu a tarefa.
+9. **Cada área edita só os seus arquivos** (tabela de responsabilidade em [`entregas/plano-de-tarefas.md`](entregas/plano-de-tarefas.md) e, no RA3, em [`entregas/plano-de-tarefas-ra3.md`](entregas/plano-de-tarefas-ra3.md)). Precisa de algo de outra área? Não invente: registre a suposição como uma linha na issue `pendencia-cruzada` da área dona, ou avise quem pediu a tarefa.
 10. **Não edite** o arquivo gerado `notebook/projeto_data_analytics.ipynb` à mão nem os retratos em `dados/brutos/`. O notebook sai de `python scripts/montar_notebook.py`; o retrato sai da execução da seção 02 com `BAIXAR_DA_API = True`.
 11. **Sem segredos**: a API da Deezer não usa chave. Não grave tokens, senhas nem caminhos pessoais da sua máquina.
-12. **Nenhuma declaração de uso de IA nas entregas.** O documento do RA1, o notebook e os PDFs não têm seção, nota ou frase sobre o uso de assistentes de IA. É decisão do grupo e vale mesmo que um template ou o repositório do aircraft tenham essa seção.
-13. **Nada da organização interna nas entregas.** O texto que vai para a entrega (documento do RA1, células e saídas do notebook, PDFs) não cita área, tarefa (T01…T14), issue, PR, branch nem kanban; a evidência cita a seção, a célula ou o arquivo. Essa organização é do repositório, não do trabalho entregue (critério X.9). Escreva "a preparação mantém o vínculo faixa-chart", e não "a Área D deve manter"; "seção 3", e não "T03" ou "PR #21". As linhas `#>` e os comentários `<!-- -->` podem citar, porque os scripts os descartam.
+12. **Nenhuma declaração de uso de IA nas entregas.** O documento do RA1, a documentação do RA3, o notebook e os PDFs não têm seção, nota ou frase sobre o uso de assistentes de IA. É decisão do grupo e vale mesmo que um template ou o repositório do aircraft tenham essa seção.
+13. **Nada da organização interna nas entregas.** O texto que vai para a entrega (documento do RA1, documentação do RA3, células e saídas do notebook, PDFs) não cita área, tarefa (T01…T24), issue, PR, branch nem kanban; a evidência cita a seção, a célula ou o arquivo. Essa organização é do repositório, não do trabalho entregue (critério X.9). Escreva "a preparação mantém o vínculo faixa-chart", e não "a Área D deve manter"; "seção 3", e não "T03" ou "PR #21". As linhas `#>` e os comentários `<!-- -->` podem citar, porque os scripts os descartam.
 
 ## Commits (regra do grupo, sem exceção)
 
