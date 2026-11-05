@@ -1,7 +1,7 @@
 """Lista o que ainda falta para a entrega: campos em branco, notebook desatualizado ou não executado e commits fora da regra.
 
 Uso: python scripts/verificar_entrega.py [--intervalo origin/main..HEAD]
-Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, X.9, K.7 (entregas/criterios-de-aceite.md); RN.2, RN.3, RK.5
+Sai com código 1 se houver pendência. Critérios relacionados: N.2, N.3, X.2, X.7, X.9, K.7 (entregas/criterios-de-aceite.md); RN.1, RN.2, RK.5
 (entregas/criterios-de-aceite-ra3.md).
 """
 import argparse

@@ -1,73 +1,93 @@
 # Critérios de aceite — RA3
 
-> Definição de pronto do RA3. Cada tarefa do [plano do RA3](plano-de-tarefas-ra3.md) cita os IDs daqui. Os critérios saem do [enunciado do RA3](../enunciados/ra3.md); os do RA1 e do RA2 continuam em [criterios-de-aceite.md](criterios-de-aceite.md), e as regras gerais X.1, X.2, X.6, X.7 e X.9 de lá valem também para o RA3.
+> Definição de pronto do RA3. Cada tarefa do [plano do RA3](plano-de-tarefas-ra3.md) cita os IDs daqui. Os critérios do RA1 e do RA2 continuam em [criterios-de-aceite.md](criterios-de-aceite.md).
 >
-> **Pesos:** a tabela de pontos da rubrica do Canvas ainda não foi transcrita (ver [enunciado](../enunciados/ra3.md), seção 6). Quando chegar, cada bloco abaixo recebe o peso entre parênteses, como no RA1.
+> **De onde vem cada item.** A seção 1 só traz o que está no [enunciado do RA3](../enunciados/ra3.md), com a seção dele entre parênteses; nada ali é regra nova. A seção 2 traz as regras que o repositório já tinha no RA1 e no RA2 e que continuam valendo. A seção 3 traz **recomendações** do grupo para fazer bem o que o enunciado pede: não são exigência da rubrica, e quem não as seguir explica por quê na issue.
+>
+> **Pesos:** a tabela de pontos da rubrica do Canvas ainda não foi transcrita (ver [enunciado](../enunciados/ra3.md), seção 6). Quando chegar, cada bloco da seção 1 recebe o peso entre parênteses, como no RA1.
 
 O protocolo para agentes da seção 0 de [criterios-de-aceite.md](criterios-de-aceite.md) vale igual: um item por ID, evidência por critério (seção e célula do notebook, contagem real), segunda passagem separada da escrita e relatório final `ID | status | evidência`.
 
-## 1. Notebook, seções 13 a 17
+## 1. Exigências do enunciado do RA3
 
-### R13 — Análise estatística descritiva (seção 13)
-- [ ] **R13.1** Dados relidos de `dados/preparados/faixas_preparadas.csv` com os tipos do dicionário, em `df_analise`; a contagem de linhas e de faixas distintas aparece na saída.
-- [ ] **R13.2** Tendência central (média e/ou mediana) por gênero das variáveis das perguntas P1 a P4 (duração, idade da faixa, `rank`, número de fãs, artistas por chart).
-- [ ] **R13.3** Dispersão (desvio-padrão, amplitude ou intervalo interquartil) das mesmas variáveis.
-- [ ] **R13.4** Distribuição: frequência, concentração ou proporções (ex.: faixas de duração, proporção de lançamentos nos 12 meses anteriores à coleta, fatia dos 5 artistas com mais posições por chart).
-- [ ] **R13.5** Escolha das medidas justificada pelas características dos dados (ex.: mediana onde há assimetria ou extremos) e comparação entre gêneros feita só com os charts de gênero, com o chart geral à parte.
-- [ ] **R13.6** Resposta do grupo explica o que os números representam no contexto do projeto, com os números das saídas.
+Os exemplos entre parênteses mostram como o item se aplica a estes dados; não são exigência.
 
-### R14 — Visualização e interpretação (seção 14)
-- [ ] **R14.1** Pelo menos três visualizações, cada uma de uma característica diferente dos dados.
-- [ ] **R14.2** Tipo de gráfico adequado à informação (ex.: boxplot para distribuição por grupo, barras para proporção, dispersão para relação entre duas variáveis).
-- [ ] **R14.3** Identificação clara: título, eixos com nome e unidade, legenda quando houver grupos; legível no PDF do notebook.
-- [ ] **R14.4** Interpretação breve depois de cada visualização, com padrão, tendência, diferença ou comportamento relevante e números, sem se limitar a descrever o gráfico.
+### R13 — Análise estatística descritiva (seção 13 do notebook; enunciado 2.1)
+- [ ] **R13.1** Tendência central: média e/ou mediana para compreender valores representativos (ex.: duração, idade da faixa, `rank` e fãs por gênero, ligados às perguntas P1 a P4).
+- [ ] **R13.2** Dispersão: amplitude, desvio-padrão ou medida equivalente para analisar a variabilidade.
+- [ ] **R13.3** Distribuição: frequência, concentração ou distribuição dos valores (ex.: proporção de lançamentos nos 12 meses anteriores à coleta, fatia dos 5 artistas com mais posições por chart).
+- [ ] **R13.4** Medidas coerentes com as características dos dados e com o problema investigado.
+- [ ] **R13.5** Resultados apresentados e explicados: o que representam no contexto do projeto.
 
-### R15 — Amostragem e representatividade (seção 15)
-- [ ] **R15.1** Origem e abrangência do conjunto: fonte, data do retrato, país aparente da coleta, charts e gêneros cobertos, limite de itens por chart, com as contagens.
-- [ ] **R15.2** Se os registros representam o problema investigado (a população que eles representam e a que não representam).
-- [ ] **R15.3** Limitações e vieses que podem influenciar os resultados, cada um ligado ao resultado que ele pode afetar.
-- [ ] **R15.4** Amostragem: se alguma etapa usou amostra, como os registros foram selecionados; se não, dizer que o conjunto inteiro foi usado.
+### R14 — Visualização e interpretação (seção 14; enunciado 2.2)
+- [ ] **R14.1** Pelo menos três visualizações que ajudem a compreender diferentes características dos dados.
+- [ ] **R14.2** Cada visualização adequada à informação apresentada.
+- [ ] **R14.3** Identificação clara das variáveis e dos resultados (ex.: título, nome dos eixos, legenda).
+- [ ] **R14.4** Cada visualização acompanhada de uma breve interpretação, que identifica padrões, tendências, diferenças ou comportamentos relevantes, sem se limitar a apresentar o gráfico.
 
-### R16 — Aplicação de Machine Learning (seção 16)
-- [ ] **R16.1** Problema preditivo definido (classificação ou regressão) e ligado ao problema do projeto.
-- [ ] **R16.2** Variável-alvo e características identificadas, sem vazamento (nenhuma característica derivada do alvo nem identificador), com o motivo de cada escolha.
-- [ ] **R16.3** Separação de treino e teste com proporção informada e semente fixa (`SEMENTE_ML`); a mesma faixa não fica no treino e no teste.
-- [ ] **R16.4** Modelo treinado e previsões feitas sobre o teste, com uma tabela curta de valor real × previsto.
-- [ ] **R16.5** Pelo menos uma métrica adequada ao problema, comparada com uma linha de base simples.
-- [ ] **R16.6** Interpretação do desempenho: o que a métrica significa, o que o modelo explica e o que não explica.
-- [ ] **R16.7** Bibliotecas novas registradas em `requirements.txt`; os números se repetem numa nova execução.
+### R15 — Amostragem e representatividade (seção 15; enunciado 2.3)
+- [ ] **R15.1** Origem e abrangência do conjunto de dados (ex.: fonte, data do retrato, charts e gêneros cobertos).
+- [ ] **R15.2** Se os registros representam adequadamente o problema investigado.
+- [ ] **R15.3** Possíveis limitações ou vieses que possam influenciar os resultados.
+- [ ] **R15.4** Se alguma etapa usou amostra, como os registros foram selecionados. (Implementar amostragem não é obrigatório.)
 
-### R17 — Conclusões do RA3 (seção 17)
+### R16 — Aplicação de Machine Learning (seção 16; enunciado 2.4)
+- [ ] **R16.1** Aprendizagem supervisionada por classificação ou por regressão, com o problema preditivo definido.
+- [ ] **R16.2** Variável-alvo (*target*) e características (*features*) identificadas.
+- [ ] **R16.3** Dados separados para treinamento e teste.
+- [ ] **R16.4** Modelo treinado e previsões realizadas.
+- [ ] **R16.5** Resultados avaliados com pelo menos uma métrica adequada ao problema.
+- [ ] **R16.6** Se for usado outro conjunto de dados nesta seção (permitido quando o original não serve), justificativa breve da escolha.
+
+Qualquer algoritmo ou biblioteca serve (não é obrigatório KNN, regressão linear nem scikit-learn).
+
+### R17 — Conclusões do RA3 (seção 17; enunciado 2.5)
 - [ ] **R17.1** Principais resultados das análises estatísticas e das visualizações.
-- [ ] **R17.2** Interpretação do desempenho do modelo.
-- [ ] **R17.3** Limitações dos dados e das análises.
-- [ ] **R17.4** Relação dos resultados com o problema e com cada pergunta P1 a P4.
+- [ ] **R17.2** Interpretação do desempenho do modelo de Machine Learning.
+- [ ] **R17.3** Limitações dos dados e das análises realizadas.
+- [ ] **R17.4** Relação dos resultados com o problema definido no projeto (as perguntas P1 a P4).
 
-### RN — Notebook
-- [ ] **RN.1** A abertura da parte "RA3" e as seções 13 a 17 seguem o estilo do template (enunciado, código, "Resposta do grupo"); as seções 1 a 12 não mudam.
-- [ ] **RN.2** Todas as células executadas em ordem, sem erro, a partir de um ambiente limpo, incluindo o RA1 e o RA2.
-- [ ] **RN.3** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando nas seções 13 a 17.
-- [ ] **RN.4** Respostas curtas, com números tirados das saídas; cada célula de código começa com um comentário-título.
+### RD — Entrega no repositório (enunciado 3 e 5)
+- [ ] **RD.1** Implementação: notebook (ou código) com as análises estatísticas, as visualizações e a aplicação de Machine Learning, funcional e acessível para avaliação.
+- [ ] **RD.2** Documentação: descrição das técnicas utilizadas, dos resultados obtidos e das interpretações.
+- [ ] **RD.3** Instruções de execução: o necessário para executar e verificar as implementações.
+- [ ] **RD.4** URL do repositório enviada no Canvas até 18/11/2026.
 
-RN.3 e RN.4 valem para toda tarefa que escreve no notebook, restritos à seção dela.
+### RAP — Avaliação somativa (enunciado 4)
+- [ ] **RAP.1** Na apresentação de 18/11/2026, a equipe apresenta os resultados e demonstra as implementações.
+- [ ] **RAP.2** Os integrantes sabem explicar as decisões tomadas, justificar as técnicas usadas e interpretar os resultados.
 
-## 2. Repositório da entrega
+## 2. Regras do repositório que continuam valendo
 
-### RD — Documentação e instruções de execução
-- [ ] **RD.1** `documentacao/ra3/README.md` descreve as técnicas usadas em cada seção (13 a 17), os resultados e a interpretação, citando a seção e a célula do notebook; números iguais aos do notebook executado.
-- [ ] **RD.2** Instruções de execução no mesmo arquivo: onde abrir (Colab e local), dependências (`requirements.txt`, Java só para o RA2), ordem de execução, tempo aproximado e como conferir que deu certo.
-- [ ] **RD.3** Repositório da entrega (`eduardofabrii/data-analytics-ras`) público e atualizado: notebook igual ao montado aqui e executado, PDF do notebook atualizado, `documentacao/ra3/README.md` e `requirements.txt` iguais aos daqui, README principal apontando para a documentação do RA3.
-- [ ] **RD.4** URL enviada no Canvas até 18/11/2026, conferida numa janela anônima.
+Vêm das decisões e dos critérios do RA1 e do RA2, não do enunciado do RA3.
 
-### RAP — Apresentação (avaliação somativa em 18/11/2026)
-- [ ] **RAP.1** Roteiro em `entregas/roteiro-apresentacao-ra3.md` (criado na tarefa do roteiro), com um bloco por requisito (estatística, visualizações, representatividade, Machine Learning, conclusões), quem fala e qual célula mostrar; cada integrante explica as decisões e as técnicas da sua parte e sabe interpretar os resultados.
+- [ ] **RN.1** Notebook montado das seções (`python scripts/montar_notebook.py`, [ADR-0002](../docs/adr/0002-notebook-montado-por-secoes.md)) e executado em ordem, sem erro, a partir de um ambiente limpo (como o N.2).
+- [ ] **RN.2** Nenhum `[Preencha aqui.]` ou orientação entre colchetes sobrando nas seções 13 a 17 (como o N.3).
+- [ ] **RN.3** Respostas do grupo curtas, com números tirados das saídas (como o N.4).
+- [ ] **RN.4** As seções 1 a 12 e o documento do RA1, já entregues, não mudam.
+- [ ] **RN.5** Repositório citado na entrega é o `eduardofabrii/data-analytics-ras`, com o notebook igual ao montado aqui ([ADR-0011](../docs/adr/0011-entregas-separadas-e-repositorio-da-entrega.md)).
+- [ ] **RN.6** Regras gerais X.1 (português), X.2 (commits sem coautoria de IA), X.6 (mesmos números em todo lugar), X.7 (nenhuma declaração de uso de IA) e X.9 (nenhuma citação da organização interna) de [criterios-de-aceite.md](criterios-de-aceite.md).
 
-## 3. Revisão cruzada do RA3
+RN.2 e RN.3 valem para toda tarefa que escreve no notebook, restritos à seção dela.
 
-- [ ] **RK.1** Cada pergunta P1 a P4 tem medida na seção 13, visualização na 14 e resposta na 17.
+## 3. Recomendações do grupo (não são exigência da rubrica)
+
+Ajudam a cumprir a seção 1 com estes dados. Quem decidir não seguir uma delas registra o motivo na issue.
+
+- **RC.1** Comparar gêneros só com os charts de gênero, com o chart geral à parte, como o dicionário do conjunto preparado orienta.
+- **RC.2** Dizer por que cada medida foi escolhida (ex.: mediana onde há assimetria ou extremos), o que torna o R13.4 visível para quem avalia.
+- **RC.3** Ligar uma visualização a cada pergunta P1 a P4, para as conclusões responderem a todas.
+- **RC.4** No Machine Learning: nenhuma característica derivada do alvo nem identificador; a mesma faixa não ficar no treino e no teste; semente fixa (`SEMENTE_ML`) para repetir os números; comparar a métrica com uma linha de base simples; mostrar uma tabela curta de valor real × previsto ([ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md), proposta).
+- **RC.5** Documentação e instruções num arquivo só, `documentacao/ra3/README.md` ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md), proposta), citando a seção e a célula do notebook.
+- **RC.6** Comentário-título na primeira linha de cada célula de código, como no RA1 e no RA2, para a documentação e a apresentação citarem a célula.
+- **RC.7** Roteiro da apresentação em `entregas/roteiro-apresentacao-ra3.md`, com quem fala e qual célula mostrar, como no RA1 e no RA2.
+- **RC.8** Antes de enviar: ensaio da execução completa a partir de um clone limpo do repositório da entrega no Colab, e a URL aberta numa janela anônima.
+
+## 4. Revisão cruzada do RA3
+
+- [ ] **RK.1** Cada item da seção 1 tem evidência (seção e célula do notebook, arquivo, contagem).
 - [ ] **RK.2** Os números da documentação, das conclusões e da apresentação batem com as saídas do notebook executado.
-- [ ] **RK.3** As limitações da seção 15 aparecem nas conclusões (17) e na interpretação do modelo (16).
+- [ ] **RK.3** As limitações da seção 15 aparecem nas conclusões (seção 17).
 - [ ] **RK.4** Nenhuma issue `pendencia-cruzada` do RA3 aberta.
 - [ ] **RK.5** `python scripts/verificar_entrega.py` sem pendência.
-- [ ] **RK.6** Ensaio da execução completa a partir de um clone limpo do repositório da entrega no Colab, com o resultado anotado no relatório da revisão.
-- [ ] **RK.7** Regras gerais conferidas: português (X.1), commits sem coautoria de IA (X.2), nenhuma declaração de uso de IA (X.7), nenhuma citação da organização interna (X.9).
+- [ ] **RK.6** Recomendações da seção 3 seguidas, ou o motivo de não seguir registrado na issue.

@@ -1,9 +1,9 @@
 #> Seção do notebook: RA3 — 16. Aplicação de Machine Learning
-#> Área responsável: B · Tarefa: T19 (entregas/plano-de-tarefas-ra3.md) · Critérios R16.1–R16.7
+#> Área responsável: B · Tarefa: T19 (entregas/plano-de-tarefas-ra3.md) · Critérios R16.1–R16.6
 #> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
 #> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
 #> O template não tem o RA3: o enunciado desta seção é o requisito 2.4 de enunciados/ra3.md (ADR-0012). Não mude o sentido.
-#> Leia antes: ADR-0013 (proposta: regressão do rank) e base/analise-e-ml.md, seção 4. Crie SEMENTE_ML na primeira célula.
+#> Leia antes: ADR-0013 (proposta: regressão do rank) e base/analise-e-ml.md, seção 4. Recomendação RC.4: SEMENTE_ML na primeira célula e linha de base.
 
 # %% [markdown]
 # ## 16. Aplicação de Machine Learning
@@ -29,4 +29,4 @@
 # %% [markdown]
 # **Resposta do grupo:**
 #
-# [Explique brevemente a métrica obtida, compare com a linha de base e interprete o desempenho do modelo.]
+# [Explique brevemente a métrica obtida e interprete o desempenho do modelo.]

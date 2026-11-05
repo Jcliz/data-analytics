@@ -65,7 +65,8 @@ Se um hook bloquear o seu commit, **não contorne** (`--no-verify`, desligar hoo
 
 - O RA1 e o RA2 já foram entregues: **não altere** as seções 1 a 12 nem `documentacao/ra1/`. O RA3 continua o mesmo notebook nas seções 13 a 17 ([ADR-0012](docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
 - O template não tem o RA3: o enunciado de cada seção é o requisito transcrito em [`enunciados/ra3.md`](enunciados/ra3.md). Mantenha esse texto e escreva só as células de código e a "Resposta do grupo".
-- Use `df_analise` (1ª célula de código da seção 13) e não mexa em `df_preparado`. Gráficos com `matplotlib`, modelo com `scikit-learn` e `SEMENTE_ML` ([`base/analise-e-ml.md`](base/analise-e-ml.md)).
+- Use `df_analise` (1ª célula de código da seção 13) e não mexa em `df_preparado`. O enunciado não exige ferramenta; o grupo escolheu `matplotlib` e `scikit-learn` ([`base/analise-e-ml.md`](base/analise-e-ml.md)).
+- Separe o que o enunciado exige (critérios R, RD e RAP) do que o grupo recomenda (RC). Não apresente recomendação como regra da rubrica.
 - A documentação (técnicas, resultados, interpretações e instruções de execução) fica em `documentacao/ra3/README.md`, copiada igual para o repositório da entrega. A entrega é a URL desse repositório ([orientações](entregas/orientacoes-entrega-ra3.md)).
 
 ### Entrega

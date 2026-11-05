@@ -100,7 +100,7 @@ O notebook é executado de cima para baixo, e cada seção é de uma área. Para
 | `TABELA_JANELAS` | `str` | 10 | 11 | Nome da tabela em memória da consulta com a janela (`queryName`). |
 | `consulta` | `StreamingQuery` | 10 | 11 | Consulta em streaming com a janela. Encerrada na última célula da seção 11. |
 | `df_analise` | `pandas.DataFrame` | 13 (1ª célula de código) | 13, 14, 15, 16 | Conjunto preparado relido de `faixas_preparadas.csv` com os tipos do dicionário (2.800 linhas × 16 colunas). As seções do RA3 não alteram `df_preparado`. |
-| `SEMENTE_ML` | `int` | 16 (1ª célula de código) | 16 | Semente da separação treino e teste e do modelo, fixa para a execução final repetir os números. |
+| `SEMENTE_ML` | `int` | 16 (1ª célula de código) | 16 | Semente da separação treino e teste e do modelo, fixa para a execução final repetir os números (recomendação RC.4, não exigência do enunciado). |
 
 ## 7. Regras para quem escreve (pessoas e IAs)
 

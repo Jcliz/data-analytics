@@ -31,7 +31,7 @@ Regra prática: com assimetria forte ou extremos, a mediana e o IQR representam 
 
 ## 3. Visualizações (seção 14)
 
-Pelo menos três, cada uma de uma característica diferente, com título, eixos com nome e unidade, legenda quando houver grupos, e uma interpretação logo abaixo [Fato, fonte 13]. Sugestões, uma por pergunta:
+O enunciado pede pelo menos três, de características diferentes, com identificação clara das variáveis e dos resultados e uma breve interpretação [Fato, fonte 13]. Título, eixos com nome e unidade e legenda quando houver grupos são a forma que o grupo usa para cumprir a "identificação clara". Sugestões, uma por pergunta:
 
 | Pergunta | Gráfico | Por quê |
 |---|---|---|
@@ -40,11 +40,11 @@ Pelo menos três, cada uma de uma característica diferente, com título, eixos 
 | P3 | Dispersão de `rank` × `numero_fas` (eixo x em escala log), com a correlação no título | Mostra a relação e a nuvem de exceções |
 | P4 | Barras da fatia dos 5 artistas com mais posições por gênero | Mostra concentração |
 
-Com 27 gêneros, prefira barras horizontais e ordenadas; evite pizza e cores demais. Use só `matplotlib` (pandas `.plot` também serve). Cada gráfico numa célula própria com um comentário-título (`# Duração por gênero (boxplot)`), que é como a documentação o cita.
+Com 27 gêneros, prefira barras horizontais e ordenadas; evite pizza e cores demais. O grupo usa `matplotlib` (pandas `.plot` também serve); o enunciado aceita qualquer ferramenta. Cada gráfico numa célula própria com um comentário-título (`# Duração por gênero (boxplot)`), que é como a documentação o cita.
 
 ## 4. Machine Learning (seção 16)
 
-Proposta em [ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md): regressão do `rank` a partir de fãs (log), duração, idade e gênero. Cuidados:
+Proposta em [ADR-0013](../docs/adr/0013-ra3-regressao-do-rank.md): regressão do `rank` a partir de fãs (log), duração, idade e gênero. O enunciado exige problema, alvo e características, separação treino e teste, treino com previsões e uma métrica [Fato, fonte 13]; os cuidados abaixo são recomendações do grupo (critério RC.4), não exigência:
 
 - **Vazamento:** não use `posicao_chart` nem identificadores como característica.
 - **Faixas repetidas:** separe treino e teste por `id_faixa` (`GroupShuffleSplit` do scikit-learn, com `random_state=SEMENTE_ML`), para a mesma faixa não ficar dos dois lados [Fato, fonte 14].

@@ -1,5 +1,5 @@
 #> Seção do notebook: RA3 — abertura da parte e 13. Análise estatística descritiva
-#> Área responsável: C · Tarefa: T16 (entregas/plano-de-tarefas-ra3.md) · Critérios R13.1–R13.6
+#> Área responsável: C · Tarefa: T16 (entregas/plano-de-tarefas-ra3.md) · Critérios R13.1–R13.5
 #> Formato percent: "# %%" abre célula de código e "# %% [markdown]" abre célula de texto.
 #> Linhas "#>" e comentários <!-- --> são orientações: o montador (scripts/montar_notebook.py) as remove.
 #> O template não tem o RA3: o enunciado desta seção é o requisito 2.1 de enunciados/ra3.md (ADR-0012). Não mude o sentido.

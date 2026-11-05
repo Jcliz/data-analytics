@@ -1,6 +1,6 @@
 # Plano de tarefas — RA3
 
-> Divide o RA3 em tarefas, com responsáveis, arquivos, dependências e prazos. Continua a numeração do [plano do RA1 e do RA2](plano-de-tarefas.md) (T00 a T14), que segue valendo para as regras de fluxo, rótulos e corpo das issues. Os critérios (IDs `R`, `RN`, `RD`, `RAP`, `RK`) estão em [criterios-de-aceite-ra3.md](criterios-de-aceite-ra3.md).
+> Divide o RA3 em tarefas, com responsáveis, arquivos, dependências e prazos. Continua a numeração do [plano do RA1 e do RA2](plano-de-tarefas.md) (T00 a T14), que segue valendo para as regras de fluxo, rótulos e corpo das issues. Os critérios (IDs `R`, `RD`, `RAP` do enunciado, `RN` do repositório, recomendações `RC` e revisão `RK`) estão em [criterios-de-aceite-ra3.md](criterios-de-aceite-ra3.md).
 > **Status:** proposta de 05/11/2026, a confirmar pelo João (divisão por pessoa e datas). Prazo do RA3 no Canvas e apresentação: **18/11/2026**.
 
 ---
@@ -48,15 +48,15 @@ Convenção de título: `[RA3][Área X] Tnn — descrição` ou `[Geral] Tnn —
 | ID | Issue | Branch | Tarefa | Área | Arquivos | Critérios | Bloqueada por | Prazo |
 |---|---|---|---|---|---|---|---|---|
 | T15 | — | `t15-estrutura` | Estrutura do RA3: enunciado, critérios, plano, contexto e esqueleto das seções 13 a 17 | Geral | os de base; nb 13–17 (esqueleto) | — | — | 06/11 |
-| T16 | — | `t16-estatistica` | Análise estatística descritiva | C | nb 13 | R13.1–R13.6, RN.3–RN.4 | T15 | 11/11 |
-| T17 | — | `t17-graficos` | Visualizações e interpretação | D | nb 14 | R14.1–R14.4, RN.3–RN.4 | T15; T16 (números citados) | 12/11 |
-| T18 | — | `t18-representatividade` | Amostragem e representatividade | B | nb 15 | R15.1–R15.4, RN.3–RN.4 | T15 | 10/11 |
-| T19 | — | `t19-modelo` | Aplicação de Machine Learning | B | nb 16; `requirements.txt` | R16.1–R16.7, RN.3–RN.4 | T15 | 12/11 |
-| T20 | — | `t20-conclusoes` | Conclusões do RA3 | A | nb 17 | R17.1–R17.4, RN.3–RN.4 | T16–T19 | 14/11 |
-| T21 | — | `t21-documentacao` | Documentação e instruções de execução do RA3 | A | `documentacao/ra3/README.md` | RD.1–RD.2 | T16–T19 (técnicas); T20 (conclusões) | 14/11 |
-| T22 | — | `t22-revisao` | Revisão cruzada do RA3 | Geral | relatório na issue | RK.1–RK.7, RN.1 | T16–T21 | 15/11 |
-| T23 | — | `t23-envio` | Execução final, cópia para o repositório da entrega e envio da URL | Geral | notebook gerado; `output/`; repositório da entrega | RN.2, RD.3–RD.4, X.2, X.6 | T22 | 17/11 |
-| T24 | — | `t24-roteiro` | Roteiro da apresentação do RA3 | Geral | `entregas/roteiro-apresentacao-ra3.md` | RAP.1 | T22 | 17/11 |
+| T16 | — | `t16-estatistica` | Análise estatística descritiva | C | nb 13 | R13.1–R13.5, RN.2–RN.3 | T15 | 11/11 |
+| T17 | — | `t17-graficos` | Visualizações e interpretação | D | nb 14 | R14.1–R14.4, RN.2–RN.3 | T15; T16 (números citados) | 12/11 |
+| T18 | — | `t18-representatividade` | Amostragem e representatividade | B | nb 15 | R15.1–R15.4, RN.2–RN.3 | T15 | 10/11 |
+| T19 | — | `t19-modelo` | Aplicação de Machine Learning | B | nb 16; `requirements.txt` | R16.1–R16.6, RN.2–RN.3 | T15 | 12/11 |
+| T20 | — | `t20-conclusoes` | Conclusões do RA3 | A | nb 17 | R17.1–R17.4, RN.2–RN.3 | T16–T19 | 14/11 |
+| T21 | — | `t21-documentacao` | Documentação e instruções de execução do RA3 | A | `documentacao/ra3/README.md` | RD.2–RD.3 | T16–T19 (técnicas); T20 (conclusões) | 14/11 |
+| T22 | — | `t22-revisao` | Revisão cruzada do RA3 | Geral | relatório na issue | RK.1–RK.6, RN.4, RN.6 | T16–T21 | 15/11 |
+| T23 | — | `t23-envio` | Execução final, cópia para o repositório da entrega e envio da URL | Geral | notebook gerado; `output/`; repositório da entrega | RN.1, RN.5, RD.1, RD.4, X.2, X.6 | T22 | 17/11 |
+| T24 | — | `t24-roteiro` | Roteiro da apresentação do RA3 | Geral | `entregas/roteiro-apresentacao-ra3.md` | RAP.1–RAP.2 | T22 | 17/11 |
 
 Entrega no Canvas: **18/11/2026**, só a URL do repositório da entrega ([ADR-0012](../docs/adr/0012-ra3-no-notebook-e-entrega-por-url.md)).
 

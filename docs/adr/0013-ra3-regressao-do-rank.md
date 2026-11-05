@@ -13,7 +13,7 @@ relacionados: [adr-0010, adr-0012, analise-e-ml]
 ---
 # ADR-0013 — Machine Learning do RA3: regressão do `rank` da faixa
 
-- **Status:** proposta · **Data:** 05/11/2026 · A área responsável pela seção 16 pode trocar a abordagem, desde que registre aqui o motivo.
+- **Status:** proposta · **Data:** 05/11/2026 · A área responsável pela seção 16 pode trocar a abordagem, desde que registre aqui o motivo. O que o enunciado exige está nos critérios R16; o resto desta proposta (log dos fãs, separação por faixa, semente, linha de base) é escolha do grupo.
 
 ## Contexto
 
@@ -44,7 +44,7 @@ relacionados: [adr-0010, adr-0012, analise-e-ml]
 ## Consequências
 
 - O resultado conversa com a P3 e com as conclusões (seção 17): mostra quanto da popularidade os fãs do artista explicam e o que fica de fora.
-- Um R² baixo não reprova a seção: o enunciado avalia a adequação e a interpretação, não o desempenho. A interpretação precisa dizer o que o modelo não explica.
+- O enunciado diz que o foco está na adequação das técnicas e na interpretação dos resultados, e não na complexidade das implementações [Fato, fonte 13]. Um R² baixo, portanto, pede uma interpretação honesta do que o modelo não explica, e não um modelo mais complexo [Inferência].
 - `scikit-learn` entra em `requirements.txt` ([ADR-0012](0012-ra3-no-notebook-e-entrega-por-url.md)).
 
 ---

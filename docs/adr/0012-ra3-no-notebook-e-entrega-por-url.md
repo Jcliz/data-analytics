@@ -41,9 +41,9 @@ relacionados: [adr-0002, adr-0006, adr-0008, adr-0010, adr-0011, adr-0013]
 
 1. **Enunciados das seções:** como o template não tem o RA3, o enunciado de cada seção é o texto do requisito transcrito em [enunciados/ra3.md](../../enunciados/ra3.md), sem mudar o sentido. As seções 1 a 12 não mudam.
 2. **Dados:** a seção 13 relê `dados/preparados/faixas_preparadas.csv` com os tipos do dicionário e cria `df_analise`, usado nas seções 13 a 16. Assim o RA3 parte do conjunto preparado do RA1 e não depende do estado do Spark do RA2.
-3. **Bibliotecas:** pandas para as medidas, matplotlib para os gráficos e scikit-learn para o modelo, todas já presentes no Colab e registradas em `requirements.txt`. Pode-se trocar o algoritmo ou a biblioteca do modelo, desde que se registre em `requirements.txt` e na issue.
+3. **Bibliotecas:** escolha do grupo, porque o enunciado não exige ferramenta: pandas para as medidas, matplotlib para os gráficos e scikit-learn para o modelo, todas já presentes no Colab e registradas em `requirements.txt`. Pode-se trocar, desde que se registre em `requirements.txt` e na issue.
 4. **Documentação:** `documentacao/ra3/README.md`, em Markdown, com as técnicas, os resultados e a interpretação de cada seção, citando a célula do notebook, e as instruções de execução. É copiado igual para o repositório da entrega, no mesmo caminho, e o README principal de lá aponta para ele.
-5. **Envio:** a URL do repositório da entrega, com o notebook executado (`notebook/ra1-ra2-deezer.ipynb`, igual ao montado aqui) e o PDF dele atualizado, para quem avaliar sem executar.
+5. **Envio:** a URL do repositório da entrega, com o notebook executado (`notebook/ra1-ra2-deezer.ipynb`, igual ao montado aqui). Atualizar o PDF do notebook que já está lá é opcional.
 
 ## Consequências
 
