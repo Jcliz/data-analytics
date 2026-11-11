@@ -129,7 +129,7 @@ print(f"Recentes: {df_generos_vis['recente_vis'].sum()} de {len(df_generos_vis)}
 # Spearman equivale à correlação de Pearson dos postos, com postos médios nos empates.
 correlacoes_gerais_vis = []
 with plt.rc_context(estilo_vis):
-    figura_vis, eixos_vis = plt.subplots(1, 2, figsize=(12, 5), sharey=True, layout="constrained")
+    figura_vis, eixos_vis = plt.subplots(1, 2, figsize=(14, 6), sharey=True, layout="constrained")
     for eixo_vis, (nome_vis, recorte_vis) in zip(
         eixos_vis, [("Chart geral", df_geral_vis), ("Charts de gênero reunidos", df_generos_vis)]
     ):
@@ -139,26 +139,49 @@ with plt.rc_context(estilo_vis):
             "fas_iguais_zero": int(recorte_vis["numero_fas"].eq(0).sum()),
             "spearman": correlacao_vis,
         })
-        eixo_vis.scatter(recorte_vis["numero_fas"], recorte_vis["rank"], s=14, alpha=0.3, color="#2b788e")
+        eixo_vis.scatter(recorte_vis["numero_fas"], recorte_vis["rank"], s=16, alpha=0.35, color="#2b788e")
         eixo_vis.set_xscale("symlog", linthresh=1)
-        eixo_vis.set_xlim(left=0)
-        eixo_vis.set_ylim(0, 1_000_000)
-        eixo_vis.set_xlabel("Fãs do artista (escala logarítmica após 1 fã; zero mantido)")
-        eixo_vis.set_title(f"{nome_vis}\nn = {len(recorte_vis)}; Spearman = {correlacao_vis:.2f}".replace(".", ","))
-        eixo_vis.yaxis.set_major_formatter(FuncFormatter(lambda valor, _: f"{valor / 1000:.0f}"))
+        eixo_vis.set_xticks(
+            [0, 10, 100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000],
+            ["0", "10", "100", "1 mil", "10 mil", "100 mil", "1 milhão", "10 milhões"],
+            rotation=30, ha="right",
+        )
+        # Margens na área do gráfico preservam os círculos inteiros, inclusive os de zero fãs.
+        eixo_vis.set_xlim(-0.5, df_analise["numero_fas"].max() * 2)
+        eixo_vis.set_ylim(-50_000, 1_050_000)
+        eixo_vis.set_yticks(
+            [0, 250_000, 500_000, 750_000, 1_000_000],
+            ["0", "250 mil", "500 mil", "750 mil", "1 milhão"],
+        )
+        eixo_vis.set_xlabel("Fãs do artista\nDe 10 em diante, cada marca multiplica a quantidade por 10")
+        eixo_vis.set_title(f"{nome_vis}\n{len(recorte_vis):,} ocorrências faixa-chart".replace(",", "."))
         eixo_vis.grid(alpha=0.15)
-    eixos_vis[0].set_ylabel("Popularidade da faixa — rank (mil pontos)")
-    figura_vis.suptitle(f"P3 — Fãs e popularidade no retrato de {data_retrato_vis}")
+    eixos_vis[0].set_ylabel("Pontuação de popularidade da faixa (rank)\nQuanto maior, mais popular")
+    figura_vis.suptitle(f"P3 — Artistas com mais fãs têm músicas mais populares? · {data_retrato_vis}")
     plt.show()
 display(pd.DataFrame(correlacoes_gerais_vis).round({"spearman": 3}))
 
+# %%
+# Exemplos de fãs e popularidade
+# Exemplos observados nos charts de gênero, sem tratá-los como perfil de todo o conjunto.
+exemplos_popularidade_vis = pd.concat([
+    df_generos_vis.loc[df_generos_vis["numero_fas"].le(1_000)]
+    .nlargest(1, "rank").assign(leitura="Poucos fãs, pontuação alta"),
+    df_generos_vis.loc[df_generos_vis["numero_fas"].ge(1_000_000)]
+    .nsmallest(1, "rank").assign(leitura="Muitos fãs, pontuação baixa"),
+])
+display(exemplos_popularidade_vis[["leitura", "genero", "artista", "titulo", "numero_fas", "rank"]])
+
 # %% [markdown]
-# **Interpretação — P3, visão geral:** a associação entre fãs e `rank` é positiva: Spearman de 0,53 nas 100 ocorrências do chart geral e 0,60 nas 2.700 dos charts de gênero reunidos. As 8 ocorrências de gênero com zero fãs continuam no gráfico e no cálculo. A dispersão mostra que o número de fãs não determina sozinho a popularidade de cada faixa. O resultado reunido mistura gêneros e não substitui a comparação dentro de cada um; também não demonstra causalidade. Fonte: seção 2, célula "Fãs do artista e popularidade: chart geral e conjunto dos gêneros".
+# **Como ler:** cada ponto é uma ocorrência de faixa em um chart. À direita estão artistas com mais fãs; acima estão faixas com maior pontuação de popularidade (`rank`), que não é a posição de 1º, 2º ou 3º no chart. No eixo horizontal, 1 mil significa 1.000 fãs e 1 milhão significa 1.000.000. A partir de 10, cada marca multiplica a quantidade por dez; essa escala permite mostrar artistas de tamanhos muito diferentes. Os pontos de zero fãs também são mantidos.
+#
+# **Interpretação — P3, visão geral:** a associação é positiva: Spearman de 0,53 nas 100 ocorrências do chart geral e 0,60 nas 2.700 dos charts de gênero reunidos. Isso indica uma tendência, não uma exigência de ter muitos fãs. Por exemplo, "BADDIES IN BELGICA", de ISSAH, tem 150 fãs do artista e 948.653 pontos; a faixa de Frank Sinatra exibida na tabela tem 2.487.314 fãs do artista e 2.757 pontos. São dois exemplos observados, não estimativas de frequência. A quantidade de fãs não garante nem é condição necessária para uma pontuação alta neste retrato. O resultado reunido mistura gêneros e não demonstra causalidade. Fontes: seção 2, células "Fãs do artista e popularidade: chart geral e conjunto dos gêneros" e "Exemplos de fãs e popularidade".
 
 # %%
 # Associação entre fãs e popularidade dentro de cada gênero
 correlacoes_genero_vis = pd.DataFrame([
     {"genero": genero_vis, "ocorrencias": len(grupo_vis),
+     "mediana_fas_por_ocorrencia": grupo_vis["numero_fas"].median(),
      "spearman": grupo_vis["numero_fas"].rank().corr(grupo_vis["rank"].rank())}
     for genero_vis, grupo_vis in df_generos_vis.groupby("genero")
 ]).set_index("genero").sort_values("spearman")
@@ -170,18 +193,22 @@ with plt.rc_context(estilo_vis):
         labels=[f"{valor:.2f}".replace(".", ",") for valor in correlacoes_genero_vis["spearman"]], padding=4,
     )
     eixo_vis.set_xlim(-1, 1)
-    eixo_vis.xaxis.set_major_formatter(FuncFormatter(lambda valor, _: f"{valor:.2f}".replace(".", ",")))
+    eixo_vis.set_xticks(
+        [-1, 0, 1],
+        ["−1\nTendência inversa", "0\nSem tendência crescente ou decrescente", "+1\nCrescem juntos"],
+    )
     eixo_vis.axvline(0, color="dimgray", linewidth=0.8)
-    eixo_vis.set_xlabel("Correlação de Spearman entre fãs do artista e rank da faixa")
+    eixo_vis.set_xlabel("Correlação de Spearman: força da associação, não quantidade de fãs")
     eixo_vis.set_ylabel("Chart de gênero")
-    eixo_vis.set_title(f"P3 — Associação dentro de cada gênero · {data_retrato_vis}")
+    eixo_vis.set_title(f"P3 — Onde fãs e popularidade caminham mais juntos? · {data_retrato_vis}\n"
+                       "Maior barra = associação mais forte; não significa mais fãs")
     eixo_vis.grid(axis="x", alpha=0.2)
     eixo_vis.set_axisbelow(True)
     plt.show()
 display(correlacoes_genero_vis.round({"spearman": 3}))
 
 # %% [markdown]
-# **Interpretação — P3, por gênero:** a correlação é positiva nos 27 charts, mas varia de 0,06 em Traditional Mexicano a 0,67 em Jazz, com 100 ocorrências em cada um. Logo, a associação de 0,60 no conjunto reunido não descreve igualmente todos os gêneros. Esses coeficientes são descritivos das faixas observadas, sem teste de significância ou garantia de generalização. Fonte: seção 2, célula "Associação entre fãs e popularidade dentro de cada gênero".
+# **Interpretação — P3, por gênero:** a correlação é positiva nos 27 charts, mas varia de 0,06 em Traditional Mexicano a 0,67 em Jazz, com 100 ocorrências em cada um. Em Jazz, a ordenação das faixas por fãs do artista acompanha mais de perto a ordenação por popularidade. Esse valor não é quantidade de fãs, percentual ou garantia de pontuação alta. Nas 100 ocorrências de Jazz, a mediana de fãs do artista é 778,5; nas 100 de Pop, é 613.963, embora Pop tenha correlação menor, de 0,24. Portanto, a força da associação não ordena os gêneros por quantidade de fãs. São medidas descritivas, sem teste de significância ou garantia de generalização. Fonte: seção 2, célula "Associação entre fãs e popularidade dentro de cada gênero".
 
 # %%
 # Concentração das posições nos cinco artistas mais presentes
