@@ -19,6 +19,7 @@
 # %%
 # Recorte e convenções das visualizações
 from inspect import signature as assinatura
+from math import ceil as arredondar_para_cima
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter, PercentFormatter
@@ -53,6 +54,11 @@ resumo_duracao_vis = (
     .agg(ocorrencias="size", mediana_s="median", minimo_s="min", maximo_s="max")
     .sort_values("mediana_s")
 )
+quartis_duracao_vis = df_generos_vis.groupby("genero")["duracao_s"].quantile([0.25, 0.75]).unstack()
+resumo_duracao_vis["mediana_min"] = resumo_duracao_vis["mediana_s"] / 60
+resumo_duracao_vis["inicio_caixa_min"] = quartis_duracao_vis[0.25] / 60
+resumo_duracao_vis["fim_caixa_min"] = quartis_duracao_vis[0.75] / 60
+resumo_duracao_vis["maximo_min"] = resumo_duracao_vis["maximo_s"] / 60
 with plt.rc_context(estilo_vis):
     figura_vis, eixo_vis = plt.subplots(figsize=(10, 10), layout="constrained")
     duracoes_vis = [
@@ -63,7 +69,7 @@ with plt.rc_context(estilo_vis):
     orientacao_vis = ({"orientation": "horizontal"} if "orientation" in assinatura(eixo_vis.boxplot).parameters
                       else {"vert": False})
     caixas_vis = eixo_vis.boxplot(
-        duracoes_vis, **orientacao_vis, patch_artist=True,
+        duracoes_vis, **orientacao_vis, patch_artist=True, whis=1.5,
         medianprops={"color": "#153e52", "linewidth": 1.6},
         flierprops={"marker": ".", "markersize": 3, "alpha": 0.5},
     )
@@ -77,13 +83,17 @@ with plt.rc_context(estilo_vis):
     eixo_vis.set_xlabel("Duração (minutos; escala logarítmica)")
     eixo_vis.set_ylabel("Chart de gênero")
     eixo_vis.set_title(f"P1 — Distribuição da duração por gênero · {data_retrato_vis}\n"
-                       "Ordem da mediana; caixa = metade central; pontos = extremos")
+                       "Caixa = metade central; pontos = além das hastes (1,5 × IQR por gênero)")
     eixo_vis.grid(axis="x", alpha=0.2)
     plt.show()
-display(resumo_duracao_vis)
+display(resumo_duracao_vis[["ocorrencias", "mediana_min", "inicio_caixa_min", "fim_caixa_min", "maximo_min"]].round(2))
 
 # %% [markdown]
 # **Interpretação — P1:** a duração típica das músicas muda de um gênero para outro. Em Kids, a duração do meio da lista é de aproximadamente 2 minutos e 40 segundos; em Metal, é de 4 minutos e 19 segundos. Isso não significa que toda música de Metal seja mais longa que qualquer música de Kids: há músicas de durações diferentes dentro de cada gênero, como mostram as caixas e os pontos.
+#
+# Classical tem maior variação na metade central das músicas, que vai de cerca de 3 minutos e 4 segundos a 7 minutos e 4 segundos. Em Asian Music, essa parte fica entre 2 minutos e 44 segundos e 3 minutos e 24 segundos. A caixa mais larga mostra essa diferença de durações dentro do próprio gênero.
+#
+# Os pontos são músicas que ficam além das hastes da caixa, pela regra de 1,5 vez o intervalo entre o primeiro e o terceiro quartil (IQR). São durações mais afastadas do centro, que não indicam erro por si só. Esses limites são calculados por gênero e não precisam coincidir com a sinalização de qualidade já gravada no conjunto preparado.
 #
 # As medianas são 159,5 s em Kids e 258,5 s em Metal, com 100 faixas em cada chart. A faixa mais longa dos charts de gênero tem 2.120 s (35 minutos e 20 segundos), em Indian Music. Ela foi mantida, mas esse caso isolado não resume o gênero inteiro. Fonte: seção 2, célula "Duração por gênero (boxplot)".
 
@@ -92,7 +102,7 @@ display(resumo_duracao_vis)
 inicio_janela_vis = df_generos_vis["data_coleta"] - pd.DateOffset(months=12)
 df_generos_vis["recente_vis"] = (
     df_generos_vis["data_lancamento"].ge(inicio_janela_vis)
-    & df_generos_vis["data_lancamento"].le(df_generos_vis["data_coleta"])
+    & ~df_generos_vis["lancamento_posterior_coleta"]
 )
 resumo_recentes_vis = (
     df_generos_vis.groupby("genero")["recente_vis"]
@@ -121,7 +131,7 @@ display(resumo_recentes_vis)
 print(f"Janela inclusiva: {inicio_janela_vis.min():%d/%m/%Y} a {df_generos_vis['data_coleta'].max():%d/%m/%Y}.")
 print(f"Recentes: {df_generos_vis['recente_vis'].sum()} de {len(df_generos_vis)} ocorrências. "
       f"Lançamentos posteriores à coleta, fora do numerador: "
-      f"{df_generos_vis['data_lancamento'].gt(df_generos_vis['data_coleta']).sum()}.")
+      f"{df_generos_vis['lancamento_posterior_coleta'].sum()}.")
 
 # %% [markdown]
 # **Interpretação — P2:** alguns charts têm mais espaço para músicas lançadas recentemente. Em Country, mais da metade das faixas foi lançada no último ano: 57 de 100. Em Rock e Films/Games, foram apenas 2 de 100 em cada chart. Portanto, estar no topo não significa necessariamente ser uma novidade; o peso dos lançamentos recentes varia entre os gêneros.
@@ -132,6 +142,15 @@ print(f"Recentes: {df_generos_vis['recente_vis'].sum()} de {len(df_generos_vis)}
 # Fãs do artista e popularidade: chart geral e conjunto dos gêneros
 # Spearman equivale à correlação de Pearson dos postos, com postos médios nos empates.
 correlacoes_gerais_vis = []
+limite_popularidade_vis = max(100_000, arredondar_para_cima(df_analise["rank"].max() / 100_000) * 100_000)
+marcacoes_popularidade_vis = [limite_popularidade_vis * parte_vis / 4 for parte_vis in range(5)]
+rotulos_popularidade_vis = [
+    ("0" if valor_vis == 0 else
+     f"{valor_vis / 1_000_000:g} milhão" if valor_vis == 1_000_000 else
+     f"{valor_vis / 1_000_000:g} milhões" if valor_vis > 1_000_000 else
+     f"{valor_vis / 1_000:g} mil").replace(".", ",")
+    for valor_vis in marcacoes_popularidade_vis
+]
 with plt.rc_context(estilo_vis):
     figura_vis, eixos_vis = plt.subplots(1, 2, figsize=(14, 6), sharey=True, layout="constrained")
     for eixo_vis, (nome_vis, recorte_vis) in zip(
@@ -152,11 +171,8 @@ with plt.rc_context(estilo_vis):
         )
         # Margens na área do gráfico preservam os círculos inteiros, inclusive os de zero fãs.
         eixo_vis.set_xlim(-0.5, df_analise["numero_fas"].max() * 2)
-        eixo_vis.set_ylim(-50_000, 1_050_000)
-        eixo_vis.set_yticks(
-            [0, 250_000, 500_000, 750_000, 1_000_000],
-            ["0", "250 mil", "500 mil", "750 mil", "1 milhão"],
-        )
+        eixo_vis.set_ylim(-0.05 * limite_popularidade_vis, 1.05 * limite_popularidade_vis)
+        eixo_vis.set_yticks(marcacoes_popularidade_vis, rotulos_popularidade_vis)
         eixo_vis.set_xlabel("Fãs do artista\nDe 10 em diante, cada marca multiplica a quantidade por 10")
         eixo_vis.set_title(f"{nome_vis}\n{len(recorte_vis):,} ocorrências faixa-chart".replace(",", "."))
         eixo_vis.grid(alpha=0.15)
@@ -248,13 +264,17 @@ with plt.rc_context(estilo_vis):
     barras_vis = eixo_vis.barh(resumo_concentracao_vis.index, resumo_concentracao_vis["percentual"], color="#2b788e")
     eixo_vis.bar_label(
         barras_vis,
-        labels=[f"{valor:.0f}%" for valor in resumo_concentracao_vis["percentual"]], padding=4,
+        labels=[
+            f"{linha_vis.percentual:.0f}% · {linha_vis.artistas_distintos} artistas"
+            for linha_vis in resumo_concentracao_vis.itertuples()
+        ], padding=4,
     )
     eixo_vis.set_xlim(0, 100)
     eixo_vis.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
     eixo_vis.set_xlabel("Posições dos cinco artistas com mais faixas / total do chart")
     eixo_vis.set_ylabel("Chart de gênero")
-    eixo_vis.set_title(f"P4 — Concentração de artistas por gênero · {data_retrato_vis}")
+    eixo_vis.set_title(f"P4 — Concentração de artistas por gênero · {data_retrato_vis}\n"
+                       "Rótulos: fatia dos cinco mais presentes · total de artistas no chart")
     eixo_vis.grid(axis="x", alpha=0.2)
     eixo_vis.set_axisbelow(True)
     plt.show()
