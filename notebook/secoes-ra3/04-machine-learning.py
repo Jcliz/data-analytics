@@ -121,6 +121,26 @@ print(f"Artista com 10 vezes mais fãs: rank previsto {formatar(efeito_fas_10x)}
 print(f"Cada minuto a mais de duração: rank previsto {formatar(coeficientes['duracao_s'] * 60)}")
 print(f"Cada ano a mais de idade: rank previsto {formatar(coeficientes['idade_dias'] * 365)}")
 
+# %%
+# Contribuição de cada grupo de características: regressões lineares com os mesmos treino e teste
+colunas_genero = list(indicadoras_genero.columns)
+grupos_caracteristicas = {
+    "Todas as características": list(X.columns),
+    "Só log_fas": ["log_fas"],
+    "Só as indicadoras de gênero": colunas_genero,
+    "Só duracao_s e idade_dias": ["duracao_s", "idade_dias"],
+    "Todas, exceto log_fas": [c for c in X.columns if c != "log_fas"],
+    "Todas, exceto o gênero": caracteristicas_numericas,
+}
+contribuicao = pd.DataFrame(
+    {nome: {"Características": len(colunas),
+            "R² no teste": r2_score(y_teste, LinearRegression().fit(X_treino[colunas], y_treino)
+                                    .predict(X_teste[colunas]))}
+     for nome, colunas in grupos_caracteristicas.items()}
+).T
+contribuicao["Características"] = contribuicao["Características"].astype(int)
+contribuicao.round({"R² no teste": 3})
+
 # %% [markdown]
 # **Resposta do grupo:**
 #
@@ -128,4 +148,6 @@ print(f"Cada ano a mais de idade: rank previsto {formatar(coeficientes['idade_di
 #
 # **Desempenho:** a regressão linear erra em média 147.956 pontos de `rank`, contra 227.294 de uma linha de base que prevê sempre a mediana do treino, uma redução de 34,9%. O R² de 0,521 indica que o modelo explica cerca de metade da variação do `rank`. A floresta aleatória, usada só para comparar, chega a MAE de 144.687 e R² de 0,539: o ganho pequeno sugere que a relação é quase toda linear e que a regressão linear, mais fácil de explicar, basta.
 #
-# **Interpretação:** o número de fãs do artista é a característica que mais pesa. Com as demais fixas, um artista com 10 vezes mais fãs tem `rank` previsto 74.885 maior, o que reforça a relação da P3. A duração e a idade pesam pouco (cada minuto a mais reduz o previsto em 7.320, e cada ano a mais em 1.980). Metade da variação fica sem explicação, e a tabela de previsões mostra erros de até cerca de 200 mil pontos, como o de Coldplay, superestimado pelo número de fãs. Isso é esperado, já que a fórmula do `rank` da Deezer não é publicada e depende de reproduções recentes que o conjunto não tem. O modelo serve para mostrar quanto da popularidade os fãs do artista explicam, e não para prever com precisão o `rank` de uma faixa.
+# **Contribuição das características:** o R² de 0,521 é do modelo com as 29 características juntas, e não só dos fãs. Com os mesmos treino e teste, `log_fas` sozinho chega a R² de 0,376, as indicadoras de gênero sozinhas a 0,389, e duração e idade juntas a apenas 0,021. Tirar `log_fas` do modelo completo baixa o R² para 0,398, e tirar o gênero baixa para 0,392. Os fãs do artista e o gênero do chart contribuem de forma parecida e complementar, e duração e idade quase nada acrescentam.
+#
+# **Interpretação:** o coeficiente de `log_fas` é uma associação ajustada pelas demais características, e não um efeito causal: entre faixas do mesmo gênero, com a mesma duração e a mesma idade, a de um artista com 10 vezes mais fãs tem `rank` previsto 74.885 maior. Isso reforça a relação da P3 dentro de cada gênero. Metade da variação fica sem explicação, e a tabela de previsões mostra erros de até cerca de 200 mil pontos, como o de Coldplay, superestimado pelo número de fãs. Isso é esperado, já que a fórmula do `rank` da Deezer não é publicada e depende de reproduções recentes que o conjunto não tem. O modelo serve para mostrar quanto da popularidade os atributos disponíveis explicam juntos, e não para prever com precisão o `rank` de uma faixa.
