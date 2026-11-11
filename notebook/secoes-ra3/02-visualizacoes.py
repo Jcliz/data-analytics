@@ -44,7 +44,7 @@ print(f"Comparações por gênero: {len(df_generos_vis)} ocorrências faixa-char
 # %% [markdown]
 # **Resposta do grupo:**
 #
-# As comparações usam as 2.700 ocorrências dos charts de gênero; as 100 do chart geral são apresentadas separadamente na P3. Uma faixa presente em dois charts participa de ambos, pois o grupo de comparação é o chart de origem. Fonte: seção 2, célula "Recorte e convenções das visualizações".
+# Os gráficos comparam as músicas que estavam no topo dos charts na data da coleta. Se uma música aparece em dois charts, ela entra nas duas comparações. São 2.700 registros nos charts de gênero e 100 no chart geral, que é mostrado separadamente na P3. Cada registro representa uma faixa em um chart. Fonte: seção 2, célula "Recorte e convenções das visualizações".
 
 # %%
 # Duração por gênero (boxplot)
@@ -83,7 +83,9 @@ with plt.rc_context(estilo_vis):
 display(resumo_duracao_vis)
 
 # %% [markdown]
-# **Interpretação — P1:** as medianas vão de 159,5 s em Kids a 258,5 s em Metal, com 100 ocorrências em cada chart. Os extremos chegam a 2.120 s em Indian Music; a escala logarítmica permite mostrar todas as durações sem excluir esses registros. As caixas também mostram a variabilidade dentro dos gêneros, evitando representar cada chart apenas pela média. Fonte: seção 2, célula "Duração por gênero (boxplot)".
+# **Interpretação — P1:** a duração típica das músicas muda de um gênero para outro. Em Kids, a duração do meio da lista é de aproximadamente 2 minutos e 40 segundos; em Metal, é de 4 minutos e 19 segundos. Isso não significa que toda música de Metal seja mais longa que qualquer música de Kids: há músicas de durações diferentes dentro de cada gênero, como mostram as caixas e os pontos.
+#
+# As medianas são 159,5 s em Kids e 258,5 s em Metal, com 100 faixas em cada chart. A faixa mais longa dos charts de gênero tem 2.120 s (35 minutos e 20 segundos), em Indian Music. Ela foi mantida, mas esse caso isolado não resume o gênero inteiro. Fonte: seção 2, célula "Duração por gênero (boxplot)".
 
 # %%
 # Lançamentos nos 12 meses anteriores à coleta
@@ -122,7 +124,9 @@ print(f"Recentes: {df_generos_vis['recente_vis'].sum()} de {len(df_generos_vis)}
       f"{df_generos_vis['data_lancamento'].gt(df_generos_vis['data_coleta']).sum()}.")
 
 # %% [markdown]
-# **Interpretação — P2:** Country tem 57 lançamentos recentes em 100 ocorrências (57%), enquanto Rock e Films/Games têm 2 em 100 cada (2%). No conjunto dos gêneros, são 592 de 2.700 (21,9%). A janela inclui 16/10/2025 e 16/10/2026; o lançamento posterior à coleta fica fora do numerador, mantendo o total do chart como denominador. Isso descreve a renovação do topo dos charts nesse retrato. Fonte: seção 2, célula "Lançamentos nos 12 meses anteriores à coleta".
+# **Interpretação — P2:** alguns charts têm mais espaço para músicas lançadas recentemente. Em Country, mais da metade das faixas foi lançada no último ano: 57 de 100. Em Rock e Films/Games, foram apenas 2 de 100 em cada chart. Portanto, estar no topo não significa necessariamente ser uma novidade; o peso dos lançamentos recentes varia entre os gêneros.
+#
+# Ao todo, 592 dos 2.700 registros de faixas nos charts de gênero (21,9%) são lançamentos entre 16/10/2025 e 16/10/2026, incluindo essas duas datas. A única faixa com lançamento posterior à coleta continua no total do seu chart, mas não conta como lançamento já ocorrido. Essa comparação descreve a idade dos lançamentos na coleta, sem acompanhar entradas e saídas dos charts ao longo do tempo. Fonte: seção 2, célula "Lançamentos nos 12 meses anteriores à coleta".
 
 # %%
 # Fãs do artista e popularidade: chart geral e conjunto dos gêneros
@@ -173,9 +177,13 @@ exemplos_popularidade_vis = pd.concat([
 display(exemplos_popularidade_vis[["leitura", "genero", "artista", "titulo", "numero_fas", "rank"]])
 
 # %% [markdown]
-# **Como ler:** cada ponto é uma ocorrência de faixa em um chart. À direita estão artistas com mais fãs; acima estão faixas com maior pontuação de popularidade (`rank`), que não é a posição de 1º, 2º ou 3º no chart. No eixo horizontal, 1 mil significa 1.000 fãs e 1 milhão significa 1.000.000. A partir de 10, cada marca multiplica a quantidade por dez; essa escala permite mostrar artistas de tamanhos muito diferentes. Os pontos de zero fãs também são mantidos.
+# **Como ler:** cada bolinha representa uma faixa em um chart. Mais à direita significa mais fãs do artista; mais acima significa maior popularidade da música. Essa popularidade é a pontuação `rank` da Deezer: não é a posição de 1º ou 2º lugar, nem uma contagem de ouvintes ou reproduções. No eixo horizontal, 1 mil significa 1.000 fãs e 1 milhão significa 1.000.000. A partir de 10, cada marca multiplica a quantidade por dez, para que artistas com dezenas e com milhões de fãs caibam na mesma figura. Os pontos de zero fãs também são mantidos.
 #
-# **Interpretação — P3, visão geral:** a associação é positiva: Spearman de 0,53 nas 100 ocorrências do chart geral e 0,60 nas 2.700 dos charts de gênero reunidos. Isso indica uma tendência, não uma exigência de ter muitos fãs. Por exemplo, "BADDIES IN BELGICA", de ISSAH, tem 150 fãs do artista e 948.653 pontos; a faixa de Frank Sinatra exibida na tabela tem 2.487.314 fãs do artista e 2.757 pontos. São dois exemplos observados, não estimativas de frequência. A quantidade de fãs não garante nem é condição necessária para uma pontuação alta neste retrato. O resultado reunido mistura gêneros e não demonstra causalidade. Fontes: seção 2, células "Fãs do artista e popularidade: chart geral e conjunto dos gêneros" e "Exemplos de fãs e popularidade".
+# **Interpretação — P3, visão geral:** a quantidade de fãs, sozinha, não determina a popularidade da música. Ter dez vezes mais fãs não implica ter dez vezes mais popularidade. Ainda existe uma tendência no conjunto: artistas com mais fãs tendem a ter faixas mais populares. Mas há exceções, e artistas com poucos fãs também podem ter músicas muito populares.
+#
+# Por exemplo, "BADDIES IN BELGICA", de ISSAH, tem 150 fãs do artista e 948.653 pontos de popularidade. A faixa de Frank Sinatra exibida na tabela tem 2.487.314 fãs do artista e 2.757 pontos. Esses dois casos ilustram por que o número de fãs não basta para prever o resultado de uma música; não dizem com que frequência as exceções acontecem.
+#
+# A tendência positiva é resumida pela correlação de Spearman: 0,53 nos 100 registros do chart geral e 0,60 nos 2.700 dos charts de gênero reunidos. Esses valores medem quanto as duas ordenações caminham juntas; não significam que 53% ou 60% da popularidade seja causada pelos fãs. O retrato mostra uma associação e não permite afirmar que mais fãs causem mais popularidade. Fontes: seção 2, células "Fãs do artista e popularidade: chart geral e conjunto dos gêneros" e "Exemplos de fãs e popularidade".
 
 # %%
 # Associação entre fãs e popularidade dentro de cada gênero
@@ -208,7 +216,11 @@ with plt.rc_context(estilo_vis):
 display(correlacoes_genero_vis.round({"spearman": 3}))
 
 # %% [markdown]
-# **Interpretação — P3, por gênero:** a correlação é positiva nos 27 charts, mas varia de 0,06 em Traditional Mexicano a 0,67 em Jazz, com 100 ocorrências em cada um. Em Jazz, a ordenação das faixas por fãs do artista acompanha mais de perto a ordenação por popularidade. Esse valor não é quantidade de fãs, percentual ou garantia de pontuação alta. Nas 100 ocorrências de Jazz, a mediana de fãs do artista é 778,5; nas 100 de Pop, é 613.963, embora Pop tenha correlação menor, de 0,24. Portanto, a força da associação não ordena os gêneros por quantidade de fãs. São medidas descritivas, sem teste de significância ou garantia de generalização. Fonte: seção 2, célula "Associação entre fãs e popularidade dentro de cada gênero".
+# **Interpretação — P3, por gênero:** Jazz aparece em primeiro porque, dentro desse chart, a tendência de artistas com mais fãs terem músicas mais populares é mais forte. Isso não quer dizer que Jazz tenha mais fãs que os outros gêneros. Em Traditional Mexicano, essa tendência é bem menos nítida: saber que um artista tem mais fãs ajuda pouco a acompanhar a ordem de popularidade das faixas.
+#
+# A medida dessa associação é 0,67 em Jazz e 0,06 em Traditional Mexicano, considerando 100 faixas em cada chart. Quanto mais perto de +1, mais as duas ordenações caminham juntas; perto de zero, essa tendência é pouco marcada. Os 27 charts têm valores positivos neste retrato, mas nenhum chega à correspondência perfeita de +1.
+#
+# A diferença entre associação e quantidade de fãs aparece também na tabela: a mediana de fãs do artista nas 100 faixas de Jazz é 778,5; nas 100 de Pop, é 613.963, embora a associação em Pop seja menor, de 0,24. Assim, estar no topo deste gráfico não significa ter o maior número de fãs. Esses resultados descrevem os charts na data da coleta e não garantem que o padrão se repita em outras datas. Fonte: seção 2, célula "Associação entre fãs e popularidade dentro de cada gênero".
 
 # %%
 # Concentração das posições nos cinco artistas mais presentes
@@ -249,4 +261,6 @@ with plt.rc_context(estilo_vis):
 display(resumo_concentracao_vis)
 
 # %% [markdown]
-# **Interpretação — P4:** em Metal, os cinco artistas com mais faixas ocupam 47 das 100 posições (47%), e há 35 artistas distintos. Em Jazz e Classical, os cinco concentram 11 de 100 posições cada (11%), com 93 e 94 artistas distintos, respectivamente. Assim, charts com o mesmo tamanho podem ter concentração de artistas bastante diferente. A medida conta posições, não participação nas reproduções ou na audiência. Fonte: seção 2, célula "Concentração das posições nos cinco artistas mais presentes".
+# **Interpretação — P4:** em alguns charts, os mesmos artistas aparecem várias vezes. Em Metal, apenas cinco artistas ocupam quase metade da lista: 47 das 100 posições. Em Jazz e Classical, os cinco artistas mais presentes ocupam 11 das 100 posições em cada chart. Nesses dois casos, a lista distribui mais posições entre artistas diferentes.
+#
+# Isso também aparece na quantidade de nomes: Metal tem 35 artistas distintos, Jazz tem 93 e Classical tem 94, todos em charts de 100 faixas. Portanto, listas do mesmo tamanho podem dar espaço a quantidades bem diferentes de artistas. Estamos contando posições ocupadas; o gráfico não informa a participação desses artistas nas reproduções ou na audiência. Fonte: seção 2, célula "Concentração das posições nos cinco artistas mais presentes".
