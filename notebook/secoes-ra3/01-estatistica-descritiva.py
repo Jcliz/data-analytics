@@ -158,14 +158,15 @@ duracao_desc = df_generos_desc.groupby("genero").agg(
     desvio_s=("duracao_s", "std"),
     minimo_s=("duracao_s", "min"),
     maximo_s=("duracao_s", "max"),
-    extremos_iqr=("duracao_fora_limites_iqr", "sum"),
+    # Sinalização da preparação (IQR da duração no conjunto inteiro), não o IQR de cada gênero
+    extremos_iqr_preparacao=("duracao_fora_limites_iqr", "sum"),
 )
 duracao_desc["iqr_s"] = duracao_desc["q3_s"] - duracao_desc["q1_s"]
 duracao_desc["amplitude_s"] = duracao_desc["maximo_s"] - duracao_desc["minimo_s"]
 duracao_desc["media_menos_mediana_s"] = duracao_desc["media_s"] - duracao_desc["mediana_s"]
-duracao_desc = duracao_desc.sort_values("mediana_s")
+duracao_desc = duracao_desc.sort_values("mediana_s", kind="stable")
 mostrar_desc(duracao_desc[["mediana_s", "media_s", "media_menos_mediana_s", "iqr_s", "desvio_s",
-                           "minimo_s", "maximo_s", "amplitude_s", "extremos_iqr"]])
+                           "minimo_s", "maximo_s", "amplitude_s", "extremos_iqr_preparacao"]])
 
 menor_desc, maior_desc = duracao_desc.index[0], duracao_desc.index[-1]
 print(f"Mediana da duração entre gêneros: de {numero_br_desc(duracao_desc['mediana_s'].min())} s ({menor_desc}) "
@@ -207,7 +208,7 @@ idade_desc = df_generos_desc.groupby("genero").agg(
 )
 idade_desc["iqr_anos"] = idade_desc["q3_anos"] - idade_desc["q1_anos"]
 idade_desc["% recentes"] = 100 * idade_desc["recentes"] / idade_desc["ocorrencias"]
-idade_desc = idade_desc.sort_values("% recentes", ascending=False)
+idade_desc = idade_desc.sort_values("% recentes", ascending=False, kind="stable")
 mostrar_desc(idade_desc[["recentes", "ocorrencias", "% recentes", "mediana_anos", "q1_anos", "q3_anos", "iqr_anos"]])
 
 print(f"Lançamentos dos 12 meses anteriores nos gêneros: {df_generos_desc['recente_12m'].sum()} de "
@@ -250,7 +251,7 @@ spearman_geral_desc = df_geral_desc["rank"].corr(df_geral_desc["numero_fas"], me
 spearman_por_genero_desc = (
     df_generos_desc.groupby("genero")[["rank", "numero_fas"]]
     .apply(lambda chart: chart["rank"].corr(chart["numero_fas"], method="spearman"))
-    .sort_values(ascending=False)
+    .sort_values(ascending=False, kind="stable")
     .rename("spearman rank × fãs")
     .to_frame()
 )
@@ -283,7 +284,7 @@ def concentracao_desc(chart):
 concentracao_generos_desc = (
     df_generos_desc.groupby("genero")[["id_artista", "artista"]]
     .apply(concentracao_desc)
-    .sort_values("% dos 5 maiores", ascending=False)
+    .sort_values("% dos 5 maiores", ascending=False, kind="stable")
 )
 mostrar_desc(concentracao_generos_desc)
 concentracao_geral_desc = concentracao_desc(df_geral_desc)
@@ -308,6 +309,6 @@ print(f"Chart geral (referência): {concentracao_geral_desc['artistas distintos'
 #
 # **P3 — rank e fãs.** O `rank` se espalha de 807 a 999.724, então estar entre as 100 primeiras não garante `rank` alto. Os fãs são muito desiguais: os 10% de ocorrências com mais fãs somam 71,4% de todos os fãs. A correlação de Spearman entre `rank` e fãs é 0,60 nos gêneros e 0,53 no chart geral, e é positiva nos 27 gêneros (de 0,06 a 0,67). Usamos Spearman porque compara a ordem dos valores; a de Pearson cai para 0,38 com a relação não linear e os extremos de fãs. Artistas com mais fãs tendem a ter faixas com `rank` mais alto, com força moderada, sem que isso prove causa. Fonte: seção 1, células "P3 — Distribuição do rank e dos fãs do artista" e "P3 — Correlação de Spearman entre rank e fãs do artista".
 #
-# **P4 — concentração.** Cada chart de gênero tem, na mediana, 69 artistas distintos. Os 5 artistas com mais posições ficam com 21% das posições na mediana, de 11% (Jazz e Classical) a 47% (Metal); no chart geral, 20%. Fonte: seção 1, célula "P4 — Artistas distintos e fatia dos 5 artistas com mais posições por chart".
+# **P4 — concentração.** Cada chart de gênero tem, na mediana, 69 artistas distintos, de 35 (Metal) a 94 (Classical). Os 5 artistas com mais posições ficam com 21% das posições na mediana, de 11% (Jazz e Classical) a 47% (Metal); no chart geral, 20%. Fonte: seção 1, célula "P4 — Artistas distintos e fatia dos 5 artistas com mais posições por chart".
 #
-# No retrato da coleta, a faixa típica do topo tem de 3 a 4 minutos e é de um artista com dezenas de milhares de fãs; os gêneros se diferenciam mais na idade das faixas e na concentração de artistas.
+# No retrato da coleta, a faixa típica do topo tem de 3 a 4 minutos e é de um artista com dezenas de milhares de fãs. Comparando a razão entre o maior e o menor valor por gênero, a duração mediana varia 1,6 vez (159,5 s a 258,5 s), a fatia dos 5 maiores artistas 4,3 vezes (11% a 47%) e a de lançamentos recentes 28,5 vezes (2% a 57%); na leitura do grupo, os gêneros se diferenciam mais pela idade das faixas e pela concentração de artistas do que pela duração.
