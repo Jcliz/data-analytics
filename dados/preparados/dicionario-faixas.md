@@ -2,7 +2,7 @@
 
 Arquivo: `dados/preparados/faixas_preparadas.csv`, CSV UTF-8, separador vírgula, sem índice. Uma linha representa uma ocorrência de faixa em um chart e uma data de coleta. A chave é `data_coleta`, `id_chart` e `id_faixa`.
 
-O retrato de 16/10/2026 produziu 2.800 registros e 16 atributos. Nenhum campo selecionado tem valor nulo nesses 2.800 registros. Evidências: notebook §5, células "Seleção e organização dos atributos", "Verificações finais do conjunto preparado" e "Gravação e releitura do conjunto preparado".
+O retrato de 16/10/2026 produziu 2.800 registros e 16 atributos. Nenhum campo selecionado tem valor nulo nesses 2.800 registros. Evidências: notebook do RA1 e do RA2, seção 5, células "Seleção e organização dos atributos", "Verificações finais do conjunto preparado" e "Gravação e releitura do conjunto preparado".
 
 | Atributo | Origem | Significado e uso | Tipo em memória | Domínio ou unidade |
 |---|---|---|---|---|
@@ -21,13 +21,13 @@ O retrato de 16/10/2026 produziu 2.800 registros e 16 atributos. Nenhum campo se
 | `data_lancamento` | `detalhe_faixa_release_date` | Data de lançamento da faixa; P2 | datetime64 ns | Data, serializada no CSV como AAAA-MM-DD; valores futuros são preservados e sinalizados |
 | `data_coleta` | `metadados.inicio_utc` | Data UTC do retrato e parte da chave | datetime64 ns | Data, serializada como AAAA-MM-DD |
 | `lancamento_posterior_coleta` | Comparação entre as duas datas | Sinalização de qualidade temporal | bool | True quando o lançamento é posterior à coleta; False nos demais |
-| `duracao_fora_limites_iqr` | Regra IQR da T03 sobre `duration` | Sinalização para inspeção de extremos | bool | True fora dos limites; não indica erro confirmado |
+| `duracao_fora_limites_iqr` | Regra IQR da verificação de qualidade (documento do RA1, seção 03) sobre `duration` | Sinalização para inspeção de extremos | bool | True fora dos limites; não indica erro confirmado |
 
-As 12 colunas selecionadas do bruto foram acrescidas de quatro campos: tipo_chart, data_coleta e as duas sinalizações. O nome rank foi preservado porque já é esperado pelo gerador de eventos. Evidências: notebook §5, células "Seleção e organização dos atributos" e "Padronização dos nomes e tipos".
+As 12 colunas selecionadas do bruto foram acrescidas de quatro campos: tipo_chart, data_coleta e as duas sinalizações. O nome rank foi preservado porque já é esperado pelo gerador de eventos. Evidências: notebook do RA1 e do RA2, seção 5, células "Seleção e organização dos atributos" e "Padronização dos nomes e tipos".
 
 ## Leitura e limites de uso
 
-O CSV não guarda tipos. Ao reler, informar int64 para as oito colunas inteiras, string para os quatro textos e bool para as duas sinalizações; converter data_lancamento e data_coleta para datas. A célula "Gravação e releitura do conjunto preparado" do notebook §5 contém a leitura validada.
+O CSV não guarda tipos. Ao reler, informar int64 para as oito colunas inteiras, string para os quatro textos e bool para as duas sinalizações; converter data_lancamento e data_coleta para datas. A célula "Gravação e releitura do conjunto preparado" do notebook do RA1 e do RA2, seção 5, contém a leitura validada.
 
 Nos eventos por gênero do RA2, selecionar somente tipo_chart igual a genero. O geral continua no arquivo para a comparação geral da P3. Não excluir participações de uma faixa em outros charts por repetição de id_faixa.
 
