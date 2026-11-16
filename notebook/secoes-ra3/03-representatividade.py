@@ -47,8 +47,9 @@ print(f"\nFaixas do chart geral que também estão num chart de gênero: "
 # %%
 # Diferenças de perfil entre os charts de gênero
 generos_repr = df_analise[df_analise["tipo_chart"].eq("genero")].copy()
-inicio_janela_repr = generos_repr["data_coleta"] - pd.DateOffset(years=1)
-generos_repr["lancada_12_meses"] = (generos_repr["data_lancamento"].gt(inicio_janela_repr)
+# Mesma janela das seções 1 e 2: inclusiva, de 12 meses antes da coleta até a coleta, sem o lançamento posterior
+inicio_janela_repr = generos_repr["data_coleta"] - pd.DateOffset(months=12)
+generos_repr["lancada_12_meses"] = (generos_repr["data_lancamento"].ge(inicio_janela_repr)
                                     & ~generos_repr["lancamento_posterior_coleta"])
 perfil_repr = generos_repr.groupby("genero").agg(
     artistas_distintos=("id_artista", "nunique"),
@@ -57,7 +58,9 @@ perfil_repr = generos_repr.groupby("genero").agg(
     pct_lancadas_12_meses=("lancada_12_meses", "mean"),
 ).sort_values("mediana_rank")
 perfil_repr["pct_lancadas_12_meses"] = (100 * perfil_repr["pct_lancadas_12_meses"]).round(1)
-print(perfil_repr.astype({"mediana_rank": "int64", "mediana_fas": "int64"}).to_string())
+# Arredonda antes de converter para inteiro, para a tabela bater com o resumo abaixo (830.083,5 vira 830.084)
+print(perfil_repr.round({"mediana_rank": 0, "mediana_fas": 0})
+      .astype({"mediana_rank": "int64", "mediana_fas": "int64"}).to_string())
 print(f"\nMediana do rank: {perfil_repr['mediana_rank'].min():,.0f} a {perfil_repr['mediana_rank'].max():,.0f} "
       f"entre os {len(perfil_repr)} charts de gênero".replace(",", "."))
 
@@ -66,7 +69,8 @@ print(f"\nMediana do rank: {perfil_repr['mediana_rank'].min():,.0f} a {perfil_re
 correlacao_repr = df_analise.groupby("genero")[["posicao_chart", "rank"]].apply(
     lambda chart: chart["posicao_chart"].corr(chart["rank"], method="spearman"))
 print(f"Correlação de Spearman entre posição e rank em cada um dos {len(correlacao_repr)} charts: "
-      f"mediana {correlacao_repr.median():.2f}, de {correlacao_repr.min():.2f} a {correlacao_repr.max():.2f}")
+      f"mediana {correlacao_repr.median():.2f}, de {correlacao_repr.min():.2f} a {correlacao_repr.max():.2f}"
+      .replace(".", ","))
 print(f"Charts com correlação abaixo de -0,5 (posição alta = rank alto): {(correlacao_repr < -0.5).sum()}")
 print(f"Rank: de {df_analise['rank'].min():,} a {df_analise['rank'].max():,}".replace(",", "."))
 print(f"Ocorrências de artista com 0 fãs: {df_analise['numero_fas'].eq(0).sum()} de {len(df_analise)}")
